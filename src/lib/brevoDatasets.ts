@@ -294,7 +294,7 @@ function processBrevoData(data: BrevoData, params: any): Datasets {
   });
 
   // Compute funnel
-  const leadsACRM = transformedContacts.filter(x => x.listIds && x.listIds.length > 0).length;
+  const leadsACRM = transformedContacts.length; // All contacts are leads to CRM
   const iscrittiPiattaforma = transformedContacts.filter(x => x.hasList6).length;
   const profiloCompleto = transformedContacts.filter(x => !!String(x.attributes.DATA_DI_NASCITA || '').trim()).length;
   const corsisti = transformedContacts.filter(x => x.isCorsista).length;
