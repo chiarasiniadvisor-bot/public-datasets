@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 import { fetchHistoricalData, calculateDeltaData, getWeeklyTrendData, type DeltaData, type HistoricalData } from '@/lib/historicalData';
 
-export default function WeeklyDeltaDashboard() {
+export function WeeklyDeltaDashboard() {
   const [deltaData, setDeltaData] = useState<DeltaData | null>(null);
   const [trendData, setTrendData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -184,3 +184,5 @@ export default function WeeklyDeltaDashboard() {
     </div>
   );
 }
+
+export default WeeklyDeltaDashboard;
