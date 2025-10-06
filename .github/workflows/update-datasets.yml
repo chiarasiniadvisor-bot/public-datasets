@@ -40,12 +40,13 @@ jobs:
     - name: Commit and push changes
       env:
         ACTIONS_REPO_PAT: ${{ secrets.ACTIONS_REPO_PAT }}
+        GITHUB_ACTOR: ${{ github.actor }}
       run: |
         git add datasets.json
         if git diff --staged --quiet; then
           echo "No changes to commit"
         else
           git commit -m "Update datasets from Brevo API [skip ci]"
-          git remote set-url origin https://x-access-token:${ACTIONS_REPO_PAT}@github.com/${GITHUB_REPOSITORY}.git
+          git remote set-url origin https://${GITHUB_ACTOR}:${ACTIONS_REPO_PAT}@github.com/${GITHUB_REPOSITORY}.git
           git push origin HEAD:main
         fi
