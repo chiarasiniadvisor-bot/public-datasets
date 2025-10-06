@@ -16,7 +16,6 @@ import { fetchDatasets } from "@/lib/brevoDatasets";
 import logoImage from "@/assets/logo.png";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageSwitch } from "./LanguageSwitch";
-import { WeeklyDeltaDashboard } from "./WeeklyDeltaDashboard";
 import { useTranslation } from "react-i18next";
 
 /* =========================
@@ -704,8 +703,6 @@ export default function ConversionDashboard() {
           </CardContent>
         </Card>
 
-        {/* Delta settimanale */}
-        <WeeklyDeltaDashboard />
 
         {/* Insights Funnel */}
         <div className="bg-blue-50 dark:bg-blue-900/10 p-4 rounded-lg mb-8">
