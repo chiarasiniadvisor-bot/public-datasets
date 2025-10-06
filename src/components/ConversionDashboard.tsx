@@ -470,7 +470,8 @@ export default function ConversionDashboard() {
         });
         setLeadsCount(leadsTot);
 
-        const corsistiWebinar = pickNamedValue(dsCorsisti.distribuzione_liste_corsisti, ["webinar"]);
+        // Use new webinar metrics from datasets
+        const corsistiWebinar = dsCorsisti.webinar_conversions?.find(item => item.name === 'Corsisti da Webinar')?.value || 0;
         setIscrittiWebinar([
           { name: "Con webinar", value: corsistiWebinar },
           { name: "Senza webinar", value: Math.max(0, corsistiFromFunnel - corsistiWebinar) },
@@ -494,19 +495,15 @@ export default function ConversionDashboard() {
         setUtentiCrmAnniProfilazione(normalizeUnknownValues(asKV(dsCrm.distribuzione_anno_profilazione)));
         setFontiCrm(normalizeUnknownValues(asKV(dsCrm.distribuzione_fonte).filter(f => (f.value || 0) > 0)));
 
-        const crmWebinarCount = pickNamedValue(dsCrm.distribuzione_liste_corsisti, ["webinar"]);
+        // Use new webinar metrics from datasets
+        const crmWebinarCount = dsCrm.utenti_crm_webinar?.find(item => item.name === 'Utenti CRM con Webinar')?.value || 0;
         setUtentiCrmWebinar([
           { name: "Con webinar", value: crmWebinarCount },
           { name: "Senza webinar", value: Math.max(0, leadsTot - crmWebinarCount) },
         ]);
 
-        // Calcolo conversioni partecipanti webinar (campione: tutti gli utenti che hanno fatto webinar)
-        // crmWebinarCount: tutti gli utenti che hanno partecipato a webinar (2096)
-        // corsistiWebinar: di questi, quanti sono diventati corsisti (256)
-        setWebinarConversions([
-          { name: "Diventati corsisti", value: corsistiWebinar },
-          { name: "Non corsisti", value: Math.max(0, crmWebinarCount - corsistiWebinar) },
-        ]);
+        // Use new webinar conversions from datasets
+        setWebinarConversions(dsCrm.webinar_conversions || []);
 
         const crmNonCorsisti = Math.max(0, leadsTot - corsistiFromFunnel);
         const crm2000_2001 = (dsCrm.distribuzione_anno_nascita || [])
@@ -543,7 +540,8 @@ export default function ConversionDashboard() {
         
         setFontiIscritti(normalizeUnknownValues(asKV(dsIscritti.distribuzione_fonte).filter(f => (f.value || 0) > 0)));
 
-        const iscrittiWebinarCount = pickNamedValue(dsIscritti.distribuzione_liste_corsisti, ["webinar"]);
+        // Use new iscritti webinar metrics from datasets
+        const iscrittiWebinarCount = dsIscritti.iscritti_webinar?.find(item => item.name === 'Iscritti con Webinar')?.value || 0;
         setIscrittiWebinarAll([
           { name: "Con webinar", value: iscrittiWebinarCount },
           { name: "Senza webinar", value: Math.max(0, iscrittiTotFromFunnel - iscrittiWebinarCount) },
@@ -558,11 +556,12 @@ export default function ConversionDashboard() {
           .reduce((s, i) => s + (i.value || 0), 0);
         const pct2000_2001 = corsistiFromFunnel > 0 ? (corsisti2000_2001 / corsistiFromFunnel) : 0;
         const pct5_6 = corsistiFromFunnel > 0 ? (corsisti5_6Anno / corsistiFromFunnel) : 0;
-        const pctWebinarIscritti = iscrittiTotFromFunnel > 0 ? (iscrittiWebinarCount / iscrittiTotFromFunnel) : 0;
-        const iscrittiInTarget = Math.floor(iscrittiNonCorsisti * Math.min(pct2000_2001, pct5_6, pctWebinarIscritti));
+        // Use new non-corsisti target metrics from datasets
+        const nonCorsistiInTarget = dsCrm.utenti_crm_non_corsisti_in_target || 0;
+        const nonCorsistiTotal = dsCrm.utenti_crm_non_corsisti || 0;
         setIscrittiNonCorsistiTarget([
-          { name: "In target", value: iscrittiInTarget },
-          { name: "Non in target", value: Math.max(0, iscrittiNonCorsisti - iscrittiInTarget) },
+          { name: "In target", value: nonCorsistiInTarget },
+          { name: "Non in target", value: Math.max(0, nonCorsistiTotal - nonCorsistiInTarget) },
         ]);
 
       } catch (e: any) {
