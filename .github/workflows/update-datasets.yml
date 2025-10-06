@@ -41,13 +41,16 @@ jobs:
     - name: Commit and push changes
       env:
         ACTIONS_REPO_PAT: ${{ secrets.ACTIONS_REPO_PAT }}
-        GITHUB_ACTOR: ${{ github.actor }}
+        ACTIONS_REPO_USERNAME: ${{ secrets.ACTIONS_REPO_USERNAME }}
       run: |
         git add datasets.json
         if git diff --staged --quiet; then
           echo "No changes to commit"
         else
           git commit -m "Update datasets from Brevo API [skip ci]"
-          git remote set-url origin https://${GITHUB_ACTOR}:${ACTIONS_REPO_PAT}@github.com/${GITHUB_REPOSITORY}.git
+          if [ -z "$ACTIONS_REPO_USERNAME" ]; then
+            echo "ACTIONS_REPO_USERNAME secret not set. Please set it to the username that owns the PAT." && exit 1
+          fi
+          git remote set-url origin https://${ACTIONS_REPO_USERNAME}:${ACTIONS_REPO_PAT}@github.com/${GITHUB_REPOSITORY}.git
           git push origin HEAD:main
         fi
