@@ -34,6 +34,13 @@ export type Datasets = {
   distribuzione_corsi: { name: string; value: number }[];
   distribuzione_corsi_pagati: { name: string; value: number }[];
   gestiti_trattativa: { name: string; value: number }[];
+  // Webinar metrics
+  webinar_conversions: { name: string; value: number }[];
+  iscritti_webinar: { name: string; value: number }[];
+  utenti_crm_webinar: { name: string; value: number }[];
+  utenti_crm_non_corsisti: number;
+  utenti_crm_non_corsisti_in_target: number;
+  pct_non_corsisti_in_target: number;
 };
 
 // Load datasets from local JSON file
@@ -57,6 +64,7 @@ export async function fetchDatasets(params: {
 
 // Constants from App Script
 const LIST_ID_PIATTAFORMA = 6;
+const LIST_ID_WEBINAR = 69; // Lista webinar
 const ESCLUDI_MATCH_IN_CORSO = 'borsa di studio';
 const LABEL_FONTE_MISSING = 'Sconosciuta/Non dichiarata';
 const LABEL_ATENEO_MISSING = 'Non specificato';
@@ -194,6 +202,70 @@ function relabelAnnoProfilazione_(items: Array<{name: string, value: number}>): 
   return order.map(l => ({ name: l, value: acc.get(l) || 0 })).filter(x => x.value > 0 || x.name === 'Altro');
 }
 
+// Webinar and conversion functions
+function isWebinarParticipant_(contact: any): boolean {
+  return contact.listIds && contact.listIds.indexOf(LIST_ID_WEBINAR) !== -1;
+}
+
+function computeWebinarConversions_(contacts: any[]): Array<{name: string, value: number}> {
+  const webinarParticipants = contacts.filter(isWebinarParticipant_);
+  const webinarCorsisti = webinarParticipants.filter(c => c.isCorsista);
+  const webinarPaganti = webinarParticipants.filter(c => c.isPagante);
+  
+  return [
+    { name: 'Partecipanti Webinar', value: webinarParticipants.length },
+    { name: 'Corsisti da Webinar', value: webinarCorsisti.length },
+    { name: 'Paganti da Webinar', value: webinarPaganti.length }
+  ];
+}
+
+function computeIscrittiWebinar_(contacts: any[]): Array<{name: string, value: number}> {
+  const iscrittiPiattaforma = contacts.filter(c => c.hasList6);
+  const iscrittiWebinar = iscrittiPiattaforma.filter(isWebinarParticipant_);
+  const iscrittiNonWebinar = iscrittiPiattaforma.filter(c => !isWebinarParticipant_(c));
+  
+  return [
+    { name: 'Iscritti con Webinar', value: iscrittiWebinar.length },
+    { name: 'Iscritti senza Webinar', value: iscrittiNonWebinar.length }
+  ];
+}
+
+function computeNonCorsistiTarget_(contacts: any[]): any {
+  const crm = contacts.filter(x => x.listIds && x.listIds.length > 0);
+  const nonCorsisti = crm.filter(x => !x.isCorsista);
+  let inTarget = 0;
+  
+  for (const contact of nonCorsisti) {
+    const hasWebinar = isWebinarParticipant_(contact);
+    if (!hasWebinar) continue;
+    
+    const annoOK = contact.annoNorm === '5' || contact.annoNorm === '6';
+    const yobStr = extractYear_(contact.attributes.DATA_DI_NASCITA || '');
+    const yob = yobStr ? parseInt(yobStr, 10) : NaN;
+    const yobOK = (yob === 2000 || yob === 2001);
+    
+    if (annoOK || yobOK) inTarget++;
+  }
+  
+  const tot = nonCorsisti.length;
+  return {
+    nonCorsisti: tot,
+    inTarget,
+    pct: tot > 0 ? inTarget / tot : 0
+  };
+}
+
+function computeUtentiCrmWebinar_(contacts: any[]): Array<{name: string, value: number}> {
+  const crm = contacts.filter(x => x.listIds && x.listIds.length > 0);
+  const crmWebinar = crm.filter(isWebinarParticipant_);
+  const crmNonWebinar = crm.filter(c => !isWebinarParticipant_(c));
+  
+  return [
+    { name: 'Utenti CRM con Webinar', value: crmWebinar.length },
+    { name: 'Utenti CRM senza Webinar', value: crmNonWebinar.length }
+  ];
+}
+
 function processBrevoData(data: BrevoData, params: any): Datasets {
   const { contacts } = data;
   
@@ -325,6 +397,12 @@ function processBrevoData(data: BrevoData, params: any): Datasets {
     { name: 'Senza trattativa', value: corsisti }
   ];
 
+  // Webinar metrics
+  const webinarConversions = computeWebinarConversions_(transformedContacts);
+  const iscrittiWebinar = computeIscrittiWebinar_(transformedContacts);
+  const nonCorsistiTarget = computeNonCorsistiTarget_(transformedContacts);
+  const utentiCrmWebinar = computeUtentiCrmWebinar_(transformedContacts);
+
   return {
     funnel,
     iscritti_con_simulazione: iscrittiSimulazione,
@@ -335,7 +413,14 @@ function processBrevoData(data: BrevoData, params: any): Datasets {
     distribuzione_liste_corsisti,
     distribuzione_corsi,
     distribuzione_corsi_pagati,
-    gestiti_trattativa: gestitiTrattativa
+    gestiti_trattativa: gestitiTrattativa,
+    // Webinar metrics
+    webinar_conversions: webinarConversions,
+    iscritti_webinar: iscrittiWebinar,
+    utenti_crm_webinar: utentiCrmWebinar,
+    utenti_crm_non_corsisti: nonCorsistiTarget.nonCorsisti,
+    utenti_crm_non_corsisti_in_target: nonCorsistiTarget.inTarget,
+    pct_non_corsisti_in_target: nonCorsistiTarget.pct
   };
 }
 
