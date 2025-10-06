@@ -6,6 +6,9 @@ on:
     - cron: '0 2 * * *'
   workflow_dispatch: # Allow manual trigger
 
+permissions:
+  contents: write
+
 jobs:
   update-datasets:
     runs-on: ubuntu-latest
@@ -15,7 +18,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
-        persist-credentials: false
+        persist-credentials: true
         
     - name: Configure Git
       run: |
@@ -39,18 +42,11 @@ jobs:
         node scripts/updateBrevo.js
         
     - name: Commit and push changes
-      env:
-        ACTIONS_REPO_PAT: ${{ secrets.ACTIONS_REPO_PAT }}
-        ACTIONS_REPO_USERNAME: ${{ secrets.ACTIONS_REPO_USERNAME }}
       run: |
         git add datasets.json
         if git diff --staged --quiet; then
           echo "No changes to commit"
         else
           git commit -m "Update datasets from Brevo API [skip ci]"
-          if [ -z "$ACTIONS_REPO_USERNAME" ]; then
-            echo "ACTIONS_REPO_USERNAME secret not set. Please set it to the username that owns the PAT." && exit 1
-          fi
-          git remote set-url origin https://${ACTIONS_REPO_USERNAME}:${ACTIONS_REPO_PAT}@github.com/${GITHUB_REPOSITORY}.git
           git push origin HEAD:main
         fi
