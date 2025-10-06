@@ -55,74 +55,288 @@ export async function fetchDatasets(params: {
   return processBrevoData(cachedData, params);
 }
 
+// Constants from App Script
+const LIST_ID_PIATTAFORMA = 6;
+const ESCLUDI_MATCH_IN_CORSO = 'borsa di studio';
+const LABEL_FONTE_MISSING = 'Sconosciuta/Non dichiarata';
+const LABEL_ATENEO_MISSING = 'Non specificato';
+const LABEL_ANNO_MISSING = 'ND';
+const ALLOWED_MACROS = ['WEBINAR','META','SITO','AMBASSADOR','CONVERSAZIONI','ISCRITTI'];
+
+// Maps from App Script
+const FONTE_MAP: { [key: string]: string } = {
+  'adv meta': 'META','facebook ads': 'META','instagram ads': 'META','fb': 'META',
+  'ig': 'Instagram','instagram': 'Instagram',
+  'google ads': 'Google','google': 'Google',
+  'seo': 'SEO','organic': 'SEO',
+  'referral': 'Referral','passaparola': 'Referral',
+  'webinar': 'Webinar','email': 'Email','newsletter': 'Email',
+};
+
+const ANNO_MAP: { [key: string]: string } = {
+  '1':'1','1°':'1','primo':'1','2':'2','2°':'2','secondo':'2','3':'3','3°':'3','terzo':'3',
+  '4':'4','4°':'4','quarto':'4','5':'5','5°':'5','quinto':'5','6':'6','6°':'6','sesto':'6',
+  'laureato':'Laureato','laureata':'Laureato','post laurea':'Post laurea',
+  'fuori corso':'Fuori corso','fuoricorso':'Fuori corso',
+};
+
+// Helper functions from App Script
+function canon_(s: string): string {
+  return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, ' ').trim();
+}
+
+function hasFreeOffer_(s: string): boolean {
+  return s.includes('gratis') && (s.includes('se entri') || s.includes(' entri '));
+}
+
+function hasBorsa_(s: string): boolean {
+  return s.includes('borsa') && s.includes('studio');
+}
+
+function hasPromo_(s: string): boolean {
+  return s.includes('promo') || s.includes('sconto');
+}
+
+function detectFamily_(s: string): string {
+  if (!s) return 'Non specificato';
+  const isFull = s.includes('full') && s.includes('ssm') && s.includes('2026');
+  const isAcademy = s.includes('academy') && s.includes('2026');
+  const isFocus = s.includes('focus') && s.includes('2025');
+  const isBiennale = s.includes('biennale') && s.includes('2027');
+  const isOneMore = s.includes('one more time') && s.includes('2026');
+  const isOnDemand = s.includes('on demand pro');
+  
+  if (isFull) return 'FULL_2026';
+  if (isAcademy) return 'ACADEMY_2026';
+  if (isFocus) return 'FOCUS_2025';
+  if (isBiennale) return 'BIENNALE_2027';
+  if (isOneMore) return 'ONE_MORE_TIME_2026';
+  if (isOnDemand) return 'ON_DEMAND_PRO';
+  return 'Altro';
+}
+
+function buildCourseMacro_(s: string): string {
+  const fam = detectFamily_(s);
+  if (fam === 'FULL_2026') {
+    if (hasFreeOffer_(s)) return 'Full 2026 – Se entri è gratis';
+    if (hasBorsa_(s)) return 'Full 2026 – Borsa di Studio';
+    if (hasPromo_(s)) {
+      if (s.includes('65%')) return 'Full 2026 – Promo 65%';
+      if (s.includes('40%')) return 'Full 2026 – Promo 40%';
+      if (s.includes('30%')) return 'Full 2026 – Promo 30%';
+      return 'Full 2026 – Promo';
+    }
+    return 'Full 2026 – Altro';
+  }
+  if (fam === 'ACADEMY_2026') {
+    if (hasFreeOffer_(s)) return 'Academy 2026 – Se entri è gratis';
+    if (hasPromo_(s)) { 
+      if (s.includes('40%')) return 'Academy 2026 – Promo 40%'; 
+      return 'Academy 2026 – Promo'; 
+    }
+    return 'Academy 2026 – Altro';
+  }
+  if (fam === 'FOCUS_2025') return 'Focus SSM 2025';
+  if (fam === 'BIENNALE_2027') return 'Biennale SSM 2027';
+  if (fam === 'ONE_MORE_TIME_2026') return 'One More Time SSM 2026';
+  if (fam === 'ON_DEMAND_PRO') return 'On Demand Pro';
+  if (fam === 'Non specificato') return 'Non specificato';
+  return 'Altro';
+}
+
+function normFonte_(v: string): string {
+  const raw = String(v || '').trim();
+  if (!raw) return LABEL_FONTE_MISSING;
+  const key = raw.toLowerCase();
+  if (FONTE_MAP[key]) return FONTE_MAP[key];
+  return raw.charAt(0).toUpperCase() + raw.slice(1);
+}
+
+function normAnno_(v: string): string {
+  const raw = String(v || '').trim();
+  if (!raw) return LABEL_ANNO_MISSING;
+  const s = raw.toLowerCase();
+  const m = s.match(/(^|\D)([1-6])(\D|$)/);
+  if (m) return m[2];
+  if (/laureat/.test(s)) return 'Laureato';
+  if (/fuori\s*cors/.test(s) || /fuoricors/.test(s)) return 'Fuori corso';
+  if (/post\s*laurea|specializz|master/.test(s)) return 'Post laurea';
+  
+  for (const k in ANNO_MAP) {
+    if (ANNO_MAP.hasOwnProperty(k)) {
+      const rx = new RegExp(`\\b${k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
+      if (rx.test(s)) return ANNO_MAP[k];
+    }
+  }
+  return 'Altro';
+}
+
+function extractYear_(dateStr: string): string | null {
+  const s = String(dateStr || '');
+  const m = s.match(/\b(19|20)\d{2}\b/);
+  return m ? m[0] : null;
+}
+
+function relabelAnnoProfilazione_(items: Array<{name: string, value: number}>): Array<{name: string, value: number}> {
+  const map: { [key: string]: string } = {
+    '1': '1° Anno', '2': '2° Anno', '3': '3° Anno', '4': '4° Anno', '5': '5° Anno', '6': '6° Anno',
+    'laureato': 'Laureato', 'fuori corso': 'Altro', 'altro': 'Altro', 'nd': 'Altro', 'post laurea': 'Altro'
+  };
+  
+  const acc = new Map<string, number>();
+  for (const it of items || []) {
+    const k = String(it.name || '').toLowerCase().trim();
+    const label = map[k] || 'Altro';
+    acc.set(label, (acc.get(label) || 0) + (Number(it.value) || 0));
+  }
+  
+  const order = ['1° Anno', '2° Anno', '3° Anno', '4° Anno', '5° Anno', '6° Anno', 'Laureato', 'Altro'];
+  return order.map(l => ({ name: l, value: acc.get(l) || 0 })).filter(x => x.value > 0 || x.name === 'Altro');
+}
+
 function processBrevoData(data: BrevoData, params: any): Datasets {
   const { contacts } = data;
   
-  // Process contacts to create datasets
-  const datasets: Datasets = {
-    funnel: [],
-    iscritti_con_simulazione: [],
-    distribuzione_atenei: [],
-    distribuzione_anno_profilazione: [],
-    distribuzione_fonte: [],
-    distribuzione_anno_nascita: [],
-    distribuzione_liste_corsisti: [],
-    distribuzione_corsi: [],
-    distribuzione_corsi_pagati: [],
-    gestiti_trattativa: []
-  };
+  // Transform contacts like App Script
+  const transformedContacts = contacts.map(contact => {
+    const corsoRaw = String(contact.attributes.CORSO_ACQUISTATO || '').trim();
+    const corsoCanon = canon_(corsoRaw);
+    const isCorsista = !!corsoRaw;
+    const isPagante = isCorsista && !corsoRaw.toLowerCase().includes(ESCLUDI_MATCH_IN_CORSO);
+    const hasList6 = contact.listIds.indexOf(LIST_ID_PIATTAFORMA) !== -1;
+    const hasUltimaSimulazione = !!String(contact.attributes.ULTIMA_SIMULAZIONE || '').trim();
+    const macroCorso = buildCourseMacro_(corsoCanon);
+    
+    return {
+      ...contact,
+      isCorsista,
+      isPagante,
+      hasList6,
+      hasUltimaSimulazione,
+      annoNorm: normAnno_(contact.attributes.ANNO || ''),
+      fonteNorm: normFonte_(contact.attributes.FONTE || ''),
+      ATENEO: contact.attributes.ATENEO || LABEL_ATENEO_MISSING,
+      corsoCanon,
+      macroCorso
+    };
+  });
 
-  // Process atenei distribution
+  // Compute funnel
+  const leadsACRM = transformedContacts.filter(x => x.listIds && x.listIds.length > 0).length;
+  const iscrittiPiattaforma = transformedContacts.filter(x => x.hasList6).length;
+  const profiloCompleto = transformedContacts.filter(x => !!String(x.attributes.DATA_DI_NASCITA || '').trim()).length;
+  const corsisti = transformedContacts.filter(x => x.isCorsista).length;
+  const paganti = transformedContacts.filter(x => x.isPagante).length;
+
+  const funnel = [
+    { step: 'Leads a CRM', value: leadsACRM },
+    { step: 'Iscritti alla Piattaforma (#6)', value: iscrittiPiattaforma },
+    { step: 'Profilo completo', value: profiloCompleto },
+    { step: 'Corsisti', value: corsisti },
+    { step: 'Clienti paganti', value: paganti }
+  ];
+
+  // Compute iscritti con simulazione
+  const conSim = iscrittiPiattaforma - transformedContacts.filter(x => x.hasList6 && !x.hasUltimaSimulazione).length;
+  const iscrittiSimulazione = [
+    { name: 'Con simulazione', value: conSim },
+    { name: 'Senza simulazione', value: Math.max(0, iscrittiPiattaforma - conSim) }
+  ];
+
+  // Process distributions
   const ateneiCount: { [key: string]: number } = {};
+  const annoProfilazioneCount: { [key: string]: number } = {};
+  const fonteCount: { [key: string]: number } = {};
   const annoNascitaCount: { [key: string]: number } = {};
-  const corsiCount: { [key: string]: number } = {};
   const listeCount: { [key: string]: number } = {};
+  const corsiCount: { [key: string]: number } = {};
+  const corsiPagatiCount: { [key: string]: number } = {};
 
-  contacts.forEach(contact => {
-    // Count atenei
-    if (contact.attributes.ATENEO) {
-      ateneiCount[contact.attributes.ATENEO] = (ateneiCount[contact.attributes.ATENEO] || 0) + 1;
-    }
+  transformedContacts.forEach(contact => {
+    // Atenei
+    const ateneo = contact.ATENEO || LABEL_ATENEO_MISSING;
+    ateneiCount[ateneo] = (ateneiCount[ateneo] || 0) + 1;
 
-    // Count anno nascita
-    if (contact.attributes.ANNO) {
-      annoNascitaCount[contact.attributes.ANNO] = (annoNascitaCount[contact.attributes.ANNO] || 0) + 1;
-    }
+    // Anno profilazione
+    const annoProf = contact.annoNorm || LABEL_ANNO_MISSING;
+    annoProfilazioneCount[annoProf] = (annoProfilazioneCount[annoProf] || 0) + 1;
 
-    // Count corsi
-    if (contact.attributes.CORSO) {
-      corsiCount[contact.attributes.CORSO] = (corsiCount[contact.attributes.CORSO] || 0) + 1;
-    }
+    // Fonte
+    const fonte = contact.fonteNorm || LABEL_FONTE_MISSING;
+    fonteCount[fonte] = (fonteCount[fonte] || 0) + 1;
 
-    // Count liste
+    // Anno nascita
+    const annoNascita = extractYear_(contact.attributes.DATA_DI_NASCITA || '');
+    const annoNascitaKey = annoNascita || 'Senza anno';
+    annoNascitaCount[annoNascitaKey] = (annoNascitaCount[annoNascitaKey] || 0) + 1;
+
+    // Liste (simplified - using list IDs directly)
     contact.listIds.forEach(listId => {
       listeCount[listId.toString()] = (listeCount[listId.toString()] || 0) + 1;
     });
+
+    // Corsi
+    if (contact.isCorsista) {
+      const corso = contact.macroCorso || 'Non specificato';
+      corsiCount[corso] = (corsiCount[corso] || 0) + 1;
+    }
+
+    // Corsi pagati
+    if (contact.isPagante) {
+      const corso = contact.macroCorso || 'Non specificato';
+      corsiPagatiCount[corso] = (corsiPagatiCount[corso] || 0) + 1;
+    }
   });
 
-  // Convert to arrays
-  datasets.distribuzione_atenei = Object.entries(ateneiCount)
+  // Convert to arrays and sort
+  const distribuzione_atenei = Object.entries(ateneiCount)
     .map(([name, value]) => ({ name, value }))
     .sort((a, b) => b.value - a.value);
 
-  datasets.distribuzione_anno_nascita = Object.entries(annoNascitaCount)
+  const distribuzione_anno_profilazione = relabelAnnoProfilazione_(
+    Object.entries(annoProfilazioneCount)
+      .map(([name, value]) => ({ name, value }))
+      .sort((a, b) => b.value - a.value)
+  );
+
+  const distribuzione_fonte = Object.entries(fonteCount)
     .map(([name, value]) => ({ name, value }))
     .sort((a, b) => b.value - a.value);
 
-  datasets.distribuzione_corsi = Object.entries(corsiCount)
+  const distribuzione_anno_nascita = Object.entries(annoNascitaCount)
     .map(([name, value]) => ({ name, value }))
     .sort((a, b) => b.value - a.value);
 
-  datasets.distribuzione_liste_corsisti = Object.entries(listeCount)
+  const distribuzione_liste_corsisti = Object.entries(listeCount)
     .map(([name, value]) => ({ name, value }))
     .sort((a, b) => b.value - a.value);
 
-  // Add total contacts
-  datasets.iscritti_con_simulazione = [
-    { name: "Totale Contatti", value: data.totalContacts }
+  const distribuzione_corsi = Object.entries(corsiCount)
+    .map(([name, value]) => ({ name, value }))
+    .sort((a, b) => b.value - a.value);
+
+  const distribuzione_corsi_pagati = Object.entries(corsiPagatiCount)
+    .map(([name, value]) => ({ name, value }))
+    .sort((a, b) => b.value - a.value);
+
+  // Gestiti trattativa (simplified)
+  const gestitiTrattativa = [
+    { name: 'Con trattativa', value: 0 }, // Would need specific logic
+    { name: 'Senza trattativa', value: corsisti }
   ];
 
-  return datasets;
+  return {
+    funnel,
+    iscritti_con_simulazione: iscrittiSimulazione,
+    distribuzione_atenei,
+    distribuzione_anno_profilazione,
+    distribuzione_fonte,
+    distribuzione_anno_nascita,
+    distribuzione_liste_corsisti,
+    distribuzione_corsi,
+    distribuzione_corsi_pagati,
+    gestiti_trattativa: gestitiTrattativa
+  };
 }
 
 /* ===== DELTA TAB ===== */
