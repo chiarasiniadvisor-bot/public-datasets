@@ -14,7 +14,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        token: ${{ secrets.ACTIONS_REPO_PAT }}
         fetch-depth: 0
         
     - name: Configure Git
@@ -39,11 +38,14 @@ jobs:
         node scripts/updateBrevo.js
         
     - name: Commit and push changes
+      env:
+        ACTIONS_REPO_PAT: ${{ secrets.ACTIONS_REPO_PAT }}
       run: |
         git add datasets.json
         if git diff --staged --quiet; then
           echo "No changes to commit"
         else
           git commit -m "Update datasets from Brevo API [skip ci]"
+          git remote set-url origin https://x-access-token:${ACTIONS_REPO_PAT}@github.com/${GITHUB_REPOSITORY}.git
           git push origin HEAD:main
         fi
