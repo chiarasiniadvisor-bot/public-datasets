@@ -116,7 +116,8 @@ function cleanContactData(contact) {
     const sensitiveFields = [
       'SMS', 'WHATSAPP', 'LANDLINE',           // Original phone fields
       'EXT_ID', 'LANDLINE_NUMBER',             // Additional sensitive fields
-      'WHATSAPP_NUMBER', 'SMS_NUMBER'          // Additional phone number fields
+      'WHATSAPP_NUMBER', 'SMS_NUMBER',         // Additional phone number fields
+      'NOME', 'COGNOME'                        // Personal names
     ];
     
     sensitiveFields.forEach(field => {
