@@ -83,7 +83,9 @@ export function calculateDeltaData(historicalData: HistoricalData): DeltaData {
     };
   }
   
-  // Get last two weeks
+  // Get last two weeks for delta calculation
+  // Current week is the most recent, previous week is the one before
+  // This ensures we always compare the last two available weeks
   const currentWeek = weekly[weekly.length - 1];
   const previousWeek = weekly[weekly.length - 2];
   

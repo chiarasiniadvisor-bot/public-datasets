@@ -77,7 +77,7 @@ export function WeeklyDeltaDashboard() {
 
       {/* Period Info */}
       <div className="text-sm text-gray-600">
-        Dal {deltaData.week_previous} al {deltaData.week_current}
+        Confronto: {deltaData.week_previous} → {deltaData.week_current}
       </div>
 
       {/* Delta Cards */}
