@@ -111,14 +111,27 @@ function cleanContactData(contact) {
     delete cleanedContact.email;
   }
   
-  // Remove phone numbers from attributes
+  // Remove sensitive fields from attributes
   if (cleanedContact.attributes) {
-    const phoneFields = ['SMS', 'WHATSAPP', 'LANDLINE'];
-    phoneFields.forEach(field => {
+    const sensitiveFields = [
+      'SMS', 'WHATSAPP', 'LANDLINE',           // Original phone fields
+      'EXT_ID', 'LANDLINE_NUMBER',             // Additional sensitive fields
+      'WHATSAPP_NUMBER', 'SMS_NUMBER'          // Additional phone number fields
+    ];
+    
+    sensitiveFields.forEach(field => {
       if (cleanedContact.attributes[field]) {
         delete cleanedContact.attributes[field];
       }
     });
+    
+    // Log which fields were removed for debugging
+    const removedFields = sensitiveFields.filter(field => 
+      contact.attributes && contact.attributes[field] && !cleanedContact.attributes[field]
+    );
+    if (removedFields.length > 0) {
+      console.log(`Removed sensitive fields: ${removedFields.join(', ')}`);
+    }
   }
   
   return cleanedContact;
