@@ -1,0 +1,41 @@
+{
+  "weekly": [
+    {
+      "week": "24/09/2025",
+      "date": "2025-09-24",
+      "funnel": {
+        "leadsACRM": 4530,
+        "iscrittiPiattaforma": 2806,
+        "profiloCompleto": 2413,
+        "corsisti": 748,
+        "paganti": 69
+      },
+      "totalContacts": 4530
+    },
+    {
+      "week": "01/10/2025", 
+      "date": "2025-10-01",
+      "funnel": {
+        "leadsACRM": 4567,
+        "iscrittiPiattaforma": 2860,
+        "profiloCompleto": 2471,
+        "corsisti": 760,
+        "paganti": 81
+      },
+      "totalContacts": 4567
+    },
+    {
+      "week": "08/10/2025",
+      "date": "2025-10-08", 
+      "funnel": {
+        "leadsACRM": 4567,
+        "iscrittiPiattaforma": 2860,
+        "profiloCompleto": 2471,
+        "corsisti": 760,
+        "paganti": 81
+      },
+      "totalContacts": 4567
+    }
+  ],
+  "daily": []
+}
