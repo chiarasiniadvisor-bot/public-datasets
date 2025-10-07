@@ -34,7 +34,11 @@ jobs:
           {
             "projectId": "prj_873YZFnDOYzzddyf2e4KeSZwBljh",
             "target": "production",
-            "gitSource": { "type": "github", "ref": "main" }
+            "gitSource": { 
+              "type": "github", 
+              "ref": "main",
+              "repoId": "1068065852"
+            }
           }
           JSON
           )
