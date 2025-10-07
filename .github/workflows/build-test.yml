@@ -18,10 +18,14 @@ jobs:
           node-version: '18'
           
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm install
+          echo "✅ Dependencies installed successfully"
         
       - name: Build
-        run: npm run build
+        run: |
+          npm run build
+          echo "✅ Build completed successfully"
         
       - name: Test build
         run: |
