@@ -299,8 +299,8 @@ function processBrevoData(data: BrevoData, params: any): Datasets {
   console.log('Total contacts in array:', transformedContacts.length);
   
   if (data.funnel && data.funnel.leadsACRM) {
-    // Use pre-calculated funnel data
-    console.log('Using pre-calculated funnel data:', data.funnel);
+    // Use pre-calculated funnel data from backend
+    console.log('Using pre-calculated funnel data from backend:', data.funnel);
     funnel = [
       { step: 'Leads a CRM', value: data.funnel.leadsACRM },
       { step: 'Iscritti alla Piattaforma (#6)', value: data.funnel.iscrittiPiattaforma },
@@ -309,28 +309,22 @@ function processBrevoData(data: BrevoData, params: any): Datasets {
       { step: 'Clienti paganti', value: data.funnel.paganti }
     ];
   } else {
-    console.log('Computing funnel from contacts');
-    // Fallback: compute from contacts
-    const leadsACRM = transformedContacts.length;
-    const iscrittiPiattaforma = transformedContacts.filter(x => x.hasList6).length;
-    const profiloCompleto = transformedContacts.filter(x => !!String(x.attributes.DATA_DI_NASCITA || '').trim()).length;
-    const corsisti = transformedContacts.filter(x => x.isCorsista).length;
-    const paganti = transformedContacts.filter(x => x.isPagante).length;
-
+    console.error('No pre-calculated funnel data available from backend!');
+    // This should not happen - backend should always provide funnel data
     funnel = [
-      { step: 'Leads a CRM', value: leadsACRM },
-      { step: 'Iscritti alla Piattaforma (#6)', value: iscrittiPiattaforma },
-      { step: 'Profilo completo', value: profiloCompleto },
-      { step: 'Corsisti', value: corsisti },
-      { step: 'Clienti paganti', value: paganti }
+      { step: 'Leads a CRM', value: 0 },
+      { step: 'Iscritti alla Piattaforma (#6)', value: 0 },
+      { step: 'Profilo completo', value: 0 },
+      { step: 'Corsisti', value: 0 },
+      { step: 'Clienti paganti', value: 0 }
     ];
   }
 
-  // Get funnel values from pre-calculated data or compute from contacts
-  const iscrittiPiattaforma = data.funnel ? data.funnel.iscrittiPiattaforma : transformedContacts.filter(x => x.hasList6).length;
-  const corsisti = data.funnel ? data.funnel.corsisti : transformedContacts.filter(x => x.isCorsista).length;
-  const paganti = data.funnel ? data.funnel.paganti : transformedContacts.filter(x => x.isPagante).length;
-  const leadsACRM = data.funnel ? data.funnel.leadsACRM : transformedContacts.length;
+  // Get funnel values from pre-calculated data from backend
+  const iscrittiPiattaforma = data.funnel ? data.funnel.iscrittiPiattaforma : 0;
+  const corsisti = data.funnel ? data.funnel.corsisti : 0;
+  const paganti = data.funnel ? data.funnel.paganti : 0;
+  const leadsACRM = data.funnel ? data.funnel.leadsACRM : 0;
   
   // Compute iscritti con simulazione
   const conSim = iscrittiPiattaforma - transformedContacts.filter(x => x.hasList6 && !x.hasUltimaSimulazione).length;

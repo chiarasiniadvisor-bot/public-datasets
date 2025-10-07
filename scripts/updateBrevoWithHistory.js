@@ -129,23 +129,48 @@ function cleanContactData(contact) {
 }
 
 function calculateFunnelMetrics(contacts) {
-  // Calculate funnel metrics like in the App Script
-  const leadsACRM = contacts.filter(x => (x.listIds && x.listIds.length > 0)).length;
+  console.log(`Calculating funnel metrics for ${contacts.length} contacts...`);
+  
+  // Leads a CRM: Total number of contacts in Brevo (all contacts)
+  const leadsACRM = contacts.length;
+  console.log(`Leads a CRM (total contacts): ${leadsACRM}`);
+  
+  // Iscritti alla Piattaforma: Contacts in list #6 (Piattaforma)
   const iscrittiPiattaforma = contacts.filter(x => x.listIds && x.listIds.indexOf(6) !== -1).length;
-  const profiloCompleto = contacts.filter(x => !!x.attributes?.DATA_DI_NASCITA).length;
-  const corsisti = contacts.filter(x => !!x.attributes?.CORSO_ACQUISTATO).length;
+  console.log(`Iscritti alla Piattaforma (list #6): ${iscrittiPiattaforma}`);
+  
+  // Profilo completo: Contacts with DATA_DI_NASCITA filled and not empty
+  const profiloCompleto = contacts.filter(x => {
+    const dataNascita = x.attributes?.DATA_DI_NASCITA;
+    return dataNascita && dataNascita.toString().trim() !== '';
+  }).length;
+  console.log(`Profilo completo (DATA_DI_NASCITA filled): ${profiloCompleto}`);
+  
+  // Corsisti: Contacts with CORSO_ACQUISTATO filled and not empty
+  const corsisti = contacts.filter(x => {
+    const corso = x.attributes?.CORSO_ACQUISTATO;
+    return corso && corso.toString().trim() !== '';
+  }).length;
+  console.log(`Corsisti (CORSO_ACQUISTATO filled): ${corsisti}`);
+  
+  // Paganti: Corsisti excluding "borsa di studio"
   const paganti = contacts.filter(x => {
     const corso = x.attributes?.CORSO_ACQUISTATO || '';
-    return !!corso && !corso.toLowerCase().includes('borsa di studio');
+    const corsoStr = corso.toString().toLowerCase();
+    return corsoStr.trim() !== '' && !corsoStr.includes('borsa di studio');
   }).length;
+  console.log(`Paganti (corsisti excluding borsa di studio): ${paganti}`);
 
-  return {
+  const metrics = {
     leadsACRM,
     iscrittiPiattaforma,
     profiloCompleto,
     corsisti,
     paganti
   };
+  
+  console.log('Final funnel metrics:', metrics);
+  return metrics;
 }
 
 function saveDatasets(contacts) {
