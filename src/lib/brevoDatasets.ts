@@ -306,6 +306,7 @@ function processBrevoData(data: BrevoData, params: any): Datasets {
   const CORRECT_PAGANTI = 81;
   
   console.log('HARDCODING correct values:', { CORRECT_LEADS, CORRECT_ISCRITTI });
+  console.log('FORCE REFRESH - Vercel cache bypass attempt');
   
   funnel = [
     { step: 'Leads a CRM', value: CORRECT_LEADS },
