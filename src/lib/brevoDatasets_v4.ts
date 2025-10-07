@@ -55,8 +55,9 @@ export async function fetchDatasets(params: {
   // Load data from GitHub Raw datasets.json
   if (!cachedData) {
     console.log("🔄 FETCHING NEW DATA FROM BACKEND:", API_BASE);
-    console.log("🚀 VERSION 0.0.5 - NO HARDCODED VALUES - USING BACKEND DATA ONLY");
+    console.log("🚀 VERSION 0.0.6 - NO HARDCODED VALUES - USING BACKEND DATA ONLY");
     console.log("🔥 FORCE REBUILD - VERCEL CACHE BYPASS - TIMESTAMP:", Date.now());
+    console.log("🎯 THIS IS THE NEW VERSION - NO HARDCODING - USE BACKEND DATA");
     const response = await fetch(API_BASE);
     if (!response.ok) throw new Error(`Failed to load datasets: ${response.status}`);
     cachedData = await response.json();
