@@ -2,7 +2,10 @@
 // Clean data service that ONLY uses backend pre-calculated data
 // NO frontend calculations, NO hardcoded values
 
-export const API_BASE = "https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/datasets.json?v=" + Date.now() + "&t=" + Math.random();
+// Use environment variable for API base URL
+// Preview/Staging: NEXT_PUBLIC_API_BASE = https://script.google.com/macros/s/<ID_STAGING>/exec
+// Production: NEXT_PUBLIC_API_BASE = https://script.google.com/macros/s/<ID_PROD>/exec
+export const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/datasets.json";
 
 export type Scope = "all" | "lista6" | "corsisti" | "paganti";
 export type ListMode = "id" | "label" | "group";
@@ -73,12 +76,12 @@ export async function fetchDatasets(params: {
   minCountAltro?: number;
   listMode?: ListMode;
 } = {}): Promise<Datasets> {
-  // Load data from GitHub Raw datasets.json
+  // Load data from configured API endpoint
   if (!cachedData) {
-    console.log("🔄 FETCHING NEW DATA FROM BACKEND:", API_BASE);
+    console.log("🔄 FETCHING NEW DATA FROM API:", API_BASE);
+    console.log("🌍 ENVIRONMENT:", process.env.NODE_ENV);
+    console.log("🔗 API_BASE from env:", process.env.NEXT_PUBLIC_API_BASE ? "✅ SET" : "❌ NOT SET - using fallback");
     console.log("🚀 CLEAN DATA SERVICE - NO HARDCODED VALUES - USING BACKEND DATA ONLY");
-    console.log("🔥 FORCE REBUILD - VERCEL CACHE BYPASS - TIMESTAMP:", Date.now());
-    console.log("🎯 THIS IS THE CLEAN VERSION - NO HARDCODING - USE BACKEND DATA");
     
     const response = await fetch(API_BASE);
     if (!response.ok) throw new Error(`Failed to load datasets: ${response.status}`);
