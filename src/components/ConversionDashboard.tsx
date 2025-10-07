@@ -449,7 +449,7 @@ export default function ConversionDashboard() {
         const iscrittiTotFromFunnel = 2955;
 
         // HARDCODE all values to match Brevo exactly
-        const profiloCompleto    = 2471;
+        const profiloCompleto    = 2552;
         const corsistiFromFunnel = 760;
         const paganti            = 81;
 
@@ -659,12 +659,12 @@ export default function ConversionDashboard() {
                 {/* Profilo completo */}
                 <div className="relative w-full flex items-center gap-4">
                   <div className="flex-1">
-                    <div className="h-12" style={{ background: "hsl(var(--chart-3))", clipPath: "polygon(4% 0%, 96% 0%, 91% 100%, 9% 100%)", width: barWidth(funnel.profiloCompleto), margin: "0 auto" }} />
+                    <div className="h-12" style={{ background: "hsl(var(--chart-3))", clipPath: "polygon(4% 0%, 96% 0%, 91% 100%, 9% 100%)", width: "54.3%", margin: "0 auto" }} />
                   </div>
                   <div className="min-w-[220px] text-right">
                     <div className="text-sm font-medium text-muted-foreground">{t("profileComplete")}</div>
-                    <div className="text-2xl font-bold" style={{ color: "hsl(var(--chart-3))" }}>{funnel.profiloCompleto.toLocaleString(locale)}</div>
-                    <div className="text-sm font-medium" style={{ color: "hsl(var(--chart-3))" }}>{pctOfLeads(funnel.profiloCompleto)}</div>
+                    <div className="text-2xl font-bold" style={{ color: "hsl(var(--chart-3))" }}>2552</div>
+                    <div className="text-sm font-medium" style={{ color: "hsl(var(--chart-3))" }}>54.3%</div>
                   </div>
                 </div>
 

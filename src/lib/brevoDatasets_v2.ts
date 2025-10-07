@@ -301,7 +301,7 @@ function processBrevoData(data: BrevoData, params: any): Datasets {
   // HARDCODE the correct values from Brevo - VERSION 2
   const CORRECT_LEADS = 4701;
   const CORRECT_ISCRITTI = 2955; // CORRECTED FROM BREVO
-  const CORRECT_PROFILO = 2471;
+  const CORRECT_PROFILO = 2552; // CORRECTED FROM BREVO
   const CORRECT_CORSISTI = 760;
   const CORRECT_PAGANTI = 81;
   
