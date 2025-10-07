@@ -367,6 +367,7 @@ function calculateAllMetrics(contacts) {
   };
   
   console.log('All metrics calculated successfully');
+  console.log('FINAL METRICS:', JSON.stringify(allMetrics, null, 2));
   return allMetrics;
 }
 
@@ -384,6 +385,9 @@ function saveDatasets(contacts) {
       contacts: cleanedContacts,
       ...allMetrics
     };
+    
+    console.log('SAVING DATASETS WITH METRICS:', Object.keys(allMetrics));
+    console.log('FUNNEL DATA:', allMetrics.funnel);
     
     const jsonString = JSON.stringify(datasetsData, null, 2);
     fs.writeFileSync(DATASETS_FILE, jsonString, 'utf8');
