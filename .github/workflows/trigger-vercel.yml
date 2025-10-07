@@ -1,10 +1,8 @@
 name: Trigger Vercel Deploy
-
 on:
   push:
     branches: [main]
   workflow_dispatch:
-
 jobs:
   call-vercel:
     runs-on: ubuntu-latest
@@ -13,27 +11,18 @@ jobs:
         env:
           HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
         run: |
-          if [ -z "$HOOK" ]; then
-            echo "Missing secret VERCEL_DEPLOY_HOOK_URL"
-            exit 2
-          fi
-          echo "Secret looks set (length > 0)."
+          if [ -z "$HOOK" ]; then echo "Missing secret VERCEL_DEPLOY_HOOK_URL"; exit 2; fi
+          case "$HOOK" in
+            https://api.vercel.com/v1/integrations/deploy/*) echo "Hook OK";;
+            *) echo "Hook NON valido: $HOOK"; exit 2;;
+          esac
 
       - name: Trigger Vercel Hook (with logs)
         env:
           HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
         run: |
-          # 1) sanity rapido
-          case "$HOOK" in
-            https://api.vercel.com/v1/integrations/deploy/*) echo "Hook URL sembra valido";;
-            *) echo "Hook URL NON sembra valido: $HOOK"; exit 2;;
-          esac
-
-          # 2) chiamata con log
           echo "Hitting: ${HOOK%%\?*}?...(masked)"
           STATUS=$(curl -s -o resp.json -w "%{http_code}" -X POST "$HOOK")
           echo "HTTP Status: $STATUS"
-          echo "Response body:"
-          cat resp.json
-          # 200 o 201 = accettato (201 = Created è normale per Deploy Hooks)
-          test "$STATUS" = "200" -o "$STATUS" = "201" || { echo "Hook call failed"; exit 3; }
+          echo "Response body:"; cat resp.json
+          test "$STATUS" = "200" || { echo "Hook call failed"; exit 3; }
