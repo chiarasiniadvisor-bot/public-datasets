@@ -35,5 +35,5 @@ jobs:
           echo "HTTP Status: $STATUS"
           echo "Response body:"
           cat resp.json
-          # 200 = accettato (di solito body contiene queued=true)
-          test "$STATUS" = "200" || { echo "Hook call failed"; exit 3; }
+          # 200 o 201 = accettato (201 = Created è normale per Deploy Hooks)
+          test "$STATUS" = "200" -o "$STATUS" = "201" || { echo "Hook call failed"; exit 3; }
