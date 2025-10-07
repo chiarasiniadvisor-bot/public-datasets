@@ -1,0 +1,48 @@
+name: Trigger Vercel via API
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      # Esponi i secrets come env (mascherati nei log)
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      # Se hai un team, opzionale:
+      # VERCEL_TEAM_ID: ${{ secrets.VERCEL_TEAM_ID }}
+    steps:
+      - name: Validate required secrets
+        run: |
+          for v in VERCEL_TOKEN VERCEL_PROJECT_ID; do
+            if [ -z "${!v}" ]; then
+              echo "Missing env $v (check repo Secrets)"; exit 2;
+            fi
+          done
+          echo "Secrets OK"
+
+      - name: Trigger Vercel deploy (production)
+        run: |
+          BODY=$(cat <<'JSON'
+          {
+            "projectId": "__PROJ__",
+            "target": "production",
+            "gitSource": { "type": "github", "ref": "main" }
+          }
+          JSON
+          )
+          BODY=${BODY/__PROJ__/$VERCEL_PROJECT_ID}
+
+          STATUS=$(curl -s -o resp.json -w "%{http_code}" \
+            -X POST "https://api.vercel.com/v13/deployments" \
+            -H "Authorization: Bearer $VERCEL_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "$BODY")
+
+          echo "HTTP Status: $STATUS"
+          echo "Response body:" && cat resp.json
+
+          [[ "$STATUS" == "200" || "$STATUS" == "201" ]] || { echo "Vercel API deploy failed"; exit 3; }
