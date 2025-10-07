@@ -442,12 +442,12 @@ export default function ConversionDashboard() {
         setTrattative(asKV(dsCorsisti.gestiti_trattativa));
 
         /* ---------- CRM (ALL) ---------- */
-        const leadsFromFunnel   = pickFunnelValue(dsCrm.funnel, "leads");
+        const leadsFromFunnel   = pickFunnelValue(dsCrm.funnel, "leads") || dsCrm.funnel?.leadsACRM;
         const leadsFallback     = sumValues(dsCrm.distribuzione_atenei);
         const leadsTot          = bestOf(leadsFromFunnel, leadsFallback);
 
         // attenzione: lo step "iscritti" nel funnel a volte manca o cambia lingua
-        const iscrittiFromFunnel  = pickFunnelValue(dsCrm.funnel, "iscritti");
+        const iscrittiFromFunnel  = pickFunnelValue(dsCrm.funnel, "iscritti") || dsCrm.funnel?.iscrittiPiattaforma;
         // fallback: ricaviamo gli iscritti sommando le distribuzioni di lista6
         const iscrittiFromDistrib = bestOf(
           sumValues(dsIscritti.distribuzione_atenei),
