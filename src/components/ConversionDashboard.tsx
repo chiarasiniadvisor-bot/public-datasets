@@ -1752,6 +1752,13 @@ export default function ConversionDashboard() {
           </div>
         </div>
       </div>
+
+      {/* Environment Badge */}
+      {process.env.VERCEL_ENV === 'preview' && (
+        <div className="fixed bottom-3 right-3 text-xs px-2 py-1 rounded bg-yellow-500/10 border border-yellow-500/30 text-yellow-600 dark:text-yellow-400 z-50">
+          STAGING / PREVIEW
+        </div>
+      )}
     </div>
   );
 }
