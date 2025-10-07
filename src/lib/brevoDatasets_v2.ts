@@ -55,6 +55,7 @@ export async function fetchDatasets(params: {
   // Load data from GitHub Raw datasets.json
   if (!cachedData) {
     console.log("🔄 FETCHING NEW DATA FROM BACKEND:", API_BASE);
+    console.log("🚀 VERSION 0.0.5 - NO HARDCODED VALUES - USING BACKEND DATA ONLY");
     const response = await fetch(API_BASE);
     if (!response.ok) throw new Error(`Failed to load datasets: ${response.status}`);
     cachedData = await response.json();
@@ -69,10 +70,10 @@ export async function fetchDatasets(params: {
       iscritti: cachedData.funnel?.iscrittiPiattaforma,
       profilo: cachedData.funnel?.profiloCompleto
     });
-    
+
     // Force alert if values don't match
-    if (cachedData.funnel?.leadsACRM !== 4822 || 
-        cachedData.funnel?.iscrittiPiattaforma !== 2955 || 
+    if (cachedData.funnel?.leadsACRM !== 4822 ||
+        cachedData.funnel?.iscrittiPiattaforma !== 2955 ||
         cachedData.funnel?.profiloCompleto !== 2552) {
       console.error("❌ DATA MISMATCH! Backend has correct data but frontend shows wrong values!");
     } else {
