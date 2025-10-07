@@ -20,6 +20,27 @@ export type BrevoData = {
   generatedAt: string;
   totalContacts: number;
   contacts: Contact[];
+  // Pre-calculated metrics from backend
+  funnel?: {
+    leadsACRM: number;
+    iscrittiPiattaforma: number;
+    profiloCompleto: number;
+    corsisti: number;
+    paganti: number;
+  };
+  distribuzione_atenei?: Array<{ name: string; value: number }>;
+  distribuzione_anno_profilazione?: Array<{ name: string; value: number }>;
+  distribuzione_fonte?: Array<{ name: string; value: number }>;
+  distribuzione_anno_nascita?: Array<{ name: string; value: number }>;
+  distribuzione_corsi?: Array<{ name: string; value: number }>;
+  distribuzione_corsi_pagati?: Array<{ name: string; value: number }>;
+  distribuzione_liste_corsisti?: Array<{ name: string; value: number }>;
+  webinar_conversions?: Array<{ name: string; value: number }>;
+  iscritti_webinar?: Array<{ name: string; value: number }>;
+  utenti_crm_webinar?: Array<{ name: string; value: number }>;
+  utenti_crm_non_corsisti?: number;
+  utenti_crm_non_corsisti_in_target?: number;
+  pct_non_corsisti_in_target?: number;
 };
 
 export type Datasets = {
