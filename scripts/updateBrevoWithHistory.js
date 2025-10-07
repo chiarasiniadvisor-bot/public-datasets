@@ -399,7 +399,7 @@ function saveDatasets(contacts) {
     console.log('Datasets saved successfully to datasets.json');
     console.log('Generated at:', datasetsData.generatedAt);
     console.log('Total contacts saved:', cleanedContacts.length);
-    console.log('Funnel metrics:', funnelMetrics);
+    console.log('Funnel metrics:', allMetrics.funnel);
     
     return datasetsData;
     
