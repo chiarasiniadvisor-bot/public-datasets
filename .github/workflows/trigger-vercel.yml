@@ -1,28 +1,21 @@
 name: Trigger Vercel Deploy
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
+  push:
+    branches: [ main ]    # se vuoi anche staging, aggiungi 'staging'
 jobs:
   call-vercel:
     runs-on: ubuntu-latest
     steps:
-      - name: Validate hook URL is present
+      - name: Validate secret is present
+        run: |
+          test -n "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}" || { echo "Missing secret VERCEL_DEPLOY_HOOK_URL"; exit 2; }
+      - name: Trigger Vercel Hook
         env:
           HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
         run: |
-          if [ -z "$HOOK" ]; then echo "Missing secret VERCEL_DEPLOY_HOOK_URL"; exit 2; fi
-          case "$HOOK" in
-            https://api.vercel.com/v1/integrations/deploy/*) echo "Hook OK";;
-            *) echo "Hook NON valido: $HOOK"; exit 2;;
-          esac
-
-      - name: Trigger Vercel Hook (with logs)
-        env:
-          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
-        run: |
-          echo "Hitting: ${HOOK%%\?*}?...(masked)"
           STATUS=$(curl -s -o resp.json -w "%{http_code}" -X POST "$HOOK")
           echo "HTTP Status: $STATUS"
-          echo "Response body:"; cat resp.json
-          test "$STATUS" = "200" -o "$STATUS" = "201" || { echo "Hook call failed"; exit 3; }
+          echo "Response:"
+          cat resp.json
+          test "$STATUS" = "200" || { echo "Hook call failed"; exit 3; }
