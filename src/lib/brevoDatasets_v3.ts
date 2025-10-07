@@ -2,7 +2,7 @@
 // Local datasets from Brevo API integration
 
 export const API_BASE =
-  "https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/datasets.json?v=" + Date.now();
+  "https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/datasets.json?v=" + Date.now() + "&t=" + Math.random();
 
 export type Scope = "all" | "lista6" | "corsisti" | "paganti";
 export type ListMode = "id" | "label" | "group";
@@ -56,6 +56,7 @@ export async function fetchDatasets(params: {
   if (!cachedData) {
     console.log("🔄 FETCHING NEW DATA FROM BACKEND:", API_BASE);
     console.log("🚀 VERSION 0.0.5 - NO HARDCODED VALUES - USING BACKEND DATA ONLY");
+    console.log("🔥 FORCE REBUILD - VERCEL CACHE BYPASS - TIMESTAMP:", Date.now());
     const response = await fetch(API_BASE);
     if (!response.ok) throw new Error(`Failed to load datasets: ${response.status}`);
     cachedData = await response.json();
