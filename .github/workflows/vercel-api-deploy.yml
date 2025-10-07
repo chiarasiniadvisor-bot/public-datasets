@@ -28,7 +28,6 @@ jobs:
         run: |
           BODY=$(cat <<'JSON'
           {
-            "projectId": "__PROJ__",
             "name": "github-actions-deploy",
             "target": "production",
             "gitSource": { 
@@ -39,7 +38,6 @@ jobs:
           }
           JSON
           )
-          BODY=${BODY/__PROJ__/$VERCEL_PROJECT_ID}
 
           STATUS=$(curl -s -o resp.json -w "%{http_code}" \
             -X POST "https://api.vercel.com/v13/deployments" \
