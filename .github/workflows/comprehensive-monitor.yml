@@ -26,7 +26,7 @@ jobs:
     - name: Install dependencies
       run: |
         npm init -y
-        npm install axios @octokit/rest
+        npm install @octokit/rest
         
     - name: Monitor all workflow runs
       env:

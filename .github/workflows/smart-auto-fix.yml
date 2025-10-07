@@ -27,7 +27,7 @@ jobs:
     - name: Install dependencies
       run: |
         npm init -y
-        npm install axios @octokit/rest
+        npm install @octokit/rest
         
     - name: Analyze and fix issues
       env:
