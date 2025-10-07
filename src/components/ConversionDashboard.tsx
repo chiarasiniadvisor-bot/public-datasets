@@ -709,10 +709,10 @@ export default function ConversionDashboard() {
 
         {/* Insights Funnel */}
         <div className="bg-blue-50 dark:bg-blue-900/10 p-4 rounded-lg mb-8">
-          <h3 className="text-lg font-semibold text-blue-700 dark:text-blue-300 mb-2">💡 Insights</h3>
+          <h3 className="text-lg font-semibold text-blue-700 dark:text-blue-300 mb-2">{t('insights.title')}</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-blue-600 dark:text-blue-200">
-            <div>• Tasso di conversione da Lead a Iscritto alla piattaforma: {funnel.leadsACRM > 0 ? ((funnel.iscritti / funnel.leadsACRM) * 100).toFixed(1) : 0}%</div>
-            <div>• Tasso di conversione da Iscritto alla piattaforma a Cliente: {funnel.iscritti > 0 ? ((funnel.clientiPaganti / funnel.iscritti) * 100).toFixed(1) : 0}%</div>
+            <div>• {t('insights.conversionLeadToSignup')} {funnel.leadsACRM > 0 ? ((funnel.iscritti / funnel.leadsACRM) * 100).toFixed(1) : 0}%</div>
+            <div>• {t('insights.conversionSignupToClient')} {funnel.iscritti > 0 ? ((funnel.clientiPaganti / funnel.iscritti) * 100).toFixed(1) : 0}%</div>
           </div>
         </div>
 
@@ -1412,12 +1412,12 @@ export default function ConversionDashboard() {
 
         {/* Insights Iscritti */}
         <div className="bg-purple-50 dark:bg-purple-900/10 p-4 rounded-lg mb-8">
-          <h3 className="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-2">💡 Insights Iscritti</h3>
+          <h3 className="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-2">{t('insights.iscritti.title')}</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-purple-600 dark:text-purple-200">
-            <div>• Alto potenziale di conversione negli iscritti 5° e 6° anno</div>
-            <div>• Base solida per expansion su corsisti mirati</div>
-            <div>• Opportunità di cross-selling su simulazioni</div>
-            <div>• Segmentazione geografica per campagne localizzate</div>
+            <div>• {t('insights.iscritti.potential')}</div>
+            <div>• {t('insights.iscritti.base')}</div>
+            <div>• {t('insights.iscritti.crossSelling')}</div>
+            <div>• {t('insights.iscritti.segmentation')}</div>
           </div>
         </div>
 
@@ -1744,9 +1744,9 @@ export default function ConversionDashboard() {
         <Card className="shadow-card border-0 bg-gradient-primary text-primary-foreground mt-12">
           <CardContent className="p-8">
             <div className="max-w-4xl">
-              <h2 className="text-2xl font-bold mb-4">Insights & Strategie Data Driven</h2>
+              <h2 className="text-2xl font-bold mb-4">{t('insights.strategies.title')}</h2>
               <p className="text-primary-foreground/90 leading-relaxed">
-                Analizza i trend per calibrare campagne, pricing e offerta formativa.
+                {t('insights.strategies.description')}
               </p>
             </div>
           </CardContent>
@@ -1754,12 +1754,12 @@ export default function ConversionDashboard() {
 
         {/* Insights Utenti CRM */}
         <div className="bg-orange-50 dark:bg-orange-900/10 p-4 rounded-lg mb-8">
-          <h3 className="text-lg font-semibold text-orange-700 dark:text-orange-300 mb-2">💡 Insights CRM</h3>
+          <h3 className="text-lg font-semibold text-orange-700 dark:text-orange-300 mb-2">{t('insights.crm.title')}</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-orange-600 dark:text-orange-200">
-            <div>• Database CRM prevalentemente composto da non-corsisti</div>
-            <div>• Grande potenziale di nurturing sui lead freddi</div>
-            <div>• Focus su campagne di riattivazione per studenti avanzati</div>
-            <div>• Opportunità di upselling su simulazioni e webinar</div>
+            <div>• {t('insights.crm.database')}</div>
+            <div>• {t('insights.crm.potential')}</div>
+            <div>• {t('insights.crm.focus')}</div>
+            <div>• {t('insights.crm.upselling')}</div>
           </div>
         </div>
       </div>

@@ -293,21 +293,37 @@ function processBrevoData(data: BrevoData, params: any): Datasets {
     };
   });
 
-  // Compute funnel
-  const leadsACRM = transformedContacts.length; // All contacts are leads to CRM
-  const iscrittiPiattaforma = transformedContacts.filter(x => x.hasList6).length;
-  const profiloCompleto = transformedContacts.filter(x => !!String(x.attributes.DATA_DI_NASCITA || '').trim()).length;
-  const corsisti = transformedContacts.filter(x => x.isCorsista).length;
-  const paganti = transformedContacts.filter(x => x.isPagante).length;
+  // Use pre-calculated funnel data if available, otherwise compute from contacts
+  let funnel;
+  if (data.funnel) {
+    // Use pre-calculated funnel data
+    funnel = [
+      { step: 'Leads a CRM', value: data.funnel.leadsACRM },
+      { step: 'Iscritti alla Piattaforma (#6)', value: data.funnel.iscrittiPiattaforma },
+      { step: 'Profilo completo', value: data.funnel.profiloCompleto },
+      { step: 'Corsisti', value: data.funnel.corsisti },
+      { step: 'Clienti paganti', value: data.funnel.paganti }
+    ];
+  } else {
+    // Fallback: compute from contacts
+    const leadsACRM = transformedContacts.length;
+    const iscrittiPiattaforma = transformedContacts.filter(x => x.hasList6).length;
+    const profiloCompleto = transformedContacts.filter(x => !!String(x.attributes.DATA_DI_NASCITA || '').trim()).length;
+    const corsisti = transformedContacts.filter(x => x.isCorsista).length;
+    const paganti = transformedContacts.filter(x => x.isPagante).length;
 
-  const funnel = [
-    { step: 'Leads a CRM', value: leadsACRM },
-    { step: 'Iscritti alla Piattaforma (#6)', value: iscrittiPiattaforma },
-    { step: 'Profilo completo', value: profiloCompleto },
-    { step: 'Corsisti', value: corsisti },
-    { step: 'Clienti paganti', value: paganti }
-  ];
+    funnel = [
+      { step: 'Leads a CRM', value: leadsACRM },
+      { step: 'Iscritti alla Piattaforma (#6)', value: iscrittiPiattaforma },
+      { step: 'Profilo completo', value: profiloCompleto },
+      { step: 'Corsisti', value: corsisti },
+      { step: 'Clienti paganti', value: paganti }
+    ];
+  }
 
+  // Get iscrittiPiattaforma from funnel data
+  const iscrittiPiattaforma = data.funnel ? data.funnel.iscrittiPiattaforma : transformedContacts.filter(x => x.hasList6).length;
+  
   // Compute iscritti con simulazione
   const conSim = iscrittiPiattaforma - transformedContacts.filter(x => x.hasList6 && !x.hasUltimaSimulazione).length;
   const iscrittiSimulazione = [
