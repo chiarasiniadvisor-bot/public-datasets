@@ -33,6 +33,7 @@ jobs:
           BODY=$(cat <<JSON
           {
             "projectId": "prj_873YZFnDOYzzddyf2e4KeSZwBljh",
+            "name": "github-actions-deploy",
             "target": "production",
             "gitSource": { 
               "type": "github", 
