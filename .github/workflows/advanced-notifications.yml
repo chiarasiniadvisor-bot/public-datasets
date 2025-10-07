@@ -1,0 +1,186 @@
+name: Advanced Notifications
+
+on:
+  workflow_run:
+    workflows: ["*"]
+    types: [completed, requested, in_progress]
+  schedule:
+    # Check every hour for status updates
+    - cron: '0 * * * *'
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: |
+        npm init -y
+        npm install axios @octokit/rest
+        
+    - name: Generate comprehensive status report
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        node << 'EOF'
+        const { Octokit } = require('@octokit/rest');
+        const fs = require('fs');
+        const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+        
+        console.log('📊 Generating comprehensive status report...');
+        
+        // Get all workflows
+        const workflows = await octokit.rest.actions.listWorkflows({
+          owner: 'chiarasiniadvisor-bot',
+          repo: 'public-datasets'
+        });
+        
+        console.log(`Found ${workflows.data.workflows.length} workflows`);
+        
+        // Get recent runs for each workflow
+        const workflowStatus = [];
+        
+        for (const workflow of workflows.data.workflows) {
+          const runs = await octokit.rest.actions.listWorkflowRuns({
+            owner: 'chiarasiniadvisor-bot',
+            repo: 'public-datasets',
+            workflow_id: workflow.id,
+            per_page: 5
+          });
+          
+          const recentRuns = runs.data.workflow_runs;
+          const lastRun = recentRuns[0];
+          
+          if (lastRun) {
+            const createdAt = new Date(lastRun.created_at);
+            const timeAgo = Math.floor((Date.now() - createdAt.getTime()) / (1000 * 60));
+            
+            workflowStatus.push({
+              name: workflow.name,
+              status: lastRun.status,
+              conclusion: lastRun.conclusion,
+              timeAgo: timeAgo,
+              url: lastRun.html_url,
+              successRate: recentRuns.filter(r => r.conclusion === 'success').length / recentRuns.length * 100
+            });
+          }
+        }
+        
+        // Generate status report
+        const statusReport = `# 🚀 GitHub Actions Status Dashboard
+Generated: ${new Date().toISOString()}
+
+## Workflow Status Overview
+
+| Workflow | Status | Last Run | Success Rate | Action |
+|----------|--------|----------|--------------|--------|
+${workflowStatus.map(w => {
+  const statusIcon = w.status === 'completed' ? 
+    (w.conclusion === 'success' ? '✅' : '❌') : 
+    (w.status === 'in_progress' ? '🔄' : '⏸️');
+  
+  const timeStr = w.timeAgo < 60 ? `${w.timeAgo}m ago` : `${Math.floor(w.timeAgo/60)}h ago`;
+  const successRate = `${w.successRate.toFixed(1)}%`;
+  
+  return `| ${w.name} | ${statusIcon} ${w.status}/${w.conclusion || 'N/A'} | ${timeStr} | ${successRate} | [View](${w.url}) |`;
+}).join('\n')}
+
+## Health Summary
+${workflowStatus.every(w => w.status === 'completed' && w.conclusion === 'success') ? 
+  '🟢 **All workflows healthy** - Everything is running smoothly!' :
+  workflowStatus.some(w => w.status === 'completed' && w.conclusion === 'failure') ?
+  '🟡 **Some issues detected** - Check failed workflows above' :
+  '🔄 **Workflows in progress** - Some workflows are still running'}
+
+## Recent Activity (Last 24 hours)
+${workflowStatus
+  .filter(w => w.timeAgo < 1440) // Last 24 hours
+  .sort((a, b) => b.timeAgo - a.timeAgo)
+  .map(w => {
+    const statusIcon = w.status === 'completed' ? 
+      (w.conclusion === 'success' ? '✅' : '❌') : 
+      (w.status === 'in_progress' ? '🔄' : '⏸️');
+    return `- ${statusIcon} **${w.name}**: ${w.status}/${w.conclusion || 'N/A'} (${w.timeAgo}m ago)`;
+  })
+  .join('\n') || 'No recent activity'}
+
+## Recommendations
+${workflowStatus.some(w => w.successRate < 50) ? 
+  '⚠️ Some workflows have low success rates. Consider investigating and fixing recurring issues.' :
+  workflowStatus.some(w => w.timeAgo > 60) ?
+  'ℹ️ Some workflows haven\'t run recently. This might be normal depending on triggers.' :
+  '✅ All workflows are performing well!'}
+
+---
+*This report is automatically generated every hour. For real-time monitoring, check the [Actions tab](https://github.com/chiarasiniadvisor-bot/public-datasets/actions).*`;
+
+        console.log('📊 STATUS REPORT:');
+        console.log(statusReport);
+        
+        // Save report
+        fs.writeFileSync('status-dashboard.md', statusReport);
+        
+        // Create or update status issue
+        const issues = await octokit.rest.issues.listForRepo({
+          owner: 'chiarasiniadvisor-bot',
+          repo: 'public-datasets',
+          labels: 'status-dashboard',
+          state: 'open'
+        });
+        
+        if (issues.data.length === 0) {
+          // Create new status issue
+          await octokit.rest.issues.create({
+            owner: 'chiarasiniadvisor-bot',
+            repo: 'public-datasets',
+            title: '📊 GitHub Actions Status Dashboard',
+            body: statusReport,
+            labels: ['status-dashboard', 'monitoring', 'automated']
+          });
+          console.log('✅ Created new status dashboard issue');
+        } else {
+          // Update existing status issue
+          const issue = issues.data[0];
+          await octokit.rest.issues.update({
+            owner: 'chiarasiniadvisor-bot',
+            repo: 'public-datasets',
+            issue_number: issue.number,
+            body: statusReport
+          });
+          console.log('✅ Updated existing status dashboard issue');
+        }
+        EOF
+        
+    - name: Send alerts for critical issues
+      if: failure()
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const report = fs.readFileSync('status-dashboard.md', 'utf8');
+          
+          // Create urgent issue for critical problems
+          await github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: `🚨 URGENT: Critical workflow failures detected - ${new Date().toISOString()}`,
+            body: `# 🚨 Critical Alert
+            
+${report}
+
+## Immediate Action Required
+Please review the failed workflows and take appropriate action.
+
+---
+*This alert was triggered by the monitoring system.*`,
+            labels: ['urgent', 'critical', 'monitoring', 'alert']
+          });

@@ -1,0 +1,232 @@
+name: Smart Auto-Fix for Actions
+
+on:
+  issues:
+    types: [opened, labeled]
+  schedule:
+    # Run every 30 minutes to check for fixable issues
+    - cron: '*/30 * * * *'
+  workflow_run:
+    workflows: ["*"]
+    types: [completed]
+
+jobs:
+  smart-auto-fix:
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: |
+        npm init -y
+        npm install axios @octokit/rest
+        
+    - name: Analyze and fix issues
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        node << 'EOF'
+        const { Octokit } = require('@octokit/rest');
+        const fs = require('fs');
+        const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+        
+        console.log('🔧 Smart Auto-Fix starting...');
+        
+        // Get recent failed workflow runs
+        const runs = await octokit.rest.actions.listWorkflowRunsForRepo({
+          owner: 'chiarasiniadvisor-bot',
+          repo: 'public-datasets',
+          status: 'completed',
+          conclusion: 'failure',
+          per_page: 10
+        });
+        
+        console.log(`🔍 Found ${runs.data.workflow_runs.length} recent failed runs`);
+        
+        const fixes = [];
+        
+        for (const run of runs.data.workflow_runs) {
+          const workflowName = run.name;
+          const createdAt = new Date(run.created_at);
+          const timeAgo = Math.floor((Date.now() - createdAt.getTime()) / (1000 * 60));
+          
+          // Only fix recent failures (last 2 hours)
+          if (timeAgo > 120) continue;
+          
+          console.log(`\n🔍 Analyzing ${workflowName} (${timeAgo}m ago)...`);
+          
+          // Get workflow jobs to analyze specific failures
+          const jobs = await octokit.rest.actions.listJobsForWorkflowRun({
+            owner: 'chiarasiniadvisor-bot',
+            repo: 'public-datasets',
+            run_id: run.id
+          });
+          
+          for (const job of jobs.data.jobs) {
+            if (job.conclusion === 'failure') {
+              console.log(`  ❌ Failed job: ${job.name}`);
+              
+              // Get job logs to analyze the failure
+              const logs = await octokit.rest.actions.downloadJobLogsForWorkflowRun({
+                owner: 'chiarasiniadvisor-bot',
+                repo: 'public-datasets',
+                job_id: job.id
+              });
+              
+              const logContent = Buffer.from(logs.data, 'base64').toString();
+              
+              // Analyze common failure patterns and suggest fixes
+              if (logContent.includes('Dependencies lock file is not found')) {
+                fixes.push({
+                  type: 'package-lock-missing',
+                  workflow: workflowName,
+                  job: job.name,
+                  fix: 'Add or regenerate package-lock.json',
+                  action: 'regenerate_package_lock'
+                });
+              } else if (logContent.includes('npm error') && logContent.includes('ENOENT')) {
+                fixes.push({
+                  type: 'npm-error',
+                  workflow: workflowName,
+                  job: job.name,
+                  fix: 'Fix npm configuration or dependencies',
+                  action: 'fix_npm_config'
+                });
+              } else if (logContent.includes('Permission denied') || logContent.includes('403')) {
+                fixes.push({
+                  type: 'permission-error',
+                  workflow: workflowName,
+                  job: job.name,
+                  fix: 'Fix repository permissions or secrets',
+                  action: 'check_permissions'
+                });
+              } else if (logContent.includes('Module not found') || logContent.includes('Cannot resolve')) {
+                fixes.push({
+                  type: 'module-not-found',
+                  workflow: workflowName,
+                  job: job.name,
+                  fix: 'Fix missing dependencies or imports',
+                  action: 'fix_dependencies'
+                });
+              } else if (logContent.includes('Build failed') || logContent.includes('Compilation error')) {
+                fixes.push({
+                  type: 'build-error',
+                  workflow: workflowName,
+                  job: job.name,
+                  fix: 'Fix build configuration or code errors',
+                  action: 'fix_build'
+                });
+              }
+            }
+          }
+        }
+        
+        console.log(`\n🔧 Found ${fixes.length} fixable issues`);
+        
+        // Apply fixes
+        for (const fix of fixes) {
+          console.log(`\n🔧 Applying fix for ${fix.type}:`);
+          console.log(`   Workflow: ${fix.workflow}`);
+          console.log(`   Job: ${fix.job}`);
+          console.log(`   Fix: ${fix.fix}`);
+          
+          switch (fix.action) {
+            case 'regenerate_package_lock':
+              // Regenerate package-lock.json
+              const { execSync } = require('child_process');
+              try {
+                execSync('npm install', { stdio: 'inherit' });
+                console.log('   ✅ Regenerated package-lock.json');
+                fixes.push({ applied: true, type: fix.type });
+              } catch (error) {
+                console.log('   ❌ Failed to regenerate package-lock.json');
+              }
+              break;
+              
+            case 'fix_npm_config':
+              // Fix npm configuration
+              try {
+                execSync('npm cache clean --force', { stdio: 'inherit' });
+                console.log('   ✅ Cleaned npm cache');
+                fixes.push({ applied: true, type: fix.type });
+              } catch (error) {
+                console.log('   ❌ Failed to clean npm cache');
+              }
+              break;
+              
+            case 'check_permissions':
+              console.log('   ⚠️ Permission issues require manual intervention');
+              break;
+              
+            case 'fix_dependencies':
+              console.log('   ⚠️ Dependency issues require code review');
+              break;
+              
+            case 'fix_build':
+              console.log('   ⚠️ Build errors require code fixes');
+              break;
+          }
+        }
+        
+        // Generate fix report
+        const fixReport = `# Smart Auto-Fix Report
+Generated: ${new Date().toISOString()}
+
+## Issues Analyzed
+${runs.data.workflow_runs.length} recent failed workflow runs
+
+## Fixes Applied
+${fixes.filter(f => f.applied).length} fixes applied successfully
+
+## Detailed Fixes
+${fixes.map(fix => 
+  `- **${fix.type}** (${fix.workflow}/${fix.job}): ${fix.fix} ${fix.applied ? '✅' : '⚠️'}`
+).join('\n')}
+
+## Next Steps
+${fixes.filter(f => !f.applied).length > 0 ? 
+  'Some issues require manual intervention. Please review the failed workflows.' :
+  'All automatic fixes applied successfully!'}`;
+
+        console.log('\n📊 FIX REPORT:');
+        console.log(fixReport);
+        
+        // Save report
+        fs.writeFileSync('auto-fix-report.md', fixReport);
+        
+        // Commit changes if any were made
+        if (fixes.some(f => f.applied)) {
+          try {
+            execSync('git add .', { stdio: 'inherit' });
+            execSync('git commit -m "Auto-fix: Apply automatic fixes for workflow failures"', { stdio: 'inherit' });
+            execSync('git push', { stdio: 'inherit' });
+            console.log('✅ Changes committed and pushed');
+          } catch (error) {
+            console.log('❌ Failed to commit changes:', error.message);
+          }
+        }
+        EOF
+        
+    - name: Create issue for unfixable problems
+      if: failure()
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const report = fs.readFileSync('auto-fix-report.md', 'utf8');
+          
+          await github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: `🔧 Auto-Fix Report - ${new Date().toISOString()}`,
+            body: report,
+            labels: ['auto-fix', 'monitoring']
+          });
