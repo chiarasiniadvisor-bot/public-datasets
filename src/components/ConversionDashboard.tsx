@@ -12,7 +12,7 @@ import {
   Cell,
   LabelList,
 } from "recharts";
-import { fetchDatasets } from "@/lib/brevoDatasets";
+import { fetchDatasets } from "@/lib/brevoDatasets_v2";
 import logoImage from "@/assets/logo.png";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageSwitch } from "./LanguageSwitch";
