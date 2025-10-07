@@ -2,24 +2,25 @@ name: Trigger Vercel Deploy
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
   call-vercel:
     runs-on: ubuntu-latest
     steps:
       - name: Validate hook URL is present
-        run: |
-          if [ -z "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}" ]; then
-            echo "Missing secret VERCEL_DEPLOY_HOOK_URL"; exit 2;
-          fi
-      - name: Sanity check (masked)
-        run: echo "URL length: ${#VERCEL_DEPLOY_HOOK_URL}"
         env:
-          VERCEL_DEPLOY_HOOK_URL: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
-      - name: Trigger Vercel Hook
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
         run: |
-          for i in 1 2 3; do
-            curl -fsSL -X POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}" && exit 0 || sleep 3;
-          done
-          echo "Failed to trigger Vercel after retries"; exit 3
+          if [ -z "$HOOK" ]; then
+            echo "Missing secret VERCEL_DEPLOY_HOOK_URL"
+            exit 2
+          fi
+          echo "Secret looks set (length > 0)."
+
+      - name: Trigger Vercel Hook
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+        run: |
+          curl -fsS -X POST "$HOOK"
