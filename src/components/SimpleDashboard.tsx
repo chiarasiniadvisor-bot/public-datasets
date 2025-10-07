@@ -12,9 +12,10 @@ export function SimpleDashboard() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        console.log("🔄 Loading data from backend...");
+        console.log("🚀 VERSION 1.0.1 - SIMPLIFIED DASHBOARD - LOADING DATA FROM BACKEND...");
+        console.log("🔥 THIS IS THE NEW VERSION - NO COMPLEX WORKFLOWS - VERCEL DEPLOY ONLY");
         const datasets = await fetchDatasets();
-        console.log("✅ Data loaded:", datasets);
+        console.log("✅ Data loaded successfully:", datasets);
         setData(datasets);
         setLoading(false);
       } catch (err) {

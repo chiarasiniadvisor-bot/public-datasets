@@ -1,4 +1,4 @@
-name: Build Frontend Only
+name: Build Test
 
 on:
   push:
@@ -23,8 +23,10 @@ jobs:
       - name: Build
         run: npm run build
         
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: dist
-          path: ./dist
+      - name: Test build
+        run: |
+          echo "✅ Build completed successfully!"
+          echo "📁 Build files:"
+          ls -la dist/
+          echo "📊 Build size:"
+          du -sh dist/
