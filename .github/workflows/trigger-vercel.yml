@@ -25,4 +25,4 @@ jobs:
           STATUS=$(curl -s -o resp.json -w "%{http_code}" -X POST "$HOOK")
           echo "HTTP Status: $STATUS"
           echo "Response body:"; cat resp.json
-          test "$STATUS" = "200" || { echo "Hook call failed"; exit 3; }
+          test "$STATUS" = "200" -o "$STATUS" = "201" || { echo "Hook call failed"; exit 3; }
