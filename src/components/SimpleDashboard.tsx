@@ -65,6 +65,12 @@ export function SimpleDashboard() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      {/* Badge ambiente */}
+      {process.env.VERCEL_ENV === 'preview' && (
+        <div className="fixed bottom-3 right-3 text-xs px-2 py-1 rounded border border-yellow-600/30 bg-yellow-600/10 text-yellow-300 z-50">
+          STAGING / PREVIEW
+        </div>
+      )}
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-white mb-2">🚀 VERCEL DEPLOY FORCED - VERSION 1.0.7</h1>

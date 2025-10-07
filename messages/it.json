@@ -1,0 +1,20 @@
+{
+  "common": {
+    "dashboard.title": "Dashboard Analytics",
+    "funnel.title": "Embudo de Conversión",
+    "funnel.leads": "Leads a CRM",
+    "funnel.iscritti": "Iscritti alla Piattaforma",
+    "funnel.profilo": "Profilo completo",
+    "funnel.corsisti": "Corsisti",
+    "funnel.paganti": "Paganti",
+    "trend.title": "Trend ultimi periodi",
+    "trend.delta": "Δ puntos %",
+    "sources.title": "Distribuzione per Fonte",
+    "webinar.title": "Webinar Analytics",
+    "debug.info": "Debug Info",
+    "debug.generated": "Generated At",
+    "debug.contacts": "Total Contacts",
+    "debug.funnel": "Funnel Steps",
+    "debug.source": "Data Source"
+  }
+}

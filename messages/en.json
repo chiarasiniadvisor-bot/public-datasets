@@ -1,0 +1,20 @@
+{
+  "common": {
+    "dashboard.title": "Analytics Dashboard",
+    "funnel.title": "Conversion Funnel",
+    "funnel.leads": "CRM Leads",
+    "funnel.iscritti": "Platform Subscribers",
+    "funnel.profilo": "Complete Profile",
+    "funnel.corsisti": "Students",
+    "funnel.paganti": "Paying Customers",
+    "trend.title": "Recent Trends",
+    "trend.delta": "Δ points %",
+    "sources.title": "Distribution by Source",
+    "webinar.title": "Webinar Analytics",
+    "debug.info": "Debug Info",
+    "debug.generated": "Generated At",
+    "debug.contacts": "Total Contacts",
+    "debug.funnel": "Funnel Steps",
+    "debug.source": "Data Source"
+  }
+}
