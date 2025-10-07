@@ -69,6 +69,15 @@ export async function fetchDatasets(params: {
       iscritti: cachedData.funnel?.iscrittiPiattaforma,
       profilo: cachedData.funnel?.profiloCompleto
     });
+    
+    // Force alert if values don't match
+    if (cachedData.funnel?.leadsACRM !== 4822 || 
+        cachedData.funnel?.iscrittiPiattaforma !== 2955 || 
+        cachedData.funnel?.profiloCompleto !== 2552) {
+      console.error("❌ DATA MISMATCH! Backend has correct data but frontend shows wrong values!");
+    } else {
+      console.log("✅ DATA MATCH! Backend and frontend should show correct values!");
+    }
   }
 
   return processBrevoData(cachedData, params);
