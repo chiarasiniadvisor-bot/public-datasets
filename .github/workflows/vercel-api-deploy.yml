@@ -1,5 +1,4 @@
 name: Trigger Vercel via API
-
 on:
   push:
     branches: [main]
@@ -9,43 +8,42 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      # Esponi i secrets come env (mascherati nei log)
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-      # Se hai un team, opzionale:
-      # VERCEL_TEAM_ID: ${{ secrets.VERCEL_TEAM_ID }}
+      VERCEL_TEAM_ID: ${{ secrets.VERCEL_TEAM_ID }}
     steps:
       - name: Validate required secrets
         run: |
           for v in VERCEL_TOKEN VERCEL_PROJECT_ID; do
-            if [ -z "${!v}" ]; then
-              echo "Missing env $v (check repo Secrets)"; exit 2;
-            fi
+            if [ -z "${!v}" ]; then echo "Missing env $v (check repo Secrets)"; exit 2; fi
           done
           echo "Secrets OK"
 
       - name: Trigger Vercel deploy (production)
         run: |
-          BODY=$(cat <<'JSON'
+          # Costruisci URL con teamId se presente
+          BASE="https://api.vercel.com/v13/deployments"
+          if [ -n "$VERCEL_TEAM_ID" ]; then
+            URL="${BASE}?teamId=${VERCEL_TEAM_ID}"
+          else
+            URL="${BASE}"
+          fi
+
+          # Deploy su progetto ESISTENTE: serve SOLO projectId + target
+          BODY=$(cat <<JSON
           {
-            "name": "github-actions-deploy",
+            "projectId": "${VERCEL_PROJECT_ID}",
             "target": "production",
-            "gitSource": { 
-              "type": "github", 
-              "ref": "main",
-              "repoId": "1068065852"
-            }
+            "gitSource": { "type": "github", "ref": "main" }
           }
           JSON
           )
 
-          STATUS=$(curl -s -o resp.json -w "%{http_code}" \
-            -X POST "https://api.vercel.com/v13/deployments" \
+          echo "POST $URL"
+          STATUS=$(curl -s -o resp.json -w "%{http_code}" -X POST "$URL" \
             -H "Authorization: Bearer $VERCEL_TOKEN" \
             -H "Content-Type: application/json" \
             -d "$BODY")
-
           echo "HTTP Status: $STATUS"
-          echo "Response body:" && cat resp.json
-
+          echo "Response body:"; cat resp.json
           [[ "$STATUS" == "200" || "$STATUS" == "201" ]] || { echo "Vercel API deploy failed"; exit 3; }
