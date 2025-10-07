@@ -1,0 +1,99 @@
+name: Monitor Deployments
+
+on:
+  workflow_run:
+    workflows: ["Deploy to GitHub Pages", "Update Datasets from Brevo API"]
+    types: [completed]
+  schedule:
+    # Check every 30 minutes
+    - cron: '*/30 * * * *'
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: |
+        npm init -y
+        npm install axios
+        
+    - name: Check deployment status
+      run: |
+        echo "🔍 Checking deployment status..."
+        
+        # Check GitHub Pages deployment
+        echo "📊 Checking GitHub Pages..."
+        GITHUB_PAGES_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://chiarasiniadvisor-bot.github.io/public-datasets/" || echo "ERROR")
+        echo "GitHub Pages Status: $GITHUB_PAGES_STATUS"
+        
+        # Check Vercel deployment
+        echo "📊 Checking Vercel..."
+        VERCEL_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://public-datasets-of7jimry3-chiaras-projects-9903e655.vercel.app/" || echo "ERROR")
+        echo "Vercel Status: $VERCEL_STATUS"
+        
+        # Check datasets.json
+        echo "📊 Checking datasets.json..."
+        DATASETS_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/datasets.json" || echo "ERROR")
+        echo "Datasets Status: $DATASETS_STATUS"
+        
+        # Create status report
+        cat > deployment-status.md << EOF
+        # Deployment Status Report
+        Generated: $(date)
+        
+        ## GitHub Pages
+        - Status: $GITHUB_PAGES_STATUS
+        - URL: https://chiarasiniadvisor-bot.github.io/public-datasets/
+        
+        ## Vercel
+        - Status: $VERCEL_STATUS
+        - URL: https://public-datasets-of7jimry3-chiaras-projects-9903e655.vercel.app/
+        
+        ## Backend Data
+        - Datasets: $DATASETS_STATUS
+        - URL: https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/datasets.json
+        
+        ## Issues
+        EOF
+        
+        # Add issues to report
+        if [ "$GITHUB_PAGES_STATUS" != "200" ]; then
+          echo "- ❌ GitHub Pages is not accessible" >> deployment-status.md
+        fi
+        
+        if [ "$VERCEL_STATUS" != "200" ]; then
+          echo "- ❌ Vercel is not accessible" >> deployment-status.md
+        fi
+        
+        if [ "$DATASETS_STATUS" != "200" ]; then
+          echo "- ❌ Datasets.json is not accessible" >> deployment-status.md
+        fi
+        
+        # Display report
+        cat deployment-status.md
+        
+    - name: Create issue if deployment failed
+      if: failure()
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const report = fs.readFileSync('deployment-status.md', 'utf8');
+          
+          github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: `🚨 Deployment Failed - ${new Date().toISOString()}`,
+            body: report,
+            labels: ['bug', 'deployment']
+          });

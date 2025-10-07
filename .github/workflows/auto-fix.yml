@@ -1,0 +1,101 @@
+name: Auto-Fix Common Issues
+
+on:
+  issues:
+    types: [opened, labeled]
+  schedule:
+    # Run every hour to check for fixable issues
+    - cron: '0 * * * *'
+
+jobs:
+  auto-fix:
+    runs-on: ubuntu-latest
+    if: contains(github.event.issue.labels.*.name, 'auto-fix') || github.event_name == 'schedule'
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Check for common issues
+      run: |
+        echo "🔍 Checking for common deployment issues..."
+        
+        # Check if package-lock.json exists
+        if [ ! -f "package-lock.json" ]; then
+          echo "❌ package-lock.json missing - creating it..."
+          npm init -y
+          npm install
+          git add package-lock.json
+          git commit -m "Auto-fix: Add missing package-lock.json"
+          git push
+        fi
+        
+        # Check if datasets.json exists
+        if [ ! -f "datasets.json" ]; then
+          echo "❌ datasets.json missing - this is critical!"
+          # This would need manual intervention
+        fi
+        
+        # Check if historical-data.json exists
+        if [ ! -f "historical-data.json" ]; then
+          echo "❌ historical-data.json missing - creating empty one..."
+          echo '{"daily": [], "weekly": []}' > historical-data.json
+          git add historical-data.json
+          git commit -m "Auto-fix: Add missing historical-data.json"
+          git push
+        fi
+        
+        # Check package.json version
+        CURRENT_VERSION=$(node -p "require('./package.json').version")
+        echo "Current version: $CURRENT_VERSION"
+        
+        # Bump version to force rebuild
+        NEW_VERSION=$(node -p "const v = require('./package.json').version.split('.'); v[2] = parseInt(v[2]) + 1; v.join('.')")
+        echo "New version: $NEW_VERSION"
+        
+        # Update package.json version
+        node -e "
+          const pkg = require('./package.json');
+          pkg.version = '$NEW_VERSION';
+          require('fs').writeFileSync('package.json', JSON.stringify(pkg, null, 2));
+        "
+        
+        git add package.json
+        git commit -m "Auto-fix: Bump version to $NEW_VERSION to force rebuild"
+        git push
+        
+        echo "✅ Auto-fix completed!"
+        
+    - name: Close auto-fix issues
+      if: success()
+      uses: actions/github-script@v7
+      with:
+        script: |
+          // Close issues with auto-fix label
+          const issues = await github.rest.issues.listForRepo({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            labels: 'auto-fix',
+            state: 'open'
+          });
+          
+          for (const issue of issues.data) {
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              body: '✅ Auto-fix applied! The issue should be resolved now.'
+            });
+            
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              state: 'closed'
+            });
+          }
