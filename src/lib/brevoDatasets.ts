@@ -293,7 +293,7 @@ function processBrevoData(data: BrevoData, params: any): Datasets {
     };
   });
 
-  // Use pre-calculated funnel data if available, otherwise compute from contacts
+  // Always use pre-calculated funnel data if available, otherwise compute from contacts
   let funnel;
   console.log('Data funnel available:', !!data.funnel, data.funnel);
   if (data.funnel) {
@@ -324,10 +324,13 @@ function processBrevoData(data: BrevoData, params: any): Datasets {
     ];
   }
 
-  // Get funnel values from pre-calculated data or compute from contacts
+  // Always use pre-calculated funnel data if available, otherwise compute from contacts
   const iscrittiPiattaforma = data.funnel ? data.funnel.iscrittiPiattaforma : transformedContacts.filter(x => x.hasList6).length;
   const corsisti = data.funnel ? data.funnel.corsisti : transformedContacts.filter(x => x.isCorsista).length;
   const paganti = data.funnel ? data.funnel.paganti : transformedContacts.filter(x => x.isPagante).length;
+  
+  // Force use of pre-calculated leads count if available
+  const leadsACRM = data.funnel ? data.funnel.leadsACRM : transformedContacts.length;
   
   // Compute iscritti con simulazione
   const conSim = iscrittiPiattaforma - transformedContacts.filter(x => x.hasList6 && !x.hasUltimaSimulazione).length;
