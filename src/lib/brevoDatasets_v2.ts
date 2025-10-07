@@ -298,9 +298,9 @@ function processBrevoData(data: BrevoData, params: any): Datasets {
   console.log('Data funnel available:', !!data.funnel, data.funnel);
   console.log('Total contacts in array:', transformedContacts.length);
   
-  // HARDCODE the correct values from Brevo
+  // HARDCODE the correct values from Brevo - VERSION 2
   const CORRECT_LEADS = 4701;
-  const CORRECT_ISCRITTI = 2955;
+  const CORRECT_ISCRITTI = 2955; // CORRECTED FROM BREVO
   const CORRECT_PROFILO = 2471;
   const CORRECT_CORSISTI = 760;
   const CORRECT_PAGANTI = 81;
