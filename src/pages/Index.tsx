@@ -1,8 +1,7 @@
-import ConversionDashboard from "@/components/ConversionDashboard";
-import WeeklyDeltaDashboard from "@/components/WeeklyDeltaDashboard";
+import { SimpleDashboard } from "@/components/SimpleDashboard";
 
 const Index = () => {
-  return <ConversionDashboard />;
+  return <SimpleDashboard />;
 };
 
 export default Index;
