@@ -67,8 +67,9 @@ export function SimpleDashboard() {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">Secret SSM</h1>
-          <p className="text-xl text-gray-300">SCUOLE DI SPECIALIZZAZIONE IN MEDICINA</p>
+          <h1 className="text-4xl font-bold text-white mb-2">🚀 VERCEL DEPLOY FORCED - VERSION 1.0.1</h1>
+          <p className="text-xl text-gray-300">SCUOLE DI SPECIALIZZAZIONE IN MEDICINA - FORCED UPDATE</p>
+          <p className="text-lg text-yellow-300 mt-2">🔥 THIS IS THE NEW VERSION - VERCEL SHOULD UPDATE NOW</p>
         </div>
 
         <div className="max-w-4xl mx-auto">
