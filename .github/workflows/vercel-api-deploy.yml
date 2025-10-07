@@ -30,7 +30,11 @@ jobs:
           {
             "projectId": "__PROJ__",
             "target": "production",
-            "gitSource": { "type": "github", "ref": "main" }
+            "gitSource": { 
+              "type": "github", 
+              "ref": "main",
+              "repoId": "chiarasiniadvisor-bot/public-datasets"
+            }
           }
           JSON
           )
