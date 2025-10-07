@@ -1,4 +1,5 @@
 name: Trigger Vercel via API
+
 on:
   push:
     branches: [main]
@@ -8,20 +9,22 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-      VERCEL_TEAM_ID: ${{ secrets.VERCEL_TEAM_ID }}
+      # Secrets da impostare in GitHub → Settings → Secrets and variables → Actions
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}           # vercel_pat_xxx
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }} # prj_873YZFnDOYzzddyf2e4KeSZwBljh
+      VERCEL_TEAM_ID: ${{ secrets.VERCEL_TEAM_ID }}       # es. team_xxx (opzionale ma consigliato se sei in un team)
     steps:
       - name: Validate required secrets
         run: |
           for v in VERCEL_TOKEN VERCEL_PROJECT_ID; do
-            if [ -z "${!v}" ]; then echo "Missing env $v (check repo Secrets)"; exit 2; fi
+            if [ -z "${!v}" ]; then
+              echo "Missing env $v (check repo Secrets)"; exit 2;
+            fi
           done
           echo "Secrets OK"
 
       - name: Trigger Vercel deploy (production)
         run: |
-          # Costruisci URL con teamId se presente
           BASE="https://api.vercel.com/v13/deployments"
           if [ -n "$VERCEL_TEAM_ID" ]; then
             URL="${BASE}?teamId=${VERCEL_TEAM_ID}"
@@ -29,16 +32,20 @@ jobs:
             URL="${BASE}"
           fi
 
-          # Deploy su progetto ESISTENTE: serve SOLO projectId + target
+          # repoId per GitHub = <owner>/<repo>
+          REPO_ID="chiarasiniadvisor-bot/public-datasets"
+          REF="main"
+          SHA="${{ github.sha }}"
+
           BODY=$(cat <<JSON
           {
-            "projectId": "prj_873YZFnDOYzzddyf2e4KeSZwBljh",
-            "name": "github-actions-deploy",
+            "projectId": "${VERCEL_PROJECT_ID}",
             "target": "production",
-            "gitSource": { 
-              "type": "github", 
-              "ref": "main",
-              "repoId": "1068065852"
+            "gitSource": {
+              "type": "github",
+              "repoId": "${REPO_ID}",
+              "ref": "${REF}",
+              "sha": "${SHA}"
             }
           }
           JSON
@@ -49,6 +56,7 @@ jobs:
             -H "Authorization: Bearer $VERCEL_TOKEN" \
             -H "Content-Type: application/json" \
             -d "$BODY")
+
           echo "HTTP Status: $STATUS"
-          echo "Response body:"; cat resp.json
+          echo "Response body:" && cat resp.json
           [[ "$STATUS" == "200" || "$STATUS" == "201" ]] || { echo "Vercel API deploy failed"; exit 3; }
