@@ -136,14 +136,8 @@ function calculateAllMetrics(contacts) {
   console.log(`Calculating all metrics for ${contacts.length} contacts...`);
   
   // Funnel metrics
-  // Calculate leadsACRM correctly - filter out invalid/duplicate contacts
-  const leadsACRM = contacts.filter(contact => {
-    // Filter out contacts without valid email or with invalid data
-    return contact.email && 
-           contact.email.trim() !== '' && 
-           contact.id && 
-           contact.id > 0;
-  }).length;
+  // leadsACRM = number of contacts in CRM
+  const leadsACRM = contacts.length;
   const iscrittiPiattaforma = contacts.filter(x => x.listIds && x.listIds.indexOf(6) !== -1).length;
   const profiloCompleto = contacts.filter(x => {
     const dataNascita = x.attributes?.DATA_DI_NASCITA;
@@ -160,7 +154,6 @@ function calculateAllMetrics(contacts) {
   }).length;
 
   console.log(`Funnel: leads=${leadsACRM}, iscritti=${iscrittiPiattaforma}, profilo=${profiloCompleto}, corsisti=${corsisti}, paganti=${paganti}`);
-  console.log(`Total contacts: ${contacts.length}, Valid leads: ${leadsACRM}, Difference: ${contacts.length - leadsACRM}`);
 
   // Distribution metrics
   const ateneiCount = {};
