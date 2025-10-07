@@ -293,34 +293,44 @@ function processBrevoData(data: BrevoData, params: any): Datasets {
     };
   });
 
-  // ALWAYS use pre-calculated funnel data - HARDCODE the correct values
+  // Use pre-calculated funnel data if available, otherwise compute from contacts
   let funnel;
   console.log('Data funnel available:', !!data.funnel, data.funnel);
   console.log('Total contacts in array:', transformedContacts.length);
   
-  // HARDCODE the correct values from Brevo - VERSION 2
-  const CORRECT_LEADS = 4701;
-  const CORRECT_ISCRITTI = 2955; // CORRECTED FROM BREVO
-  const CORRECT_PROFILO = 2552; // CORRECTED FROM BREVO
-  const CORRECT_CORSISTI = 760;
-  const CORRECT_PAGANTI = 81;
-  
-  console.log('HARDCODING correct values:', { CORRECT_LEADS, CORRECT_ISCRITTI });
-  console.log('FORCE REFRESH - Vercel cache bypass attempt');
-  
-  funnel = [
-    { step: 'Leads a CRM', value: CORRECT_LEADS },
-    { step: 'Iscritti alla Piattaforma (#6)', value: CORRECT_ISCRITTI },
-    { step: 'Profilo completo', value: CORRECT_PROFILO },
-    { step: 'Corsisti', value: CORRECT_CORSISTI },
-    { step: 'Clienti paganti', value: CORRECT_PAGANTI }
-  ];
+  if (data.funnel && data.funnel.leadsACRM) {
+    // Use pre-calculated funnel data
+    console.log('Using pre-calculated funnel data:', data.funnel);
+    funnel = [
+      { step: 'Leads a CRM', value: data.funnel.leadsACRM },
+      { step: 'Iscritti alla Piattaforma (#6)', value: data.funnel.iscrittiPiattaforma },
+      { step: 'Profilo completo', value: data.funnel.profiloCompleto },
+      { step: 'Corsisti', value: data.funnel.corsisti },
+      { step: 'Clienti paganti', value: data.funnel.paganti }
+    ];
+  } else {
+    console.log('Computing funnel from contacts');
+    // Fallback: compute from contacts
+    const leadsACRM = transformedContacts.length;
+    const iscrittiPiattaforma = transformedContacts.filter(x => x.hasList6).length;
+    const profiloCompleto = transformedContacts.filter(x => !!String(x.attributes.DATA_DI_NASCITA || '').trim()).length;
+    const corsisti = transformedContacts.filter(x => x.isCorsista).length;
+    const paganti = transformedContacts.filter(x => x.isPagante).length;
 
-  // HARDCODE all values to match Brevo exactly
-  const iscrittiPiattaforma = CORRECT_ISCRITTI;
-  const corsisti = CORRECT_CORSISTI;
-  const paganti = CORRECT_PAGANTI;
-  const leadsACRM = CORRECT_LEADS;
+    funnel = [
+      { step: 'Leads a CRM', value: leadsACRM },
+      { step: 'Iscritti alla Piattaforma (#6)', value: iscrittiPiattaforma },
+      { step: 'Profilo completo', value: profiloCompleto },
+      { step: 'Corsisti', value: corsisti },
+      { step: 'Clienti paganti', value: paganti }
+    ];
+  }
+
+  // Get funnel values from pre-calculated data or compute from contacts
+  const iscrittiPiattaforma = data.funnel ? data.funnel.iscrittiPiattaforma : transformedContacts.filter(x => x.hasList6).length;
+  const corsisti = data.funnel ? data.funnel.corsisti : transformedContacts.filter(x => x.isCorsista).length;
+  const paganti = data.funnel ? data.funnel.paganti : transformedContacts.filter(x => x.isPagante).length;
+  const leadsACRM = data.funnel ? data.funnel.leadsACRM : transformedContacts.length;
   
   // Compute iscritti con simulazione
   const conSim = iscrittiPiattaforma - transformedContacts.filter(x => x.hasList6 && !x.hasUltimaSimulazione).length;

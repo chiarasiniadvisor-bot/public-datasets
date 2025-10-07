@@ -442,16 +442,24 @@ export default function ConversionDashboard() {
         setTrattative(asKV(dsCorsisti.gestiti_trattativa));
 
         /* ---------- CRM (ALL) ---------- */
-        // HARDCODE correct values to match Brevo exactly
-        const leadsTot = 4701;
+        const leadsFromFunnel   = pickFunnelValue(dsCrm.funnel, "leads") || dsCrm.funnel?.leadsACRM;
+        const leadsFallback     = sumValues(dsCrm.distribuzione_atenei);
+        const leadsTot          = bestOf(leadsFromFunnel, leadsFallback);
 
-        // HARDCODE correct values to match Brevo exactly
-        const iscrittiTotFromFunnel = 2955;
+        // attenzione: lo step "iscritti" nel funnel a volte manca o cambia lingua
+        const iscrittiFromFunnel  = pickFunnelValue(dsCrm.funnel, "iscritti") || dsCrm.funnel?.iscrittiPiattaforma;
+        // fallback: ricaviamo gli iscritti sommando le distribuzioni di lista6
+        const iscrittiFromDistrib = bestOf(
+          sumValues(dsIscritti.distribuzione_atenei),
+          sumValues(dsIscritti.distribuzione_anno_profilazione),
+          sumValues(dsIscritti.distribuzione_anno_nascita)
+        );
+        const iscrittiTotFromFunnel = bestOf(iscrittiFromFunnel, iscrittiFromDistrib);
 
-        // HARDCODE all values to match Brevo exactly
-        const profiloCompleto    = 2552;
-        const corsistiFromFunnel = 760;
-        const paganti            = 81;
+        // gli altri step restano presi dal funnel (con matching robusto)
+        const profiloCompleto    = pickFunnelValue(dsCrm.funnel, "profilo");
+        const corsistiFromFunnel = pickFunnelValue(dsCrm.funnel, "corsisti");
+        const paganti            = pickFunnelValue(dsCrm.funnel, "paganti");
 
         setFunnel({
           leadsACRM: leadsTot,
@@ -639,7 +647,7 @@ export default function ConversionDashboard() {
                   </div>
                   <div className="min-w-[220px] text-right">
                     <div className="text-sm font-medium text-muted-foreground">{t("leads")}</div>
-                    <div className="text-2xl font-bold" style={{ color: "hsl(var(--chart-1))" }}>4701</div>
+                    <div className="text-2xl font-bold" style={{ color: "hsl(var(--chart-1))" }}>{funnel.leadsACRM.toLocaleString(locale)}</div>
                     <div className="text-sm font-medium text-muted-foreground">100%</div>
                   </div>
                 </div>
@@ -647,24 +655,24 @@ export default function ConversionDashboard() {
                 {/* Iscritti piattaforma */}
                 <div className="relative w-full flex items-center gap-4">
                   <div className="flex-1">
-                    <div className="h-12" style={{ background: "hsl(var(--chart-2))", clipPath: "polygon(2.5% 0%, 97.5% 0%, 92.5% 100%, 7.5% 100%)", width: "62.9%", margin: "0 auto" }} />
+                    <div className="h-12" style={{ background: "hsl(var(--chart-2))", clipPath: "polygon(2.5% 0%, 97.5% 0%, 92.5% 100%, 7.5% 100%)", width: barWidth(funnel.iscritti), margin: "0 auto" }} />
                   </div>
                   <div className="min-w-[220px] text-right">
                     <div className="text-sm font-medium text-muted-foreground">{t("signups")}</div>
-                    <div className="text-2xl font-bold" style={{ color: "hsl(var(--chart-2))" }}>2955</div>
-                    <div className="text-sm font-medium text-chart-2">62.9%</div>
+                    <div className="text-2xl font-bold" style={{ color: "hsl(var(--chart-2))" }}>{funnel.iscritti.toLocaleString(locale)}</div>
+                    <div className="text-sm font-medium text-chart-2">{pctOfLeads(funnel.iscritti)}</div>
                   </div>
                 </div>
 
                 {/* Profilo completo */}
                 <div className="relative w-full flex items-center gap-4">
                   <div className="flex-1">
-                    <div className="h-12" style={{ background: "hsl(var(--chart-3))", clipPath: "polygon(4% 0%, 96% 0%, 91% 100%, 9% 100%)", width: "54.3%", margin: "0 auto" }} />
+                    <div className="h-12" style={{ background: "hsl(var(--chart-3))", clipPath: "polygon(4% 0%, 96% 0%, 91% 100%, 9% 100%)", width: barWidth(funnel.profiloCompleto), margin: "0 auto" }} />
                   </div>
                   <div className="min-w-[220px] text-right">
                     <div className="text-sm font-medium text-muted-foreground">{t("profileComplete")}</div>
-                    <div className="text-2xl font-bold" style={{ color: "hsl(var(--chart-3))" }}>2552</div>
-                    <div className="text-sm font-medium" style={{ color: "hsl(var(--chart-3))" }}>54.3%</div>
+                    <div className="text-2xl font-bold" style={{ color: "hsl(var(--chart-3))" }}>{funnel.profiloCompleto.toLocaleString(locale)}</div>
+                    <div className="text-sm font-medium" style={{ color: "hsl(var(--chart-3))" }}>{pctOfLeads(funnel.profiloCompleto)}</div>
                   </div>
                 </div>
 
