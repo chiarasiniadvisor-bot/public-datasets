@@ -647,7 +647,7 @@ export default function ConversionDashboard() {
                 {/* Iscritti piattaforma */}
                 <div className="relative w-full flex items-center gap-4">
                   <div className="flex-1">
-                    <div className="h-12" style={{ background: "hsl(var(--chart-2))", clipPath: "polygon(2.5% 0%, 97.5% 0%, 92.5% 100%, 7.5% 100%)", width: barWidth(funnel.iscritti), margin: "0 auto" }} />
+                    <div className="h-12" style={{ background: "hsl(var(--chart-2))", clipPath: "polygon(2.5% 0%, 97.5% 0%, 92.5% 100%, 7.5% 100%)", width: "62.9%", margin: "0 auto" }} />
                   </div>
                   <div className="min-w-[220px] text-right">
                     <div className="text-sm font-medium text-muted-foreground">{t("signups")}</div>
