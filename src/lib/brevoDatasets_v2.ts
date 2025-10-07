@@ -267,30 +267,18 @@ function computeUtentiCrmWebinar_(contacts: any[]): Array<{name: string, value: 
 }
 
 function processBrevoData(data: BrevoData, params: any): Datasets {
-  const { contacts } = data;
-  
-  // Transform contacts like App Script
+  console.log('Processing Brevo data with pre-calculated metrics from backend...');
+  console.log('Available pre-calculated data:', Object.keys(data).filter(k => k !== 'contacts' && k !== 'generatedAt' && k !== 'totalContacts'));
+
+  // For iscritti con simulazione, we still need to compute this from contacts
+  // since it's not pre-calculated in backend yet
+  const contacts = data.contacts || [];
   const transformedContacts = contacts.map(contact => {
-    const corsoRaw = String(contact.attributes.CORSO_ACQUISTATO || '').trim();
-    const corsoCanon = canon_(corsoRaw);
-    const isCorsista = !!corsoRaw;
-    const isPagante = isCorsista && !corsoRaw.toLowerCase().includes(ESCLUDI_MATCH_IN_CORSO);
-    const hasList6 = contact.listIds.indexOf(LIST_ID_PIATTAFORMA) !== -1;
-    const hasUltimaSimulazione = !!String(contact.attributes.ULTIMA_SIMULAZIONE || '').trim();
-    const macroCorso = buildCourseMacro_(corsoCanon);
-    
-    return {
-      ...contact,
-      isCorsista,
-      isPagante,
-      hasList6,
-      hasUltimaSimulazione,
-      annoNorm: normAnno_(contact.attributes.ANNO || ''),
-      fonteNorm: normFonte_(contact.attributes.FONTE || ''),
-      ATENEO: contact.attributes.ATENEO || LABEL_ATENEO_MISSING,
-      corsoCanon,
-      macroCorso
-    };
+    const listIds = parseListIds_(safeString_(contact.listIds));
+    const hasList6 = listIds.indexOf(LIST_ID_PIATTAFORMA) !== -1;
+    const ultimaSimRaw = contact.attributes.ULTIMA_SIMULAZIONE || '';
+    const hasUltimaSimulazione = !!safeString_(ultimaSimRaw).trim();
+    return { ...contact, listIds, hasList6, hasUltimaSimulazione };
   });
 
   // Use pre-calculated funnel data if available, otherwise compute from contacts
@@ -333,112 +321,52 @@ function processBrevoData(data: BrevoData, params: any): Datasets {
     { name: 'Senza simulazione', value: Math.max(0, iscrittiPiattaforma - conSim) }
   ];
 
-  // Process distributions
-  const ateneiCount: { [key: string]: number } = {};
-  const annoProfilazioneCount: { [key: string]: number } = {};
-  const fonteCount: { [key: string]: number } = {};
-  const annoNascitaCount: { [key: string]: number } = {};
-  const listeCount: { [key: string]: number } = {};
-  const corsiCount: { [key: string]: number } = {};
-  const corsiPagatiCount: { [key: string]: number } = {};
+  // Use pre-calculated distributions from backend
+  const distribuzione_atenei = data.distribuzione_atenei || [];
+  const distribuzione_anno_profilazione = data.distribuzione_anno_profilazione || [];
+  const distribuzione_fonte = data.distribuzione_fonte || [];
+  const distribuzione_anno_nascita = data.distribuzione_anno_nascita || [];
+  const distribuzione_corsi = data.distribuzione_corsi || [];
+  const distribuzione_corsi_pagati = data.distribuzione_corsi_pagati || [];
+  const distribuzione_liste_corsisti = data.distribuzione_liste_corsisti || [];
 
-  transformedContacts.forEach(contact => {
-    // Atenei
-    const ateneo = contact.ATENEO || LABEL_ATENEO_MISSING;
-    ateneiCount[ateneo] = (ateneiCount[ateneo] || 0) + 1;
+  // Use pre-calculated webinar metrics from backend
+  const webinar_conversions = data.webinar_conversions || [];
+  const iscritti_webinar = data.iscritti_webinar || [];
+  const utenti_crm_webinar = data.utenti_crm_webinar || [];
 
-    // Anno profilazione
-    const annoProf = contact.annoNorm || LABEL_ANNO_MISSING;
-    annoProfilazioneCount[annoProf] = (annoProfilazioneCount[annoProf] || 0) + 1;
-
-    // Fonte
-    const fonte = contact.fonteNorm || LABEL_FONTE_MISSING;
-    fonteCount[fonte] = (fonteCount[fonte] || 0) + 1;
-
-    // Anno nascita
-    const annoNascita = extractYear_(contact.attributes.DATA_DI_NASCITA || '');
-    const annoNascitaKey = annoNascita || 'Senza anno';
-    annoNascitaCount[annoNascitaKey] = (annoNascitaCount[annoNascitaKey] || 0) + 1;
-
-    // Liste (simplified - using list IDs directly)
-    contact.listIds.forEach(listId => {
-      listeCount[listId.toString()] = (listeCount[listId.toString()] || 0) + 1;
-    });
-
-    // Corsi
-    if (contact.isCorsista) {
-      const corso = contact.macroCorso || 'Non specificato';
-      corsiCount[corso] = (corsiCount[corso] || 0) + 1;
-    }
-
-    // Corsi pagati
-    if (contact.isPagante) {
-      const corso = contact.macroCorso || 'Non specificato';
-      corsiPagatiCount[corso] = (corsiPagatiCount[corso] || 0) + 1;
-    }
-  });
-
-  // Convert to arrays and sort
-  const distribuzione_atenei = Object.entries(ateneiCount)
-    .map(([name, value]) => ({ name, value }))
-    .sort((a, b) => b.value - a.value);
-
-  const distribuzione_anno_profilazione = relabelAnnoProfilazione_(
-    Object.entries(annoProfilazioneCount)
-      .map(([name, value]) => ({ name, value }))
-      .sort((a, b) => b.value - a.value)
-  );
-
-  const distribuzione_fonte = Object.entries(fonteCount)
-    .map(([name, value]) => ({ name, value }))
-    .sort((a, b) => b.value - a.value);
-
-  const distribuzione_anno_nascita = Object.entries(annoNascitaCount)
-    .map(([name, value]) => ({ name, value }))
-    .sort((a, b) => b.value - a.value);
-
-  const distribuzione_liste_corsisti = Object.entries(listeCount)
-    .map(([name, value]) => ({ name, value }))
-    .sort((a, b) => b.value - a.value);
-
-  const distribuzione_corsi = Object.entries(corsiCount)
-    .map(([name, value]) => ({ name, value }))
-    .sort((a, b) => b.value - a.value);
-
-  const distribuzione_corsi_pagati = Object.entries(corsiPagatiCount)
-    .map(([name, value]) => ({ name, value }))
-    .sort((a, b) => b.value - a.value);
-
-  // Gestiti trattativa (simplified)
-  const gestitiTrattativa = [
-    { name: 'Con trattativa', value: 0 }, // Would need specific logic
-    { name: 'Senza trattativa', value: corsisti }
-  ];
-
-  // Webinar metrics
-  const webinarConversions = computeWebinarConversions_(transformedContacts);
-  const iscrittiWebinar = computeIscrittiWebinar_(transformedContacts);
-  const nonCorsistiTarget = computeNonCorsistiTarget_(transformedContacts);
-  const utentiCrmWebinar = computeUtentiCrmWebinar_(transformedContacts);
+  // Use pre-calculated non-corsisti metrics from backend
+  const utenti_crm_non_corsisti = data.utenti_crm_non_corsisti || 0;
+  const utenti_crm_non_corsisti_in_target = data.utenti_crm_non_corsisti_in_target || 0;
+  const pct_non_corsisti_in_target = data.pct_non_corsisti_in_target || 0;
 
   return {
-    funnel,
-    iscritti_con_simulazione: iscrittiSimulazione,
-    distribuzione_atenei,
-    distribuzione_anno_profilazione,
-    distribuzione_fonte,
-    distribuzione_anno_nascita,
-    distribuzione_liste_corsisti,
-    distribuzione_corsi,
-    distribuzione_corsi_pagati,
-    gestiti_trattativa: gestitiTrattativa,
-    // Webinar metrics
-    webinar_conversions: webinarConversions,
-    iscritti_webinar: iscrittiWebinar,
-    utenti_crm_webinar: utentiCrmWebinar,
-    utenti_crm_non_corsisti: nonCorsistiTarget.nonCorsisti,
-    utenti_crm_non_corsisti_in_target: nonCorsistiTarget.inTarget,
-    pct_non_corsisti_in_target: nonCorsistiTarget.pct
+    meta: {
+      scope: params.scope || 'all',
+      listMode: params.listMode || 'group',
+      generatedAt: data.generatedAt,
+      totalRows: data.totalContacts,
+    },
+    datasets: {
+      funnel: funnel,
+      iscritti_con_simulazione: iscrittiSimulazione,
+      distribuzione_atenei: distribuzione_atenei,
+      distribuzione_anno_profilazione: distribuzione_anno_profilazione,
+      distribuzione_fonte: distribuzione_fonte,
+      distribuzione_anno_nascita: distribuzione_anno_nascita,
+      distribuzione_liste_corsisti: distribuzione_liste_corsisti,
+      distribuzione_corsi: distribuzione_corsi,
+      distribuzione_corsi_pagati: distribuzione_corsi_pagati,
+      gestiti_trattativa: [], // Not implemented in backend yet
+      kpi_full2026_gratis: [], // Not implemented in backend yet
+      utenti_crm_non_corsisti: utenti_crm_non_corsisti,
+      utenti_crm_non_corsisti_in_target: utenti_crm_non_corsisti_in_target,
+      pct_non_corsisti_in_target: pct_non_corsisti_in_target,
+      webinar_conversions: webinar_conversions,
+      iscritti_webinar: iscritti_webinar,
+      utenti_crm_webinar: utenti_crm_webinar,
+      delta: data.funnel ? data.funnel : null,
+    }
   };
 }
 
