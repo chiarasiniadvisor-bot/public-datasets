@@ -446,7 +446,7 @@ export default function ConversionDashboard() {
         const leadsTot = 4701;
 
         // HARDCODE correct values to match Brevo exactly
-        const iscrittiTotFromFunnel = 2860;
+        const iscrittiTotFromFunnel = 2955;
 
         // HARDCODE all values to match Brevo exactly
         const profiloCompleto    = 2471;
@@ -651,8 +651,8 @@ export default function ConversionDashboard() {
                   </div>
                   <div className="min-w-[220px] text-right">
                     <div className="text-sm font-medium text-muted-foreground">{t("signups")}</div>
-                    <div className="text-2xl font-bold" style={{ color: "hsl(var(--chart-2))" }}>2860</div>
-                    <div className="text-sm font-medium text-chart-2">60.9%</div>
+                    <div className="text-2xl font-bold" style={{ color: "hsl(var(--chart-2))" }}>2955</div>
+                    <div className="text-sm font-medium text-chart-2">62.9%</div>
                   </div>
                 </div>
 
