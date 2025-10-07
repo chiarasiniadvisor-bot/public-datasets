@@ -19,8 +19,13 @@ jobs:
           fi
           echo "Secret looks set (length > 0)."
 
-      - name: Trigger Vercel Hook
+      - name: Trigger Vercel Hook (with logs)
         env:
           HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
         run: |
-          curl -fsS -X POST "$HOOK"
+          echo "Hitting: ${HOOK%%\?*}?...(masked)"
+          STATUS=$(curl -s -o resp.json -w "%{http_code}" -X POST "$HOOK")
+          echo "HTTP Status: $STATUS"
+          echo "Response body:"
+          cat resp.json
+          test "$STATUS" = "200" || { echo "Hook call failed"; exit 3; }
