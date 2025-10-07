@@ -321,8 +321,10 @@ function processBrevoData(data: BrevoData, params: any): Datasets {
     ];
   }
 
-  // Get iscrittiPiattaforma from funnel data
+  // Get funnel values from pre-calculated data or compute from contacts
   const iscrittiPiattaforma = data.funnel ? data.funnel.iscrittiPiattaforma : transformedContacts.filter(x => x.hasList6).length;
+  const corsisti = data.funnel ? data.funnel.corsisti : transformedContacts.filter(x => x.isCorsista).length;
+  const paganti = data.funnel ? data.funnel.paganti : transformedContacts.filter(x => x.isPagante).length;
   
   // Compute iscritti con simulazione
   const conSim = iscrittiPiattaforma - transformedContacts.filter(x => x.hasList6 && !x.hasUltimaSimulazione).length;
