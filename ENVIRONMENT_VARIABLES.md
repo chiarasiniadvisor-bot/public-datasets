@@ -6,33 +6,51 @@ Configure these variables in your Vercel project settings:
 
 ### Preview Environment (staging and all branches ≠ main)
 ```
-NEXT_PUBLIC_API_BASE = https://script.google.com/macros/s/<ID_STAGING>/exec
+VITE_API_BASE = https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/datasets.json
+VITE_HISTORICAL_DATA_URL = https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/historical-data.json
 ```
 
 ### Production Environment (main branch)
 ```
-NEXT_PUBLIC_API_BASE = https://script.google.com/macros/s/<ID_PROD>/exec
+VITE_API_BASE = https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/datasets.json
+VITE_HISTORICAL_DATA_URL = https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/historical-data.json
 ```
 
 ## How to Set Environment Variables in Vercel
 
 1. Go to your Vercel project dashboard
 2. Navigate to Settings → Environment Variables
-3. Add the variable:
-   - **Name**: `NEXT_PUBLIC_API_BASE`
-   - **Value**: The appropriate Google Apps Script URL
+3. Add the variables:
+   - **Name**: `VITE_API_BASE`
+   - **Value**: GitHub Raw datasets URL
+   - **Environment**: Select "Preview" and/or "Production"
+4. Add the historical data variable (optional):
+   - **Name**: `VITE_HISTORICAL_DATA_URL`
+   - **Value**: GitHub Raw historical data URL
    - **Environment**: Select "Preview" and/or "Production"
 
 ## Fallback
 
-If `NEXT_PUBLIC_API_BASE` is not set, the app will fallback to:
+If `VITE_API_BASE` is not set, the app will fallback to:
 ```
 https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/datasets.json
+```
+
+If `VITE_HISTORICAL_DATA_URL` is not set, the app will fallback to:
+```
+https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/historical-data.json
 ```
 
 ## Local Development
 
 For local development, create a `.env.local` file:
 ```
-NEXT_PUBLIC_API_BASE=https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/datasets.json
+VITE_API_BASE=https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/datasets.json
+VITE_HISTORICAL_DATA_URL=https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/historical-data.json
 ```
+
+## Important Notes
+
+- With Vite, client-visible environment variables MUST start with `VITE_*`
+- No more `NEXT_PUBLIC_*` variables needed
+- All data now comes from GitHub Raw datasets (no Google Apps Script required)
