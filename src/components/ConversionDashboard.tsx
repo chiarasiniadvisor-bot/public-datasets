@@ -340,7 +340,6 @@ function buildSimSlices(
 export default function ConversionDashboard() {
   const { t, i18n } = useTranslation();
   const locale = i18n.language.startsWith("it") ? "it-IT" : "es-ES";
-  const [refreshTrigger, setRefreshTrigger] = useState(0);
   
   // Vista CORSISTI
   const [atenei, setAtenei] = useState<{ name: string; value: number }[]>([]);
@@ -405,9 +404,6 @@ export default function ConversionDashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const forceRefresh = () => {
-    setRefreshTrigger(prev => prev + 1);
-  };
 
   useEffect(() => {
     let mounted = true;
@@ -580,7 +576,7 @@ export default function ConversionDashboard() {
       }
     })();
     return () => { mounted = false; };
-  }, [refreshTrigger]);
+  }, []);
 
   // Post-processing anni di nascita (CORSISTI): raggruppa <=1 in Altro
   const processedAnniNascita = useMemo(() => {
@@ -609,13 +605,6 @@ export default function ConversionDashboard() {
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="text-center relative">
             <div className="absolute top-0 right-0 flex items-center gap-3">
-              <button 
-                onClick={forceRefresh}
-                disabled={loading}
-                className="px-3 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 transition-colors text-sm"
-              >
-                {loading ? t("loading") : "🔄"}
-              </button>
               <LanguageSwitch />
               <ThemeToggle />
             </div>
