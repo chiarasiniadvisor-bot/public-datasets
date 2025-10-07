@@ -1,0 +1,49 @@
+name: Update Datasets and Deploy
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */6 * * *"  # ogni 6 ore (opzionale)
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
+      - run: |
+          npm init -y
+          npm install axios
+      # ⬇️ sostituisci con il tuo comando reale di generazione dati
+      - name: Generate datasets
+        env:
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+        run: |
+          node scripts/updateBrevoWithHistory.js
+
+      - name: Commit dataset changes (if any)
+        run: |
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+          git add -A
+          git diff --cached --quiet && echo "No changes" || git commit -m "chore: auto-update datasets [skip ci]" || true
+          git push || true
+
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Vercel Hook
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+        run: |
+          test -n "$HOOK" || { echo "Missing hook"; exit 2; }
+          STATUS=$(curl -s -o resp.json -w "%{http_code}" -X POST "$HOOK")
+          echo "HTTP Status: $STATUS"; cat resp.json
+          test "$STATUS" = "200" || { echo "Hook call failed"; exit 3; }
