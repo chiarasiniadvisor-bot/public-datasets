@@ -780,7 +780,7 @@ export default function ConversionDashboard() {
           {/* Anno di nascita (CORSISTI) */}
           <Card className="shadow-card border-0 bg-card/90 backdrop-blur-sm">
             <CardHeader className="pb-4">
-              <CardTitle className="text-2xl font-semibold text-primary">Profilazione per Anno di Nascita</CardTitle>
+              <CardTitle className="text-2xl font-semibold text-primary">{t('profiling.birthYear')}</CardTitle>
             </CardHeader>
             <CardContent>
               {loading ? <div className="text-sm text-muted-foreground">Caricamento…</div>
@@ -867,7 +867,7 @@ export default function ConversionDashboard() {
           {/* Anno di corso (CORSISTI) */}
           <Card className="shadow-card border-0 bg-card/90 backdrop-blur-sm">
             <CardHeader className="pb-4">
-              <CardTitle className="text-2xl font-semibold text-primary">Profilazione per Anno</CardTitle>
+              <CardTitle className="text-2xl font-semibold text-primary">{t('profiling.year')}</CardTitle>
             </CardHeader>
             <CardContent>
               {loading ? <div className="text-sm text-muted-foreground">Caricamento…</div>
@@ -1245,7 +1245,7 @@ export default function ConversionDashboard() {
         {/* Anno di nascita - ISCRITTI */}
         <Card className="shadow-card border-0 bg-card/90 backdrop-blur-sm">
           <CardHeader className="pb-4">
-            <CardTitle className="text-2xl font-semibold text-primary">Profilazione per Anno di Nascita - Iscritti</CardTitle>
+            <CardTitle className="text-2xl font-semibold text-primary">{t('profiling.birthYearIscritti')}</CardTitle>
             {!loading && !error && (
               <p className="text-sm text-muted-foreground">Totale iscritti: <strong>{funnel.iscritti.toLocaleString()}</strong></p>
             )}
@@ -1277,7 +1277,7 @@ export default function ConversionDashboard() {
         {/* Anno di corso - ISCRITTI */}
         <Card className="shadow-card border-0 bg-card/90 backdrop-blur-sm">
           <CardHeader className="pb-4">
-            <CardTitle className="text-2xl font-semibold text-primary">Profilazione per Anno - Iscritti</CardTitle>
+            <CardTitle className="text-2xl font-semibold text-primary">{t('profiling.yearIscritti')}</CardTitle>
             {!loading && !error && (
               <p className="text-sm text-muted-foreground">Totale iscritti: <strong>{funnel.iscritti.toLocaleString()}</strong></p>
             )}
@@ -1575,7 +1575,7 @@ export default function ConversionDashboard() {
         {/* Anno nascita - CRM */}
         <Card className="shadow-card border-0 bg-card/90 backdrop-blur-sm">
           <CardHeader className="pb-4">
-            <CardTitle className="text-2xl font-semibold text-primary">Profilazione per Anno di Nascita - Utenti CRM</CardTitle>
+            <CardTitle className="text-2xl font-semibold text-primary">{t('profiling.birthYearCrm')}</CardTitle>
             {!loading && !error && (
               <p className="text-sm text-muted-foreground">Totale leads CRM: <strong>{leadsCount.toLocaleString()}</strong></p>
             )}
@@ -1607,7 +1607,7 @@ export default function ConversionDashboard() {
         {/* Anno corso - CRM */}
         <Card className="shadow-card border-0 bg-card/90 backdrop-blur-sm">
           <CardHeader className="pb-4">
-            <CardTitle className="text-2xl font-semibold text-primary">Profilazione per Anno - Utenti CRM</CardTitle>
+            <CardTitle className="text-2xl font-semibold text-primary">{t('profiling.yearCrm')}</CardTitle>
             {!loading && !error && (
               <p className="text-sm text-muted-foreground">Totale leads CRM: <strong>{leadsCount.toLocaleString()}</strong></p>
             )}

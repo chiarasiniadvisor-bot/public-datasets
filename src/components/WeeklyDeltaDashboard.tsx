@@ -115,20 +115,17 @@ export function WeeklyDeltaDashboard() {
                     )}
                   </span>
                 </div>
-                {/* Mostra delta percentuali solo se c'è variazione assoluta significativa */}
-                {(item.delta_abs !== null && Math.abs(item.delta_abs) > 0) && (
-                  <div className="flex justify-between">
-                    <span className="text-sm text-gray-600">{t('weekly.percentageDelta')}</span>
-                    <span className={`font-semibold ${(item.delta_pp || 0) >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                      {item.delta_pp !== null ? `${item.delta_pp > 0 ? '+' : ''}${item.delta_pp.toFixed(1)} pp` : 'N/A'}
-                      {(item.delta_pp || 0) !== 0 && (
-                        <span className="ml-1">
-                          {(item.delta_pp || 0) > 0 ? '↗' : '↘'}
-                        </span>
-                      )}
-                    </span>
-                  </div>
-                )}
+                <div className="flex justify-between">
+                  <span className="text-sm text-gray-600">{t('weekly.percentageDelta')}</span>
+                  <span className={`font-semibold ${(item.delta_pp || 0) >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                    {item.delta_pp !== null ? `${item.delta_pp > 0 ? '+' : ''}${item.delta_pp.toFixed(1)} pp` : 'N/A'}
+                    {(item.delta_pp || 0) !== 0 && (
+                      <span className="ml-1">
+                        {(item.delta_pp || 0) > 0 ? '↗' : '↘'}
+                      </span>
+                    )}
+                  </span>
+                </div>
               </div>
             </CardContent>
           </Card>
