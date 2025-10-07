@@ -23,9 +23,17 @@ jobs:
         env:
           HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
         run: |
+          # 1) sanity rapido
+          case "$HOOK" in
+            https://api.vercel.com/v1/integrations/deploy/*) echo "Hook URL sembra valido";;
+            *) echo "Hook URL NON sembra valido: $HOOK"; exit 2;;
+          esac
+
+          # 2) chiamata con log
           echo "Hitting: ${HOOK%%\?*}?...(masked)"
           STATUS=$(curl -s -o resp.json -w "%{http_code}" -X POST "$HOOK")
           echo "HTTP Status: $STATUS"
           echo "Response body:"
           cat resp.json
+          # 200 = accettato (di solito body contiene queued=true)
           test "$STATUS" = "200" || { echo "Hook call failed"; exit 3; }
