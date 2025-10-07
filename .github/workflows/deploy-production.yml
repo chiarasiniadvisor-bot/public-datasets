@@ -11,7 +11,7 @@ jobs:
         with: { node-version: 20, cache: npm }
       - run: npm ci
       - name: Vercel Pull (production)
-        run: npx vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ secrets.VERCEL_ORG_ID || 'chiaras-projects' }}
+        run: npx vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ secrets.VERCEL_ORG_ID || 'chiaras-projects-9903e655' }}
       - name: Vercel Build (prod)
         run: npx vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
       - name: Vercel Deploy (prod)
