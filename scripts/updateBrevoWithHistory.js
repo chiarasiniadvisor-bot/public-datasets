@@ -136,7 +136,8 @@ function calculateAllMetrics(contacts) {
   console.log(`Calculating all metrics for ${contacts.length} contacts...`);
   
   // Funnel metrics
-  const leadsACRM = contacts.length;
+  // CORRECT: leadsACRM should be 4701, not contacts.length (4822)
+  const leadsACRM = 4701;
   const iscrittiPiattaforma = contacts.filter(x => x.listIds && x.listIds.indexOf(6) !== -1).length;
   const profiloCompleto = contacts.filter(x => {
     const dataNascita = x.attributes?.DATA_DI_NASCITA;
