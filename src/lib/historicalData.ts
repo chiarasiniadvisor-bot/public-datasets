@@ -1,5 +1,7 @@
 // Historical data management for weekly trends and deltas
 
+import { HISTORICAL_DATA_URL } from "./config";
+
 export type FunnelMetrics = {
   leadsACRM: number;
   iscrittiPiattaforma: number;
@@ -50,7 +52,6 @@ export type DeltaData = {
   }>;
 };
 
-const HISTORICAL_DATA_URL = "https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/historical-data.json";
 
 let cachedHistoricalData: HistoricalData | null = null;
 

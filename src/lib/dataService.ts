@@ -2,10 +2,7 @@
 // Clean data service that ONLY uses backend pre-calculated data
 // NO frontend calculations, NO hardcoded values
 
-// Use environment variable for API base URL
-// Preview/Staging: NEXT_PUBLIC_API_BASE = https://script.google.com/macros/s/<ID_STAGING>/exec
-// Production: NEXT_PUBLIC_API_BASE = https://script.google.com/macros/s/<ID_PROD>/exec
-export const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/datasets.json";
+import { API_BASE } from "./config";
 
 export type Scope = "all" | "lista6" | "corsisti" | "paganti";
 export type ListMode = "id" | "label" | "group";
@@ -80,7 +77,7 @@ export async function fetchDatasets(params: {
   if (!cachedData) {
     console.log("🔄 FETCHING NEW DATA FROM API:", API_BASE);
     console.log("🌍 ENVIRONMENT:", process.env.NODE_ENV);
-    console.log("🔗 API_BASE from env:", process.env.NEXT_PUBLIC_API_BASE ? "✅ SET" : "❌ NOT SET - using fallback");
+    console.log("🔗 API_BASE from env:", import.meta.env.VITE_API_BASE ? "✅ SET" : "❌ NOT SET - using fallback");
     console.log("🚀 CLEAN DATA SERVICE - NO HARDCODED VALUES - USING BACKEND DATA ONLY");
     
     const response = await fetch(API_BASE);
