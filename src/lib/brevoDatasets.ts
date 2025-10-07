@@ -293,12 +293,14 @@ function processBrevoData(data: BrevoData, params: any): Datasets {
     };
   });
 
-  // Always use pre-calculated funnel data if available, otherwise compute from contacts
+  // FORCE use of pre-calculated funnel data - always use data.funnel if available
   let funnel;
   console.log('Data funnel available:', !!data.funnel, data.funnel);
-  if (data.funnel) {
-    // Use pre-calculated funnel data
-    console.log('Using pre-calculated funnel data');
+  console.log('Total contacts in array:', transformedContacts.length);
+  
+  if (data.funnel && data.funnel.leadsACRM) {
+    // FORCE use pre-calculated funnel data
+    console.log('FORCING use of pre-calculated funnel data:', data.funnel);
     funnel = [
       { step: 'Leads a CRM', value: data.funnel.leadsACRM },
       { step: 'Iscritti alla Piattaforma (#6)', value: data.funnel.iscrittiPiattaforma },
@@ -307,7 +309,7 @@ function processBrevoData(data: BrevoData, params: any): Datasets {
       { step: 'Clienti paganti', value: data.funnel.paganti }
     ];
   } else {
-    console.log('Computing funnel from contacts');
+    console.log('WARNING: No funnel data available, computing from contacts');
     // Fallback: compute from contacts
     const leadsACRM = transformedContacts.length;
     const iscrittiPiattaforma = transformedContacts.filter(x => x.hasList6).length;
