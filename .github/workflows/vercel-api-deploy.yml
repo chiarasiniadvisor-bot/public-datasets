@@ -39,7 +39,6 @@ jobs:
 
           BODY=$(cat <<JSON
           {
-            "projectId": "${VERCEL_PROJECT_ID}",
             "name": "github-actions-deploy",
             "target": "production",
             "gitSource": {
