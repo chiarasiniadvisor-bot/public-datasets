@@ -635,7 +635,7 @@ export default function ConversionDashboard() {
                     <div className="h-12" style={{ background: "hsl(var(--chart-1))", clipPath: "polygon(0% 0%, 100% 0%, 95% 100%, 5% 100%)", width: "100%" }} />
                   </div>
                   <div className="min-w-[220px] text-right">
-                    <div className="text-sm font-medium text-muted-foreground">{t("leads")}</div>
+                    <div className="text-sm font-medium text-muted-foreground">{t("funnel.leads")}</div>
                     <div className="text-2xl font-bold" style={{ color: "hsl(var(--chart-1))" }}>{funnel.leadsACRM.toLocaleString(locale)}</div>
                     <div className="text-sm font-medium text-muted-foreground">100%</div>
                   </div>
@@ -647,7 +647,7 @@ export default function ConversionDashboard() {
                     <div className="h-12" style={{ background: "hsl(var(--chart-2))", clipPath: "polygon(2.5% 0%, 97.5% 0%, 92.5% 100%, 7.5% 100%)", width: barWidth(funnel.iscritti), margin: "0 auto" }} />
                   </div>
                   <div className="min-w-[220px] text-right">
-                    <div className="text-sm font-medium text-muted-foreground">{t("signups")}</div>
+                    <div className="text-sm font-medium text-muted-foreground">{t("funnel.iscritti")}</div>
                     <div className="text-2xl font-bold" style={{ color: "hsl(var(--chart-2))" }}>{funnel.iscritti.toLocaleString(locale)}</div>
                     <div className="text-sm font-medium text-chart-2">{pctOfLeads(funnel.iscritti)}</div>
                   </div>
@@ -659,7 +659,7 @@ export default function ConversionDashboard() {
                     <div className="h-12" style={{ background: "hsl(var(--chart-3))", clipPath: "polygon(4% 0%, 96% 0%, 91% 100%, 9% 100%)", width: barWidth(funnel.profiloCompleto), margin: "0 auto" }} />
                   </div>
                   <div className="min-w-[220px] text-right">
-                    <div className="text-sm font-medium text-muted-foreground">{t("profileComplete")}</div>
+                    <div className="text-sm font-medium text-muted-foreground">{t("funnel.profilo")}</div>
                     <div className="text-2xl font-bold" style={{ color: "hsl(var(--chart-3))" }}>{funnel.profiloCompleto.toLocaleString(locale)}</div>
                     <div className="text-sm font-medium" style={{ color: "hsl(var(--chart-3))" }}>{pctOfLeads(funnel.profiloCompleto)}</div>
                   </div>
@@ -671,7 +671,7 @@ export default function ConversionDashboard() {
                     <div className="h-12" style={{ background: "hsl(var(--chart-4))", clipPath: "polygon(5% 0%, 95% 0%, 90% 100%, 10% 100%)", width: barWidth(funnel.corsisti), margin: "0 auto" }} />
                   </div>
                   <div className="min-w-[220px] text-right">
-                    <div className="text-sm font-medium text-muted-foreground">{t("students")}</div>
+                    <div className="text-sm font-medium text-muted-foreground">{t("funnel.corsisti")}</div>
                     <div className="text-2xl font-bold" style={{ color: "hsl(var(--chart-4))" }}>{funnel.corsisti.toLocaleString(locale)}</div>
                     <div className="text-sm font-medium text-chart-3">{pctOfLeads(funnel.corsisti)}</div>
                   </div>
@@ -683,7 +683,7 @@ export default function ConversionDashboard() {
                     <div className="h-12" style={{ background: "hsl(var(--chart-1))", clipPath: "polygon(7.5% 0%, 92.5% 0%, 87.5% 100%, 12.5% 100%)", width: barWidth(funnel.clientiPaganti), margin: "0 auto" }} />
                   </div>
                   <div className="min-w-[220px] text-right">
-                    <div className="text-sm font-medium text-muted-foreground">{t("paying")}</div>
+                    <div className="text-sm font-medium text-muted-foreground">{t("funnel.paganti")}</div>
                     <div className="text-2xl font-bold" style={{ color: "hsl(var(--chart-1))" }}>{funnel.clientiPaganti.toLocaleString(locale)}</div>
                     <div className="text-sm font-medium text-chart-4">{pctOfLeads(funnel.clientiPaganti)}</div>
                   </div>

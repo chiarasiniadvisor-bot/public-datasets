@@ -15,6 +15,11 @@
     "debug.generated": "Generated At",
     "debug.contacts": "Total Contacts",
     "debug.funnel": "Funnel Steps",
-    "debug.source": "Data Source"
+    "debug.source": "Data Source",
+    "leads": "Leads a CRM",
+    "signups": "Iscritti alla Piattaforma",
+    "profileComplete": "Profilo completo",
+    "students": "Corsisti",
+    "paying": "Paganti"
   }
 }
