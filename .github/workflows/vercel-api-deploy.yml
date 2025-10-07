@@ -33,7 +33,7 @@ jobs:
             "gitSource": { 
               "type": "github", 
               "ref": "main",
-              "repoId": "chiarasiniadvisor-bot/public-datasets"
+              "repoId": "1068065852"
             }
           }
           JSON
