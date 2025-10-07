@@ -1,4 +1,4 @@
-import { ConversionDashboard } from "@/components/ConversionDashboard";
+import ConversionDashboard from "@/components/ConversionDashboard";
 
 const Index = () => {
   return <ConversionDashboard />;
