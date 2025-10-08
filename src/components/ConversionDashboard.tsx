@@ -13,6 +13,7 @@ import {
   LabelList,
 } from "recharts";
 import { fetchDatasets, getNormalizedDatasets } from "@/lib/dataService";
+import { normalizeCounters } from "@/lib/normalizeCounters";
 import logoImage from "@/assets/logo.png";
 import { ThemeToggle } from "./ThemeToggle";
 import LanguageSwitcher from "./LanguageSwitcher";

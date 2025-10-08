@@ -1,34 +1,13 @@
-import { useEffect, useState } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { fetchDatasets } from "@/lib/dataService";
 import { useTranslation } from "react-i18next";
+import { useDatasets } from "@/hooks/useDatasets";
 
 export function SimpleDashboard() {
   const { t } = useTranslation();
-  const [data, setData] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { data, counters, loading, error } = useDatasets({ scope: "all" });
 
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        console.log("🚀 VERSION 1.0.1 - SIMPLIFIED DASHBOARD - LOADING DATA FROM BACKEND...");
-        console.log("🔥 THIS IS THE NEW VERSION - NO COMPLEX WORKFLOWS - VERCEL DEPLOY ONLY");
-        const datasets = await fetchDatasets();
-        console.log("✅ Data loaded successfully:", datasets);
-        setData(datasets);
-        setLoading(false);
-      } catch (err: any) {
-        console.error("[DATA] fetch failed", err);
-        const msg = err?.message || String(err);
-        const url = err?.url || "unknown URL";
-        setError(`${msg} (${url})`);
-        setLoading(false);
-      }
-    };
-
-    loadData();
-  }, []);
+  console.log("🚀 VERSION 1.0.2 - USING useDatasets HOOK");
+  console.log("📊 Counters:", counters);
 
   if (loading) {
     return (
@@ -75,14 +54,33 @@ export function SimpleDashboard() {
       )}
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">🚀 VERCEL DEPLOY FORCED - VERSION 1.0.7</h1>
-          <p className="text-xl text-gray-300">SCUOLE DI SPECIALIZZAZIONE IN MEDICINA - FORCED UPDATE</p>
-          <p className="text-lg text-yellow-300 mt-2">🔥 THIS IS THE NEW VERSION - VERCEL SHOULD UPDATE NOW</p>
-          <p className="text-lg text-red-300 mt-2">⚠️ IF YOU SEE THIS, VERCEL IS WORKING!</p>
-          <p className="text-lg text-blue-300 mt-2">🎯 COMMIT: 7ca53de</p>
-          <p className="text-lg text-green-300 mt-2">✅ GITHUB ACTIONS WORKING - VERCEL SHOULD DEPLOY!</p>
-          <p className="text-lg text-purple-300 mt-2">🔥 EXTREME FORCE - VERCEL MUST UPDATE NOW!</p>
-          <p className="text-lg text-orange-300 mt-2">🚨 VERCEL IS BLOCKED - NEEDS MANUAL FIX!</p>
+          <h1 className="text-4xl font-bold text-white mb-2">🚀 useDatasets Hook - VERSION 1.0.8</h1>
+          <p className="text-xl text-gray-300">SCUOLE DI SPECIALIZZAZIONE IN MEDICINA</p>
+          <p className="text-lg text-yellow-300 mt-2">✨ NEW: Centralized data layer with counters</p>
+          
+          {/* Show counters */}
+          <div className="grid grid-cols-5 gap-4 mt-6 max-w-4xl mx-auto">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+              <div className="text-3xl font-bold text-white">{counters.leadsTot.toLocaleString()}</div>
+              <div className="text-sm text-gray-300">Leads</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+              <div className="text-3xl font-bold text-white">{counters.iscrittiTot.toLocaleString()}</div>
+              <div className="text-sm text-gray-300">Iscritti</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+              <div className="text-3xl font-bold text-white">{counters.profiloTot.toLocaleString()}</div>
+              <div className="text-sm text-gray-300">Profilo</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+              <div className="text-3xl font-bold text-white">{counters.corsistiTot.toLocaleString()}</div>
+              <div className="text-sm text-gray-300">Corsisti</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+              <div className="text-3xl font-bold text-white">{counters.pagantiTot.toLocaleString()}</div>
+              <div className="text-sm text-gray-300">Paganti</div>
+            </div>
+          </div>
         </div>
 
         <div className="max-w-4xl mx-auto">
