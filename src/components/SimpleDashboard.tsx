@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { fetchDatasets } from "@/lib/dataService";
-import { useTranslation } from "react-i18next";
+// Removed react-i18next import - using static text for now
 
 export function SimpleDashboard() {
-  const { t } = useTranslation();
+  // TODO: Replace t() calls with static text or implement proper i18n for Vite
+  const t = (key: string) => key; // Temporary fallback
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

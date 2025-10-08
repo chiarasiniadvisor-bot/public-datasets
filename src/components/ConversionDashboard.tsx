@@ -15,9 +15,9 @@ import {
 import { fetchDatasets } from "@/lib/dataService";
 import logoImage from "@/assets/logo.png";
 import { ThemeToggle } from "./ThemeToggle";
-import { LanguageSwitch } from "./LanguageSwitch";
+// Removed LanguageSwitch import - component deleted
 import { WeeklyDeltaDashboard } from "./WeeklyDeltaDashboard";
-import { useTranslation } from "react-i18next";
+// Removed react-i18next import - using static text for now
 
 /* =========================
    UTILS ROBUSTI PER I DATASET

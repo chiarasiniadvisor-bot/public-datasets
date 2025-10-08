@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 import { fetchHistoricalData, calculateDeltaData, getWeeklyTrendData, type DeltaData, type HistoricalData } from '@/lib/historicalData';
-import { useTranslation } from 'react-i18next';
+// Removed react-i18next import - using static text for now
 
 export function WeeklyDeltaDashboard() {
-  const { t } = useTranslation();
+  // TODO: Replace t() calls with static text or implement proper i18n for Vite
+  const t = (key: string) => key; // Temporary fallback
   const [deltaData, setDeltaData] = useState<DeltaData | null>(null);
   const [trendData, setTrendData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
