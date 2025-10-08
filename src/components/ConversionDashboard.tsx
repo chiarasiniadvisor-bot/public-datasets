@@ -431,6 +431,11 @@ export default function ConversionDashboard() {
         // Debug: verifica dati dal BE (puoi rimuovere dopo test)
         console.table(dsCrm.funnel);
         console.table(dsIscritti.distribuzione_atenei);
+        
+        // Debug: check actual data structure
+        console.log('[DEBUG] dsCorsisti.distribuzione_atenei structure:', dsCorsisti.distribuzione_atenei?.[0]);
+        console.log('[DEBUG] dsCorsisti.distribuzione_fonte structure:', dsCorsisti.distribuzione_fonte?.[0]);
+        console.log('[DEBUG] dsCorsisti.distribuzione_anno_nascita structure:', dsCorsisti.distribuzione_anno_nascita?.[0]);
 
         if (!mounted) return;
 
