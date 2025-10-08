@@ -1,8 +1,8 @@
 name: Deploy Staging (Vercel)
 
 on:
-  # push:
-  #   branches: [staging]
+  push:
+    branches: [staging]
   workflow_dispatch:
 
 jobs:
@@ -11,10 +11,24 @@ jobs:
     steps:
       - name: Validate required secret
         run: |
-          test -n "${{ secrets.VERCEL_DEPLOY_HOOK_URL_STAGING }}" || { 
-            echo "Missing secret: VERCEL_DEPLOY_HOOK_URL_STAGING"; exit 1; 
+          test -n "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}" || { 
+            echo "Missing secret: VERCEL_DEPLOY_HOOK_URL"; exit 1; 
           }
 
       - name: Trigger Vercel Deploy (staging)
         run: |
-          curl -fsS -X POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL_STAGING }}"
+          echo "🚀 Triggering Vercel staging deploy..."
+          echo "Hook URL length: ${#VERCEL_DEPLOY_HOOK_URL}"
+          echo "Hook URL starts with: ${VERCEL_DEPLOY_HOOK_URL:0:20}..."
+          
+          STATUS=$(curl -s -o response.json -w "%{http_code}" -X POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}")
+          echo "HTTP Status: $STATUS"
+          echo "Response:"
+          cat response.json
+          
+          if [ "$STATUS" = "200" ] || [ "$STATUS" = "201" ]; then
+            echo "✅ Staging deploy triggered successfully!"
+          else
+            echo "❌ Staging deploy failed with status $STATUS"
+            exit 1
+          fi
