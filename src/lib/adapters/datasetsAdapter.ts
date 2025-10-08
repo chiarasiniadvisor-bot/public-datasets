@@ -1,6 +1,8 @@
 // src/lib/adapters/datasetsAdapter.ts
 // Canonical adapter to normalize datasets.json regardless of shape variations
 
+import { normalizeCounters, type Counters } from "../normalizeCounters";
+
 export function pickNumber(n: unknown): number {
   const v = typeof n === "string" ? Number(n) : (n as number);
   return Number.isFinite(v) ? v : 0;
@@ -14,6 +16,8 @@ export type NormalizedDatasets = {
     corsisti: number;
     paganti: number;
   };
+  // Counters with *Tot naming convention for backward compatibility
+  counters: Counters;
   // Add what Trends needs later (empty for now)
   trends?: any;
 };
@@ -70,5 +74,9 @@ export function adaptDatasets(raw: any): NormalizedDatasets {
 
   console.debug("[ADAPTER] funnel =>", funnel);
   
-  return { funnel };
+  // Also normalize counters with *Tot naming convention
+  const counters = normalizeCounters(raw);
+  console.debug("[ADAPTER] counters =>", counters);
+  
+  return { funnel, counters };
 }

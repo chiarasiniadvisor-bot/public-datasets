@@ -447,6 +447,15 @@ export default function ConversionDashboard() {
         // Use normalized data from adapter for stable funnel counters
         const normalized = getNormalizedDatasets();
         
+        // Extract counters for use throughout the component
+        const { leadsTot, iscrittiTot, profiloTot, corsistiTot, pagantiTot } = normalized?.counters ?? {
+          leadsTot: 0,
+          iscrittiTot: 0,
+          profiloTot: 0,
+          corsistiTot: 0,
+          pagantiTot: 0,
+        };
+        
         if (normalized) {
           const funnelValues = {
             leadsACRM: normalized.funnel.leads,
@@ -457,6 +466,7 @@ export default function ConversionDashboard() {
           };
           
           console.log("[Funnel] using normalized counters:", funnelValues);
+          console.log("[Funnel] counters for calculations:", { leadsTot, iscrittiTot, profiloTot, corsistiTot, pagantiTot });
           
           setFunnel(funnelValues);
           setLeadsCount(funnelValues.leadsACRM);
@@ -465,7 +475,7 @@ export default function ConversionDashboard() {
           console.warn("[Funnel] normalized data not available, using fallback");
           const leadsFromFunnel   = pickFunnelValue(dsCrm.funnel, "leads") || dsCrm.funnel?.leadsACRM;
           const leadsFallback     = sumValues(dsCrm.distribuzione_atenei);
-          const leadsTot          = bestOf(leadsFromFunnel, leadsFallback);
+          const leadsTotFallback  = bestOf(leadsFromFunnel, leadsFallback);
 
           const iscrittiFromFunnel  = pickFunnelValue(dsCrm.funnel, "iscritti") || dsCrm.funnel?.iscrittiPiattaforma;
           const iscrittiFromDistrib = bestOf(
@@ -473,15 +483,15 @@ export default function ConversionDashboard() {
             sumValues(dsIscritti.distribuzione_anno_profilazione),
             sumValues(dsIscritti.distribuzione_anno_nascita)
           );
-          const iscrittiTotFromFunnel = bestOf(iscrittiFromFunnel, iscrittiFromDistrib);
+          const iscrittiTotFallback = bestOf(iscrittiFromFunnel, iscrittiFromDistrib);
 
           const profiloCompleto    = pickFunnelValue(dsCrm.funnel, "profilo");
           const corsistiFromFunnel = pickFunnelValue(dsCrm.funnel, "corsisti");
           const paganti            = pickFunnelValue(dsCrm.funnel, "paganti");
 
           const funnelValues = {
-            leadsACRM: pickNumber(leadsTot),
-            iscritti: pickNumber(iscrittiTotFromFunnel),
+            leadsACRM: pickNumber(leadsTotFallback),
+            iscritti: pickNumber(iscrittiTotFallback),
             profiloCompleto: pickNumber(profiloCompleto),
             corsisti: pickNumber(corsistiFromFunnel),
             clientiPaganti: pickNumber(paganti),
@@ -493,7 +503,8 @@ export default function ConversionDashboard() {
           setLeadsCount(funnelValues.leadsACRM);
         }
         
-        const corsistiFromFunnel = normalized?.funnel.corsisti ?? 0;
+        const corsistiFromFunnel = corsistiTot;
+        const iscrittiTotFromFunnel = iscrittiTot;
 
         // Use new webinar metrics from datasets
         const corsistiWebinar = dsCorsisti.webinar_conversions?.find(item => item.name === 'Corsisti da Webinar')?.value || 0;
