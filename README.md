@@ -52,10 +52,15 @@ Deployments are handled automatically by GitHub Actions using Vercel CLI.
 
 ### Deploy con Vercel Deploy Hook
 
-For manual deployments via Deploy Hook:
+For deployments via Deploy Hook (simplified, no build on GitHub):
 
-1. **Vercel** → Project → Settings → Git → Deploy Hooks → Copy URL
-2. **GitHub** → repo → Settings → Secrets → Actions → Add `VERCEL_DEPLOY_HOOK_URL`
-3. **Execute** workflow "Trigger Vercel Deploy" (workflow_dispatch) or push to main
+1. **Vercel** → Project → Settings → Git → Deploy Hooks → Create 2 hooks:
+   - Production hook → Copy URL
+   - Staging hook → Copy URL
+2. **GitHub** → repo → Settings → Secrets → Actions → Add secrets:
+   - `VERCEL_DEPLOY_HOOK_URL` (Production → branch main)
+   - `VERCEL_DEPLOY_HOOK_URL_STAGING` (Staging → branch staging)
+3. **Automatic**: Push to `main` or `staging` triggers deployment
+4. **Manual**: Execute workflows via Actions tab
 
-The Deploy Hook provides instant deployment without waiting for automatic triggers.
+The Deploy Hook provides instant deployment without GitHub build steps.

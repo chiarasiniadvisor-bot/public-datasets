@@ -29,6 +29,13 @@ VITE_HISTORICAL_DATA_URL = https://raw.githubusercontent.com/chiarasiniadvisor-b
    - **Value**: GitHub Raw historical data URL
    - **Environment**: Select "Preview" and/or "Production"
 
+## GitHub Secrets for Deploy Hooks
+
+Configure these secrets in GitHub → Settings → Secrets → Actions:
+
+- `VERCEL_DEPLOY_HOOK_URL` → Production hook URL (branch main)
+- `VERCEL_DEPLOY_HOOK_URL_STAGING` → Staging hook URL (branch staging)
+
 ## Fallback
 
 If `VITE_API_BASE` is not set, the app will fallback to:
