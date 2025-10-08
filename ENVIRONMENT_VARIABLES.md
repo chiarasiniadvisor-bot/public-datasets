@@ -16,6 +16,8 @@ VITE_API_BASE = https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-d
 VITE_HISTORICAL_DATA_URL = https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/historical-data.json
 ```
 
+**Important**: Create two separate environment variables with the same name `VITE_API_BASE` but assign them to different environments (Preview vs Production). This allows you to point to different data sources for staging and production if needed.
+
 ## How to Set Environment Variables in Vercel
 
 1. Go to your Vercel project dashboard

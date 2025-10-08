@@ -31,7 +31,7 @@ Configure these in Vercel project settings:
 | `VITE_API_BASE` | `https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/datasets.json` | `https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/datasets.json` |
 | `VITE_HISTORICAL_DATA_URL` | `https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/historical-data.json` | `https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/historical-data.json` |
 
-**Note**: With Vite, client-visible environment variables MUST start with `VITE_*`. The default fallback points to GitHub Raw datasets from this repository.
+**Note**: With Vite, client-visible environment variables MUST start with `VITE_*`. Create two environment variables with the same name `VITE_API_BASE` but in different environments (Preview/Production) pointing to different data sources if needed.
 
 See [ENVIRONMENT_VARIABLES.md](./ENVIRONMENT_VARIABLES.md) for detailed setup instructions.
 
