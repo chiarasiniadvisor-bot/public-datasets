@@ -18,4 +18,4 @@ jobs:
           echo "HTTP Status: $STATUS"
           echo "Response:"
           cat resp.json
-          test "$STATUS" = "200" || { echo "Hook call failed"; exit 3; }
+          test "$STATUS" = "200" -o "$STATUS" = "201" || { echo "Hook call failed with status $STATUS"; exit 3; }
