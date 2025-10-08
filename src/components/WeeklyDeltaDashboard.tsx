@@ -17,6 +17,12 @@ export function WeeklyDeltaDashboard() {
         setLoading(true);
         const historicalData = await fetchHistoricalData();
         
+        if (!historicalData || historicalData.weekly.length === 0) {
+          console.warn('[Trends] Historical data disabled or empty – rendering placeholder');
+          setError('Dati storici non configurati. Configura VITE_HISTORICAL_DATA_URL per abilitare questa sezione.');
+          return;
+        }
+        
         if (historicalData.weekly.length < 2) {
           setError('Dati storici insufficienti per calcolare i delta settimanali. Servono almeno 2 settimane di dati.');
           return;
@@ -29,7 +35,7 @@ export function WeeklyDeltaDashboard() {
         setTrendData(trends);
         setError(null);
       } catch (err: any) {
-        console.error('Error loading historical data:', err);
+        console.error('[Trends] Error loading historical data:', err);
         setError(`Errore nel caricamento dei dati: ${err.message}`);
       } finally {
         setLoading(false);

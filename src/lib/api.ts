@@ -32,10 +32,15 @@ async function fetchJson(url: string, init: RequestInit = {}) {
 
 export async function getDatasets() {
   if (!API_BASE) throw new Error("VITE_API_BASE not configured");
+  console.log("[DATASETS] API_BASE:", API_BASE);
   return fetchJson(API_BASE);
 }
 
 export async function getHistorical() {
-  if (!HISTORICAL_DATA_URL) throw new Error("VITE_HISTORICAL_DATA_URL not configured");
+  if (!HISTORICAL_DATA_URL) {
+    console.warn("[historical] VITE_HISTORICAL_DATA_URL not configured – skipping");
+    return null; // IMPORTANT: don't throw
+  }
+  console.log("[TRENDS] HISTORICAL:", HISTORICAL_DATA_URL);
   return fetchJson(HISTORICAL_DATA_URL);
 }

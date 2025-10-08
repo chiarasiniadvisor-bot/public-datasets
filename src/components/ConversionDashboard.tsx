@@ -24,6 +24,12 @@ import { useTranslation } from "react-i18next";
    ========================= */
 type KV = { name: string; value: number };
 
+// Helper to safely extract numbers from pre-calculated data
+function pickNumber(n: unknown): number {
+  const v = typeof n === "string" ? Number(n) : (n as number);
+  return Number.isFinite(v) ? v : 0;
+}
+
 const asKV = (arr: any): KV[] =>
   Array.isArray(arr)
     ? arr
@@ -457,14 +463,18 @@ export default function ConversionDashboard() {
         const corsistiFromFunnel = pickFunnelValue(dsCrm.funnel, "corsisti");
         const paganti            = pickFunnelValue(dsCrm.funnel, "paganti");
 
-        setFunnel({
-          leadsACRM: leadsTot,
-          iscritti: iscrittiTotFromFunnel,
-          profiloCompleto,
-          corsisti: corsistiFromFunnel,
-          clientiPaganti: paganti,
-        });
-        setLeadsCount(leadsTot);
+        const funnelValues = {
+          leadsACRM: pickNumber(leadsTot),
+          iscritti: pickNumber(iscrittiTotFromFunnel),
+          profiloCompleto: pickNumber(profiloCompleto),
+          corsisti: pickNumber(corsistiFromFunnel),
+          clientiPaganti: pickNumber(paganti),
+        };
+        
+        console.log("[Funnel] mapped counters:", funnelValues);
+        
+        setFunnel(funnelValues);
+        setLeadsCount(funnelValues.leadsACRM);
 
         // Use new webinar metrics from datasets
         const corsistiWebinar = dsCorsisti.webinar_conversions?.find(item => item.name === 'Corsisti da Webinar')?.value || 0;

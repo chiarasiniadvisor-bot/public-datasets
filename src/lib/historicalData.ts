@@ -58,8 +58,13 @@ let cachedHistoricalData: HistoricalData | null = null;
 export async function fetchHistoricalData(): Promise<HistoricalData> {
   if (!cachedHistoricalData) {
     try {
-      console.log("[Trends] data source:", HISTORICAL_DATA_URL || "NOT SET");
-      cachedHistoricalData = await getHistorical();
+      const hist = await getHistorical();
+      if (!hist) {
+        console.warn("[Trends] historical disabled – rendering with placeholders");
+        cachedHistoricalData = { weekly: [], daily: [] };
+      } else {
+        cachedHistoricalData = hist;
+      }
     } catch (error) {
       console.error('[Trends] Error fetching historical data:', error);
       // Return empty data structure if fetch fails
