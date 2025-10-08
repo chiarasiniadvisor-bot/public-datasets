@@ -1,19 +1,22 @@
 name: Deploy Production (Vercel)
 
 on:
-  workflow_dispatch: {}
+  # lancia automaticamente quando pushi su main
   push:
-    branches: [ "main" ]
+    branches: [main]
+  # …oppure a mano da Actions
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Validate hook URL
+      - name: Validate required secret
         run: |
-          if [ -z "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}" ]; then
-            echo "Missing secret VERCEL_DEPLOY_HOOK_URL"; exit 2;
-          fi
-      - name: Trigger Vercel deploy (production)
+          test -n "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}" || { 
+            echo "Missing secret: VERCEL_DEPLOY_HOOK_URL"; exit 1; 
+          }
+
+      - name: Trigger Vercel Deploy (prod)
         run: |
-          curl -fsS -X POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}" || { echo "Vercel hook failed"; exit 3; }
+          curl -fsS -X POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}"
