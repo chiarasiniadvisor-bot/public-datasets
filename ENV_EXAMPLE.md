@@ -1,19 +1,35 @@
 # Environment Variables Example
 
-Create a `.env.local` file in the root directory with these variables for local development:
+## Local Development
+
+Create a `.env.local` file in the root directory:
 
 ```bash
-# Vite client-side envs (devono iniziare con VITE_)
+# Vite client-side envs (must start with VITE_)
 VITE_API_BASE=https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/datasets.json
-# opzionale
+VITE_ENV_LABEL=LOCAL
 VITE_HISTORICAL_DATA_URL=https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/historical-data.json
-# per il badge ambiente
-VITE_ENV_LABEL=STAGING
 ```
 
-## For Production (Vercel)
+## Vercel Environment Variables
 
-Set these environment variables in your Vercel project settings:
+### Production Environment
+```
+VITE_API_BASE=https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/datasets.json
+VITE_ENV_LABEL=PROD
+VITE_HISTORICAL_DATA_URL=https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/historical-data.json
+```
 
-- `VITE_API_BASE` → GitHub Raw datasets URL
-- `VITE_HISTORICAL_DATA_URL` → GitHub Raw historical data URL (optional)
+### Preview/Staging Environment
+```
+VITE_API_BASE=https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/datasets.json
+VITE_ENV_LABEL=STAGING
+VITE_HISTORICAL_DATA_URL=https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/historical-data.json
+```
+
+## Notes
+
+- **Automatic Fallback**: App uses GitHub Raw datasets if `VITE_API_BASE` fails
+- **Environment Badge**: Shows `STAGING`/`PROD` based on `VITE_ENV_LABEL`
+- **Timeout**: 8-second timeout with graceful error handling
+- **UI Feedback**: Error banner appears if data loading fails

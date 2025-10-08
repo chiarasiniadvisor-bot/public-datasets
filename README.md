@@ -22,16 +22,34 @@ A React/TypeScript dashboard for analyzing Brevo contact data with automated dat
 - **API**: GitHub Raw datasets
 - **URL**: `https://public-datasets-1dy9.vercel.app`
 
-## Environment Variables
+## Deploy & Environment Variables
 
-Configure these in Vercel project settings:
+### Required Environment Variables
 
-| Variable | Preview | Production |
-|----------|---------|------------|
-| `VITE_API_BASE` | `https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/datasets.json` | `https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/datasets.json` |
-| `VITE_HISTORICAL_DATA_URL` | `https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/historical-data.json` | `https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/historical-data.json` |
+Configure these in **Vercel** → Project → Settings → Environment Variables:
 
-**Note**: With Vite, client-visible environment variables MUST start with `VITE_*`. Create two environment variables with the same name `VITE_API_BASE` but in different environments (Preview/Production) pointing to different data sources if needed.
+| Variable | Preview/Staging | Production |
+|----------|-----------------|------------|
+| `VITE_API_BASE` | GitHub Raw datasets URL | GitHub Raw datasets URL |
+| `VITE_ENV_LABEL` | `STAGING` | `PROD` |
+
+### Optional Environment Variables
+
+| Variable | Description |
+|----------|-------------|
+| `VITE_HISTORICAL_DATA_URL` | GitHub Raw historical data URL |
+
+### How to Set Environment Variables in Vercel
+
+1. Go to [Vercel Dashboard](https://vercel.com/dashboard)
+2. Select your project → **Settings** → **Environment Variables**
+3. Add each variable:
+   - **Name**: `VITE_API_BASE`
+   - **Value**: `https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/datasets.json`
+   - **Environment**: Select "Preview" and/or "Production"
+4. Repeat for `VITE_ENV_LABEL` with values `STAGING`/`PROD`
+
+**Important**: With Vite, client-visible environment variables MUST start with `VITE_*`. The app automatically falls back to GitHub Raw datasets if `VITE_API_BASE` is not set.
 
 See [ENVIRONMENT_VARIABLES.md](./ENVIRONMENT_VARIABLES.md) for detailed setup instructions.
 
