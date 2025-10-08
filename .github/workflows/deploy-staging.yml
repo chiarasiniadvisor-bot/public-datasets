@@ -1,10 +1,8 @@
 name: Deploy Staging (Vercel)
 
 on:
-  # se hai un branch 'staging' scommenta la sezione sotto
   # push:
   #   branches: [staging]
-  # sempre lanciabile a mano
   workflow_dispatch:
 
 jobs:

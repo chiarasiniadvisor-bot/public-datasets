@@ -70,8 +70,8 @@ Deployments use **Vercel Deploy Hooks** for fast, reliable deployments without b
 
 ### Manual Deployment
 Execute workflows manually via GitHub Actions tab:
-- "Deploy Staging (Vercel)" 
-- "Deploy Production (Vercel)"
+- **GitHub Actions → Deploy Staging (Vercel) → Run workflow**
+- **GitHub Actions → Deploy Production (Vercel) → Run workflow**
 
 ### Deploy con Vercel Deploy Hook
 
