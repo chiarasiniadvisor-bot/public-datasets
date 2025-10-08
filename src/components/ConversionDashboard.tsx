@@ -14,6 +14,7 @@ import {
 } from "recharts";
 import { fetchDatasets, getNormalizedDatasets } from "@/lib/dataService";
 import { normalizeCounters } from "@/lib/normalizeCounters";
+import { toLabelValueSeries } from "@/lib/dataAdapters";
 import logoImage from "@/assets/logo.png";
 import { ThemeToggle } from "./ThemeToggle";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -31,15 +32,27 @@ function pickNumber(n: unknown): number {
   return Number.isFinite(v) ? v : 0;
 }
 
-const asKV = (arr: any): KV[] =>
-  Array.isArray(arr)
-    ? arr
-        .map((x) => ({
-          name: String(x?.name ?? "").trim(),
-          value: Math.max(0, Number(x?.value ?? 0) || 0),
-        }))
-        .filter((x) => x.name !== "")
-    : [];
+// Improved asKV using data adapters for robust field detection
+const asKV = (arr: any): KV[] => {
+  if (!Array.isArray(arr)) return [];
+  
+  // Try to use the adapter first (handles label/fonte/ateneo/etc.)
+  const adapterResult = toLabelValueSeries(arr);
+  if (adapterResult.length > 0) {
+    return adapterResult.map(item => ({
+      name: item.label,
+      value: item.value
+    }));
+  }
+  
+  // Fallback to old logic for backward compatibility
+  return arr
+    .map((x) => ({
+      name: String(x?.name ?? "").trim(),
+      value: Math.max(0, Number(x?.value ?? 0) || 0),
+    }))
+    .filter((x) => x.name !== "");
+};
 
 const pick = <T,>(v: T | undefined | null, fallback: T): T => (v == null ? fallback : v);
 
