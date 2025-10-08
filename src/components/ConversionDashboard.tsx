@@ -15,9 +15,9 @@ import {
 import { fetchDatasets } from "@/lib/dataService";
 import logoImage from "@/assets/logo.png";
 import { ThemeToggle } from "./ThemeToggle";
-// Removed LanguageSwitch import - component deleted
+import LanguageSwitcher from "./LanguageSwitcher";
 import { WeeklyDeltaDashboard } from "./WeeklyDeltaDashboard";
-// Removed react-i18next import - using static text for now
+import { useTranslation } from "react-i18next";
 
 /* =========================
    UTILS ROBUSTI PER I DATASET
@@ -338,9 +338,7 @@ function buildSimSlices(
    ========================= */
 
 export default function ConversionDashboard() {
-  // TODO: Replace t() calls with static text or implement proper i18n for Vite
-  const t = (key: string) => key; // Temporary fallback
-  const i18n = { language: 'it' }; // Temporary fallback
+  const { t, i18n } = useTranslation();
   const locale = i18n.language.startsWith("it") ? "it-IT" : "es-ES";
   
   // Vista CORSISTI
@@ -607,11 +605,11 @@ export default function ConversionDashboard() {
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="text-center relative">
             <div className="absolute top-0 right-0 flex items-center gap-3">
-              <LanguageSwitch />
+              <LanguageSwitcher />
               <ThemeToggle />
             </div>
             <img src={logoImage} alt="Secret SSM" className="mx-auto mb-3 h-16 w-auto" />
-            <h1 className="text-2xl font-bold text-primary">{t("dashboard.analytics")}</h1>
+            <h1 className="text-2xl font-bold text-primary">Analytics Dashboard</h1>
           </div>
         </div>
       </div>
@@ -621,14 +619,14 @@ export default function ConversionDashboard() {
         <Card className="shadow-analytics border-0 bg-card/90 backdrop-blur-sm mb-8">
           <CardHeader className="pb-4">
             <CardTitle className="text-2xl font-semibold text-primary text-center">
-              {t("funnel.title")}
+              {t("funnel")}
             </CardTitle>
           </CardHeader>
           <CardContent>
             {loading ? (
-              <div className="text-sm text-muted-foreground text-center">{t("loading")}</div>
+              <div className="text-sm text-muted-foreground text-center">{t("states.loading")}</div>
             ) : error ? (
-              <div className="text-sm text-destructive text-center">{t("error")}: {error}.</div>
+              <div className="text-sm text-destructive text-center">{t("states.error")}: {error}.</div>
             ) : (
               <div className="flex flex-col items-center space-y-6 max-w-3xl mx-auto">
                 {/* Leads */}

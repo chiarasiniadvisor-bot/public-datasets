@@ -1,0 +1,28 @@
+{
+  "funnel": "Funnel",
+  "trends": "Trend",
+  "tabs": {
+    "profilazione": "Profilazione Clienti",
+    "iscritti": "Analisi Iscritti alla Piattaforma",
+    "crm": "Analisi Utenti a CRM"
+  },
+  "metrics": {
+    "tot_clients": "Clienti totali",
+    "new_clients": "Nuovi clienti",
+    "active_users": "Utenti attivi",
+    "churn_rate": "Tasso di abbandono",
+    "conversion_rate": "Tasso di conversione",
+    "open_rate": "Tasso di apertura",
+    "click_rate": "Tasso di click"
+  },
+  "states": {
+    "loading": "Caricamento…",
+    "empty": "Nessun dato disponibile",
+    "error": "Si è verificato un errore"
+  },
+  "actions": {
+    "refresh": "Aggiorna",
+    "download": "Scarica",
+    "language": "Lingua"
+  }
+}

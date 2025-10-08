@@ -1,0 +1,28 @@
+{
+  "funnel": "Embudo",
+  "trends": "Tendencias",
+  "tabs": {
+    "profilazione": "Perfil de Clientes",
+    "iscritti": "Análisis de Inscritos en la Plataforma",
+    "crm": "Análisis de Usuarios en CRM"
+  },
+  "metrics": {
+    "tot_clients": "Clientes totales",
+    "new_clients": "Nuevos clientes",
+    "active_users": "Usuarios activos",
+    "churn_rate": "Tasa de abandono",
+    "conversion_rate": "Tasa de conversión",
+    "open_rate": "Tasa de apertura",
+    "click_rate": "Tasa de clic"
+  },
+  "states": {
+    "loading": "Cargando…",
+    "empty": "No hay datos disponibles",
+    "error": "Ha ocurrido un error"
+  },
+  "actions": {
+    "refresh": "Actualizar",
+    "download": "Descargar",
+    "language": "Idioma"
+  }
+}
