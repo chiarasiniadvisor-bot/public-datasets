@@ -17,4 +17,18 @@ jobs:
 
       - name: Trigger Vercel Deploy (prod)
         run: |
-          curl -fsS -X POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}"
+          echo "🚀 Triggering Vercel deploy..."
+          echo "Hook URL length: ${#VERCEL_DEPLOY_HOOK_URL}"
+          echo "Hook URL starts with: ${VERCEL_DEPLOY_HOOK_URL:0:20}..."
+          
+          STATUS=$(curl -s -o response.json -w "%{http_code}" -X POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}")
+          echo "HTTP Status: $STATUS"
+          echo "Response:"
+          cat response.json
+          
+          if [ "$STATUS" = "200" ] || [ "$STATUS" = "201" ]; then
+            echo "✅ Deploy triggered successfully!"
+          else
+            echo "❌ Deploy failed with status $STATUS"
+            exit 1
+          fi
