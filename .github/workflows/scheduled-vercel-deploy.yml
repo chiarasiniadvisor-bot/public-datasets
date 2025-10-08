@@ -1,0 +1,132 @@
+name: Scheduled Vercel Deploy
+
+on:
+  # Esegui ogni giorno alle 07:10 UTC (≈ 09:10 in Italia d'inverno, 08:10 d'estate)
+  schedule:
+    - cron: '10 7 * * *'
+  # Possibilità di lancio manuale e di forzare
+  workflow_dispatch:
+    inputs:
+      env:
+        description: "Ambiente da deployare (staging/prod/both)"
+        required: false
+        default: "prod"
+        type: choice
+        options:
+          - staging
+          - prod
+          - both
+      force:
+        description: "Forza deploy anche senza modifiche ai dati"
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: scheduled-vercel-deploy
+  cancel-in-progress: false
+
+jobs:
+  decide:
+    runs-on: ubuntu-latest
+    outputs:
+      go: ${{ steps.gate.outputs.go }}
+      targets: ${{ steps.plan.outputs.targets }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Verifica se negli ultimi 2 giorni sono cambiati file rilevanti (datasets o codice dati)
+      - name: Detect changes in last 48h
+        id: changes
+        run: |
+          CHANGED="$(git log --since='48 hours' --name-only --pretty=format: \
+            | grep -E '(^datasets\.json$|^data/|^scripts/|^src/lib/.*(data|dataset).*)' || true)"
+          if [ -n "$CHANGED" ]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+            echo "Modified files:"; echo "$CHANGED"
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+            echo "No relevant changes in last 48h"
+          fi
+
+      # Calcola i target dal parametro (manuale) oppure default
+      - name: Plan targets
+        id: plan
+        run: |
+          INPUT_ENV="${{ github.event.inputs.env || 'prod' }}"
+          case "$INPUT_ENV" in
+            both)   TARGETS="staging prod" ;;
+            staging) TARGETS="staging" ;;
+            *)       TARGETS="prod" ;;
+          esac
+          echo "targets=$TARGETS" >> $GITHUB_OUTPUT
+          echo "Targets: $TARGETS"
+
+      # Decidi se procedere (forza/manuale o cambiamenti reali)
+      - name: Gate
+        id: gate
+        run: |
+          FORCE="${{ github.event.inputs.force || 'false' }}"
+          if [ "$FORCE" = "true" ] || [ "${{ steps.changes.outputs.changes }}" = "true" ]; then
+            echo "go=yes" >> $GITHUB_OUTPUT
+            echo "Proceeding with deploy."
+          else
+            echo "go=no" >> $GITHUB_OUTPUT
+            echo "Skipping: no changes and not forced."
+          fi
+
+  deploy-staging:
+    needs: decide
+    if: needs.decide.outputs.go == 'yes' && contains(needs.decide.outputs.targets, 'staging')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Vercel Staging Hook
+        run: |
+          if [ -z "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}" ]; then
+            echo "Missing secret VERCEL_DEPLOY_HOOK_URL"; exit 2;
+          fi
+          
+          echo "🚀 Triggering Vercel staging deploy..."
+          STATUS=$(curl -s -o response.json -w "%{http_code}" -X POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}")
+          echo "HTTP Status: $STATUS"
+          echo "Response:"
+          cat response.json
+          
+          if [ "$STATUS" = "200" ] || [ "$STATUS" = "201" ]; then
+            echo "✅ Staging deploy triggered successfully!"
+          elif [ "$STATUS" = "429" ]; then
+            echo "⚠️ Rate limit reached (429). Skipping staging deploy."
+            echo "Vercel free tier limit exceeded. Try again tomorrow."
+          else
+            echo "❌ Staging deploy failed with status $STATUS"
+            exit 1
+          fi
+
+  deploy-prod:
+    needs: decide
+    if: needs.decide.outputs.go == 'yes' && contains(needs.decide.outputs.targets, 'prod')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Vercel Production Hook
+        run: |
+          if [ -z "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}" ]; then
+            echo "Missing secret VERCEL_DEPLOY_HOOK_URL"; exit 2;
+          fi
+          
+          echo "🚀 Triggering Vercel production deploy..."
+          STATUS=$(curl -s -o response.json -w "%{http_code}" -X POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}")
+          echo "HTTP Status: $STATUS"
+          echo "Response:"
+          cat response.json
+          
+          if [ "$STATUS" = "200" ] || [ "$STATUS" = "201" ]; then
+            echo "✅ Production deploy triggered successfully!"
+          elif [ "$STATUS" = "429" ]; then
+            echo "⚠️ Rate limit reached (429). Skipping production deploy."
+            echo "Vercel free tier limit exceeded. Try again tomorrow."
+          else
+            echo "❌ Production deploy failed with status $STATUS"
+            exit 1
+          fi
