@@ -1,6 +1,6 @@
 // Historical data management for weekly trends and deltas
 
-import { HISTORICAL_DATA_URL } from "./config";
+import { getHistorical, HISTORICAL_DATA_URL } from "./api";
 
 export type FunnelMetrics = {
   leadsACRM: number;
@@ -58,13 +58,10 @@ let cachedHistoricalData: HistoricalData | null = null;
 export async function fetchHistoricalData(): Promise<HistoricalData> {
   if (!cachedHistoricalData) {
     try {
-      const response = await fetch(HISTORICAL_DATA_URL);
-      if (!response.ok) {
-        throw new Error(`Failed to load historical data: ${response.status}`);
-      }
-      cachedHistoricalData = await response.json();
+      console.log("[Trends] data source:", HISTORICAL_DATA_URL || "NOT SET");
+      cachedHistoricalData = await getHistorical();
     } catch (error) {
-      console.error('Error fetching historical data:', error);
+      console.error('[Trends] Error fetching historical data:', error);
       // Return empty data structure if fetch fails
       cachedHistoricalData = { weekly: [], daily: [] };
     }

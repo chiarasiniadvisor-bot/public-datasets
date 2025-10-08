@@ -35,7 +35,6 @@ const LanguageSwitcher: React.FC = () => {
         >
           <option value="it">IT</option>
           <option value="es">ES</option>
-          <option value="en">EN</option>
         </select>
       </label>
     </div>

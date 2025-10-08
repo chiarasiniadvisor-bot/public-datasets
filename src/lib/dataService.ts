@@ -1,35 +1,7 @@
 // src/lib/dataService.ts
 // Robust data service with fallback and timeout handling
 
-// Fallback URL for GitHub Raw datasets
-const FALLBACK_URL = "https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/datasets.json";
-
-// Fetch with timeout utility
-async function fetchWithTimeout(url: string, options: { timeoutMs: number } = { timeoutMs: 8000 }): Promise<Response> {
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), options.timeoutMs);
-  
-  try {
-    const response = await fetch(url, { 
-      signal: controller.signal,
-      headers: {
-        'Accept': 'application/json',
-        'Cache-Control': 'no-cache'
-      }
-    });
-    clearTimeout(timeoutId);
-    return response;
-  } catch (error) {
-    clearTimeout(timeoutId);
-    throw error;
-  }
-}
-
-// Get API_BASE from environment or fallback
-function getApiBase(): string {
-  const viteApiBase = import.meta.env.VITE_API_BASE;
-  return viteApiBase || FALLBACK_URL;
-}
+import { getDatasets as getApiDatasets, API_BASE } from "./api";
 
 export type Scope = "all" | "lista6" | "corsisti" | "paganti";
 export type ListMode = "id" | "label" | "group";
@@ -103,80 +75,30 @@ export async function fetchDatasets(params: {
 } = {}): Promise<Datasets> {
   // Load data with robust fallback
   if (!cachedData) {
-    const apiBase = getApiBase();
-    const isFallback = apiBase === FALLBACK_URL;
-    
     console.log("[datasets] 🔄 Starting data fetch...");
-    console.log("[datasets] 📍 API_BASE:", apiBase);
-    console.log("[datasets] 🔗 VITE_API_BASE:", import.meta.env.VITE_API_BASE ? "✅ SET" : "❌ NOT SET");
-    console.log("[datasets] 🔄 Using fallback:", isFallback ? "✅ YES" : "❌ NO");
+    console.log("[datasets] 📍 API_BASE:", API_BASE || "NOT SET");
     
     try {
-      // Try primary API first
-      const response = await fetchWithTimeout(apiBase, { timeoutMs: 8000 });
-      
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-      }
-      
-      cachedData = await response.json();
+      cachedData = await getApiDatasets();
       lastFetchError = null;
       
       console.log("[datasets] ✅ Data loaded successfully:", {
-        source: isFallback ? "fallback" : "primary",
         generatedAt: cachedData.generatedAt,
         totalContacts: cachedData.totalContacts,
         funnel: cachedData.funnel
       });
       
     } catch (error) {
-      console.error("[datasets] ❌ Primary fetch failed:", error);
-      
-      // Try fallback if primary failed and we weren't already using fallback
-      if (!isFallback) {
-        console.log("[datasets] 🔄 Trying fallback URL...");
-        try {
-          const fallbackResponse = await fetchWithTimeout(FALLBACK_URL, { timeoutMs: 8000 });
-          
-          if (!fallbackResponse.ok) {
-            throw new Error(`Fallback HTTP ${fallbackResponse.status}: ${fallbackResponse.statusText}`);
-          }
-          
-          cachedData = await fallbackResponse.json();
-          lastFetchError = `Primary failed, using fallback: ${error}`;
-          
-          console.log("[datasets] ✅ Fallback data loaded:", {
-            generatedAt: cachedData.generatedAt,
-            totalContacts: cachedData.totalContacts,
-            funnel: cachedData.funnel
-          });
-          
-        } catch (fallbackError) {
-          console.error("[datasets] ❌ Fallback also failed:", fallbackError);
-          lastFetchError = `Both primary and fallback failed: ${error}, ${fallbackError}`;
-          throw new Error(`Failed to load datasets from both sources: ${lastFetchError}`);
-        }
-      } else {
-        lastFetchError = `Fallback failed: ${error}`;
-        throw new Error(`Failed to load datasets: ${lastFetchError}`);
-      }
+      console.error("[datasets] ❌ Fetch failed:", error);
+      lastFetchError = error instanceof Error ? error.message : String(error);
+      throw error;
     }
     
-    console.log("🎯 EXPECTED VALUES: Leads=4822, Iscritti=2955, Profilo=2552");
-    console.log("📊 ACTUAL VALUES:", {
+    console.log("📊 LOADED VALUES:", {
       leads: cachedData.funnel?.leadsACRM,
       iscritti: cachedData.funnel?.iscrittiPiattaforma,
       profilo: cachedData.funnel?.profiloCompleto
     });
-
-    // Force alert if values don't match
-    if (cachedData.funnel?.leadsACRM !== 4822 ||
-        cachedData.funnel?.iscrittiPiattaforma !== 2955 ||
-        cachedData.funnel?.profiloCompleto !== 2552) {
-      console.error("❌ DATA MISMATCH! Backend has correct data but frontend shows wrong values!");
-    } else {
-      console.log("✅ DATA MATCH! Backend and frontend should show correct values!");
-    }
   }
 
   return processBrevoData(cachedData, params);

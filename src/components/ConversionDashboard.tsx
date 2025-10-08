@@ -561,15 +561,18 @@ export default function ConversionDashboard() {
         ]);
 
       } catch (e: any) {
+        console.error("[DATA] fetch failed", e);
         const msg = e?.message || `${e}`;
+        const url = e?.url || "unknown URL";
+        
         if (/autorizz|authoriz/i.test(msg)) {
-          setError("Errore di autorizzazione API. Controlla le impostazioni del Google Apps Script.");
+          setError(`Errore di autorizzazione API (${url})`);
         } else if (/timeout/i.test(msg)) {
-          setError("Timeout della richiesta. Riprova tra qualche istante.");
+          setError(`Timeout della richiesta (${url}). Riprova tra qualche istante.`);
         } else if (/network|fetch/i.test(msg)) {
-          setError("Errore di rete. Verifica la connessione internet.");
+          setError(`Errore di rete (${url}). Verifica la connessione internet.`);
         } else {
-          setError(`Errore API: ${msg}`);
+          setError(`Errore caricamento dati: ${msg}`);
         }
       } finally {
         setLoading(false);

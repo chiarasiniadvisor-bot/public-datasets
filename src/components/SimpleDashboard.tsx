@@ -18,9 +18,11 @@ export function SimpleDashboard() {
         console.log("✅ Data loaded successfully:", datasets);
         setData(datasets);
         setLoading(false);
-      } catch (err) {
-        console.error("❌ Error loading data:", err);
-        setError(err instanceof Error ? err.message : "Unknown error");
+      } catch (err: any) {
+        console.error("[DATA] fetch failed", err);
+        const msg = err?.message || String(err);
+        const url = err?.url || "unknown URL";
+        setError(`${msg} (${url})`);
         setLoading(false);
       }
     };
@@ -44,7 +46,7 @@ export function SimpleDashboard() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-red-500 mb-4">Error Loading Data</h2>
-          <p className="text-gray-600">{error}</p>
+          <p className="text-rose-400">{error}</p>
         </div>
       </div>
     );

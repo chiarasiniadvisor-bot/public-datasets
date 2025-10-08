@@ -1,7 +1,7 @@
 // src/lib/brevoDatasets.ts
 // Local datasets from Brevo API integration
 
-import { API_BASE } from "./config";
+import { getDatasets as getApiDatasets, API_BASE } from "./api";
 
 export type Scope = "all" | "lista6" | "corsisti" | "paganti";
 export type ListMode = "id" | "label" | "group";
@@ -74,32 +74,17 @@ export async function fetchDatasets(params: {
 } = {}): Promise<Datasets> {
   // Load data from GitHub Raw datasets.json
   if (!cachedData) {
-    console.log("🔄 FETCHING NEW DATA FROM BACKEND:", API_BASE);
-    console.log("🚀 VERSION 0.0.6 - NO HARDCODED VALUES - USING BACKEND DATA ONLY");
-    console.log("🔥 FORCE REBUILD - VERCEL CACHE BYPASS - TIMESTAMP:", Date.now());
-    console.log("🎯 THIS IS THE NEW VERSION - NO HARDCODING - USE BACKEND DATA");
-    const response = await fetch(API_BASE);
-    if (!response.ok) throw new Error(`Failed to load datasets: ${response.status}`);
-    cachedData = await response.json();
-    console.log("✅ NEW DATA LOADED:", {
-      generatedAt: cachedData.generatedAt,
-      totalContacts: cachedData.totalContacts,
-      funnel: cachedData.funnel
-    });
-    console.log("🎯 EXPECTED VALUES: Leads=4822, Iscritti=2955, Profilo=2552");
-    console.log("📊 ACTUAL VALUES:", {
-      leads: cachedData.funnel?.leadsACRM,
-      iscritti: cachedData.funnel?.iscrittiPiattaforma,
-      profilo: cachedData.funnel?.profiloCompleto
-    });
-
-    // Force alert if values don't match
-    if (cachedData.funnel?.leadsACRM !== 4822 ||
-        cachedData.funnel?.iscrittiPiattaforma !== 2955 ||
-        cachedData.funnel?.profiloCompleto !== 2552) {
-      console.error("❌ DATA MISMATCH! Backend has correct data but frontend shows wrong values!");
-    } else {
-      console.log("✅ DATA MATCH! Backend and frontend should show correct values!");
+    console.log("🔄 FETCHING NEW DATA FROM BACKEND:", API_BASE || "NOT SET");
+    try {
+      cachedData = await getApiDatasets();
+      console.log("✅ NEW DATA LOADED:", {
+        generatedAt: cachedData.generatedAt,
+        totalContacts: cachedData.totalContacts,
+        funnel: cachedData.funnel
+      });
+    } catch (error) {
+      console.error("❌ FETCH FAILED:", error);
+      throw error;
     }
   }
 
@@ -432,12 +417,14 @@ export type DeltaResponse = {
   items: DeltaItem[];
 };
 
-export async function fetchDelta(): Promise<DeltaResponse> {
-  const url = `${API_BASE}?tab=delta&nocache=${Date.now()}`;
-  const res = await fetch(url, { cache: "no-store" });
-  if (!res.ok) throw new Error(`Fetch delta failed ${res.status}`);
-  return (await res.json()) as DeltaResponse;
-}
+// DEPRECATED: This function was for Google Apps Script API
+// Use historicalData.ts instead for delta calculations
+// export async function fetchDelta(): Promise<DeltaResponse> {
+//   const url = `${API_BASE}?tab=delta&nocache=${Date.now()}`;
+//   const res = await fetch(url, { cache: "no-store" });
+//   if (!res.ok) throw new Error(`Fetch delta failed ${res.status}`);
+//   return (await res.json()) as DeltaResponse;
+// }
 
 /* ===== DELTA TREND (multi-week) ===== */
 export type DeltaTrendSeries = {
@@ -451,14 +438,16 @@ export type DeltaTrendResponse = {
   series: DeltaTrendSeries[]; // uno per metrica
 };
 
-export async function fetchDeltaTrend(): Promise<DeltaTrendResponse> {
-  const url = `${API_BASE}?tab=delta_trend&nocache=${Date.now()}`;
-  const res = await fetch(url, { cache: "no-store" });
-  if (!res.ok) throw new Error(`Fetch delta_trend failed ${res.status}`);
-  const json = await res.json();
-  // Hardening minima
-  return {
-    weeks: Array.isArray(json?.weeks) ? json.weeks : [],
-    series: Array.isArray(json?.series) ? json.series : [],
-  };
-}
+// DEPRECATED: This function was for Google Apps Script API
+// Use historicalData.ts instead for trend calculations
+// export async function fetchDeltaTrend(): Promise<DeltaTrendResponse> {
+//   const url = `${API_BASE}?tab=delta_trend&nocache=${Date.now()}`;
+//   const res = await fetch(url, { cache: "no-store" });
+//   if (!res.ok) throw new Error(`Fetch delta_trend failed ${res.status}`);
+//   const json = await res.json();
+//   // Hardening minima
+//   return {
+//     weeks: Array.isArray(json?.weeks) ? json.weeks : [],
+//     series: Array.isArray(json?.series) ? json.series : [],
+//   };
+// }
