@@ -338,7 +338,9 @@ function buildSimSlices(
    ========================= */
 
 export default function ConversionDashboard() {
-  const { t, i18n } = useTranslation();
+  // TODO: Replace t() calls with static text or implement proper i18n for Vite
+  const t = (key: string) => key; // Temporary fallback
+  const i18n = { language: 'it' }; // Temporary fallback
   const locale = i18n.language.startsWith("it") ? "it-IT" : "es-ES";
   
   // Vista CORSISTI
