@@ -62,11 +62,16 @@ npm run dev
 
 ## Deployment
 
-### Automatic Deployment
-- **Staging**: Push to `staging` branch
-- **Production**: Push to `main` branch
+### Automatic Deployment via Deploy Hooks
+- **Staging**: Push to `staging` branch → triggers Vercel Preview
+- **Production**: Push to `main` branch → triggers Vercel Production
 
-Deployments are handled automatically by GitHub Actions using Vercel CLI.
+Deployments use **Vercel Deploy Hooks** for fast, reliable deployments without build steps on GitHub.
+
+### Manual Deployment
+Execute workflows manually via GitHub Actions tab:
+- "Deploy Staging (Vercel)" 
+- "Deploy Production (Vercel)"
 
 ### Deploy con Vercel Deploy Hook
 

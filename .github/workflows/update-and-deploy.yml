@@ -1,4 +1,4 @@
-name: Update Datasets and Deploy
+name: Update Datasets Only
 
 on:
   workflow_dispatch:
@@ -20,7 +20,6 @@ jobs:
       - run: |
           npm init -y
           npm install axios
-      # ⬇️ sostituisci con il tuo comando reale di generazione dati
       - name: Generate datasets
         env:
           BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
@@ -34,16 +33,3 @@ jobs:
           git add -A
           git diff --cached --quiet && echo "No changes" || git commit -m "chore: auto-update datasets [skip ci]" || true
           git push || true
-
-  deploy:
-    needs: update
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger Vercel Hook
-        env:
-          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
-        run: |
-          test -n "$HOOK" || { echo "Missing hook"; exit 2; }
-          STATUS=$(curl -s -o resp.json -w "%{http_code}" -X POST "$HOOK")
-          echo "HTTP Status: $STATUS"; cat resp.json
-          test "$STATUS" = "200" || { echo "Hook call failed"; exit 3; }
