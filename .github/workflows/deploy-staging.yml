@@ -1,17 +1,22 @@
 name: Deploy Staging (Vercel)
 
 on:
-  workflow_dispatch: {}
-  push:
-    branches: ["staging"]
+  # se hai un branch 'staging' scommenta la sezione sotto
+  # push:
+  #   branches: [staging]
+  # sempre lanciabile a mano
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Vercel deploy (staging)
-        env:
-          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL_STAGING }}
+      - name: Validate required secret
         run: |
-          if [ -z "$HOOK" ]; then echo "Missing VERCEL_DEPLOY_HOOK_URL_STAGING"; exit 2; fi
-          curl -fsS -X POST "$HOOK"
+          test -n "${{ secrets.VERCEL_DEPLOY_HOOK_URL_STAGING }}" || { 
+            echo "Missing secret: VERCEL_DEPLOY_HOOK_URL_STAGING"; exit 1; 
+          }
+
+      - name: Trigger Vercel Deploy (staging)
+        run: |
+          curl -fsS -X POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL_STAGING }}"
