@@ -12,7 +12,7 @@ import {
   Cell,
   LabelList,
 } from "recharts";
-import { fetchDatasets } from "@/lib/dataService";
+import { fetchDatasets, getNormalizedDatasets } from "@/lib/dataService";
 import logoImage from "@/assets/logo.png";
 import { ThemeToggle } from "./ThemeToggle";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -443,38 +443,57 @@ export default function ConversionDashboard() {
         setCorsiPagati(asKV(dsCorsisti.distribuzione_corsi_pagati));
         setTrattative(asKV(dsCorsisti.gestiti_trattativa));
 
-        /* ---------- CRM (ALL) ---------- */
-        const leadsFromFunnel   = pickFunnelValue(dsCrm.funnel, "leads") || dsCrm.funnel?.leadsACRM;
-        const leadsFallback     = sumValues(dsCrm.distribuzione_atenei);
-        const leadsTot          = bestOf(leadsFromFunnel, leadsFallback);
-
-        // attenzione: lo step "iscritti" nel funnel a volte manca o cambia lingua
-        const iscrittiFromFunnel  = pickFunnelValue(dsCrm.funnel, "iscritti") || dsCrm.funnel?.iscrittiPiattaforma;
-        // fallback: ricaviamo gli iscritti sommando le distribuzioni di lista6
-        const iscrittiFromDistrib = bestOf(
-          sumValues(dsIscritti.distribuzione_atenei),
-          sumValues(dsIscritti.distribuzione_anno_profilazione),
-          sumValues(dsIscritti.distribuzione_anno_nascita)
-        );
-        const iscrittiTotFromFunnel = bestOf(iscrittiFromFunnel, iscrittiFromDistrib);
-
-        // gli altri step restano presi dal funnel (con matching robusto)
-        const profiloCompleto    = pickFunnelValue(dsCrm.funnel, "profilo");
-        const corsistiFromFunnel = pickFunnelValue(dsCrm.funnel, "corsisti");
-        const paganti            = pickFunnelValue(dsCrm.funnel, "paganti");
-
-        const funnelValues = {
-          leadsACRM: pickNumber(leadsTot),
-          iscritti: pickNumber(iscrittiTotFromFunnel),
-          profiloCompleto: pickNumber(profiloCompleto),
-          corsisti: pickNumber(corsistiFromFunnel),
-          clientiPaganti: pickNumber(paganti),
-        };
+        /* ---------- FUNNEL FROM NORMALIZED DATA ---------- */
+        // Use normalized data from adapter for stable funnel counters
+        const normalized = getNormalizedDatasets();
         
-        console.log("[Funnel] mapped counters:", funnelValues);
+        if (normalized) {
+          const funnelValues = {
+            leadsACRM: normalized.funnel.leads,
+            iscritti: normalized.funnel.iscritti,
+            profiloCompleto: normalized.funnel.profilo,
+            corsisti: normalized.funnel.corsisti,
+            clientiPaganti: normalized.funnel.paganti,
+          };
+          
+          console.log("[Funnel] using normalized counters:", funnelValues);
+          
+          setFunnel(funnelValues);
+          setLeadsCount(funnelValues.leadsACRM);
+        } else {
+          // Fallback to old logic if normalized data not available
+          console.warn("[Funnel] normalized data not available, using fallback");
+          const leadsFromFunnel   = pickFunnelValue(dsCrm.funnel, "leads") || dsCrm.funnel?.leadsACRM;
+          const leadsFallback     = sumValues(dsCrm.distribuzione_atenei);
+          const leadsTot          = bestOf(leadsFromFunnel, leadsFallback);
+
+          const iscrittiFromFunnel  = pickFunnelValue(dsCrm.funnel, "iscritti") || dsCrm.funnel?.iscrittiPiattaforma;
+          const iscrittiFromDistrib = bestOf(
+            sumValues(dsIscritti.distribuzione_atenei),
+            sumValues(dsIscritti.distribuzione_anno_profilazione),
+            sumValues(dsIscritti.distribuzione_anno_nascita)
+          );
+          const iscrittiTotFromFunnel = bestOf(iscrittiFromFunnel, iscrittiFromDistrib);
+
+          const profiloCompleto    = pickFunnelValue(dsCrm.funnel, "profilo");
+          const corsistiFromFunnel = pickFunnelValue(dsCrm.funnel, "corsisti");
+          const paganti            = pickFunnelValue(dsCrm.funnel, "paganti");
+
+          const funnelValues = {
+            leadsACRM: pickNumber(leadsTot),
+            iscritti: pickNumber(iscrittiTotFromFunnel),
+            profiloCompleto: pickNumber(profiloCompleto),
+            corsisti: pickNumber(corsistiFromFunnel),
+            clientiPaganti: pickNumber(paganti),
+          };
+          
+          console.log("[Funnel] fallback counters:", funnelValues);
+          
+          setFunnel(funnelValues);
+          setLeadsCount(funnelValues.leadsACRM);
+        }
         
-        setFunnel(funnelValues);
-        setLeadsCount(funnelValues.leadsACRM);
+        const corsistiFromFunnel = normalized?.funnel.corsisti ?? 0;
 
         // Use new webinar metrics from datasets
         const corsistiWebinar = dsCorsisti.webinar_conversions?.find(item => item.name === 'Corsisti da Webinar')?.value || 0;

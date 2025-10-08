@@ -2,6 +2,7 @@
 // Robust data service with fallback and timeout handling
 
 import { getDatasets as getApiDatasets, API_BASE } from "./api";
+import { adaptDatasets, type NormalizedDatasets } from "./adapters/datasetsAdapter";
 
 export type Scope = "all" | "lista6" | "corsisti" | "paganti";
 export type ListMode = "id" | "label" | "group";
@@ -65,6 +66,7 @@ export type Datasets = {
 
 // Load datasets with robust fallback
 let cachedData: BrevoData | null = null;
+let cachedNormalized: NormalizedDatasets | null = null;
 let lastFetchError: string | null = null;
 
 export async function fetchDatasets(params: {
@@ -79,8 +81,18 @@ export async function fetchDatasets(params: {
     console.log("[datasets] 📍 API_BASE:", API_BASE || "NOT SET");
     
     try {
-      cachedData = await getApiDatasets();
+      const raw = await getApiDatasets();
+      cachedData = raw;
       lastFetchError = null;
+      
+      console.log("[PIPELINE] raw loaded", raw ? "ok" : "missing");
+      
+      // Normalize data through adapter
+      cachedNormalized = adaptDatasets(raw);
+      console.log("[PIPELINE] normalized", cachedNormalized);
+      
+      // Helpful for debugging in browser console
+      (window as any).__loadedDatasets = raw;
       
       console.log("[datasets] ✅ Data loaded successfully:", {
         generatedAt: cachedData.generatedAt,
@@ -93,12 +105,6 @@ export async function fetchDatasets(params: {
       lastFetchError = error instanceof Error ? error.message : String(error);
       throw error;
     }
-    
-    console.log("📊 LOADED VALUES:", {
-      leads: cachedData.funnel?.leadsACRM,
-      iscritti: cachedData.funnel?.iscrittiPiattaforma,
-      profilo: cachedData.funnel?.profiloCompleto
-    });
   }
 
   return processBrevoData(cachedData, params);
@@ -107,6 +113,11 @@ export async function fetchDatasets(params: {
 // Export last fetch error for UI feedback
 export function getLastFetchError(): string | null {
   return lastFetchError;
+}
+
+// Export normalized datasets for direct UI consumption
+export function getNormalizedDatasets(): NormalizedDatasets | null {
+  return cachedNormalized;
 }
 
 function processBrevoData(data: BrevoData, params: any): Datasets {
