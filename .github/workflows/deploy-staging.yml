@@ -3,17 +3,15 @@ name: Deploy Staging (Vercel)
 on:
   workflow_dispatch: {}
   push:
-    branches: [ "staging" ]
+    branches: ["staging"]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Validate hook URL
-        run: |
-          if [ -z "${{ secrets.VERCEL_DEPLOY_HOOK_URL_STAGING }}" ]; then
-            echo "Missing secret VERCEL_DEPLOY_HOOK_URL_STAGING"; exit 2;
-          fi
       - name: Trigger Vercel deploy (staging)
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL_STAGING }}
         run: |
-          curl -fsS -X POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL_STAGING }}" || { echo "Vercel hook failed"; exit 3; }
+          if [ -z "$HOOK" ]; then echo "Missing VERCEL_DEPLOY_HOOK_URL_STAGING"; exit 2; fi
+          curl -fsS -X POST "$HOOK"

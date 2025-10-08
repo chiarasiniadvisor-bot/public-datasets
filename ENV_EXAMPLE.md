@@ -7,6 +7,8 @@ Create a `.env.local` file in the root directory with these variables for local 
 VITE_API_BASE=https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/datasets.json
 # opzionale
 VITE_HISTORICAL_DATA_URL=https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/historical-data.json
+# per il badge ambiente
+VITE_ENV_LABEL=STAGING
 ```
 
 ## For Production (Vercel)
