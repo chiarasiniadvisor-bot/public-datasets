@@ -1,6 +1,6 @@
 // src/lib/api.ts
-export const API_BASE = import.meta.env.VITE_API_BASE?.trim();
-export const HISTORICAL_DATA_URL = import.meta.env.VITE_HISTORICAL_DATA_URL?.trim();
+export const API_BASE = import.meta.env.VITE_API_BASE?.trim() || "https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/datasets.json";
+export const HISTORICAL_DATA_URL = import.meta.env.VITE_HISTORICAL_DATA_URL?.trim() || "https://raw.githubusercontent.com/chiarasiniadvisor-bot/public-datasets/main/historical-data.json";
 
 if (!API_BASE) {
   // Make this loud in console, but don't hard crash the app
