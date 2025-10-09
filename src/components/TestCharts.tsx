@@ -2,20 +2,19 @@
 // Test component to verify useDashboardSeries hook is working
 
 import React from 'react';
-import { useDashboardSeries } from '@/hooks/useDashboardSeries';
+import { useDatasets } from '@/hooks/useDatasets';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
 export function TestCharts() {
-  const { 
-    sourceDistribution, 
-    universitiesDistribution, 
-    birthYearDistribution,
-    profileYearDistribution,
-    loading, 
-    error 
-  } = useDashboardSeries("corsisti");
+  const { comprehensive, loading, error } = useDatasets({ scope: "corsisti" });
+  
+  // Extract data from comprehensive normalized datasets
+  const sourceDistribution = comprehensive?.dsCorsisti?.distribuzione_fonte ?? [];
+  const universitiesDistribution = comprehensive?.dsCorsisti?.distribuzione_atenei ?? [];
+  const birthYearDistribution = comprehensive?.dsProfilo?.distribuzione_anno_nascita ?? [];
+  const profileYearDistribution = comprehensive?.dsProfilo?.distribuzione_anno_profilazione ?? [];
 
-  console.log('[TEST] useDashboardSeries result:', {
+  console.log('[TEST] comprehensive normalized datasets result:', {
     loading,
     error,
     sourceDistribution: sourceDistribution.length,

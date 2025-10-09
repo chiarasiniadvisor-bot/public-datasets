@@ -4,6 +4,92 @@
 import { getDatasets as getApiDatasets, API_BASE } from "./api";
 import { adaptDatasets, type NormalizedDatasets } from "./adapters/datasetsAdapter";
 
+/* =========================
+   COMPREHENSIVE DATASET NORMALIZER
+   ========================= */
+
+export type ComprehensiveNormalizedDatasets = {
+  generatedAt?: string;
+  totalContacts?: number;
+  funnel: {
+    leadsTot: number;
+    iscrittiTot: number;
+    profiloTot: number;
+    corsistiTot: number;
+    pagantiTot: number;
+  };
+  counters: Record<string, number>;
+  // gruppi usati dalla UI
+  dsCorsisti: {
+    distribuzione_atenei: any[];
+    distribuzione_fonte: any[];
+    distribuzione_corsi_pagati: any[];
+    distribuzione_liste_corsisti: any[];
+    distribuzione_corsi: any[];
+  };
+  dsProfilo: {
+    distribuzione_anno_profilazione: any[];
+    distribuzione_anno_nascita: any[];
+  };
+  dsWebinar: {
+    iscritti_webinar: any[];
+    webinar_conversions: any[];
+  };
+  dsUtentiCRM: {
+    utenti_crm_webinar: any[];
+    utenti_crm_non_corsisti: any[];
+    utenti_crm_non_corsisti_in_target: any[];
+    pct_non_corsisti_in_target: any[];
+  };
+};
+
+export function normalizeComprehensiveDatasets(raw: any): ComprehensiveNormalizedDatasets {
+  // fallback safe getter
+  const A = (x: any) => (Array.isArray(x) ? x : []);
+  const N = (x: any) => (typeof x === "number" && isFinite(x) ? x : 0);
+
+  // counters/funnel già calcolati server-side
+  const funnel = {
+    leadsTot: N(raw?.funnel?.leadsTot ?? raw?.leadsTot ?? raw?.counters?.leadsTot),
+    iscrittiTot: N(raw?.funnel?.iscrittiTot ?? raw?.counters?.iscrittiTot),
+    profiloTot: N(raw?.funnel?.profiloTot ?? raw?.counters?.profiloTot),
+    corsistiTot: N(raw?.funnel?.corsistiTot ?? raw?.counters?.corsistiTot),
+    pagantiTot: N(raw?.funnel?.pagantiTot ?? raw?.counters?.pagantiTot),
+  };
+
+  return {
+    generatedAt: raw?.generatedAt,
+    totalContacts: N(raw?.totalContacts),
+    funnel,
+    counters: raw?.counters ?? {},
+
+    dsCorsisti: {
+      distribuzione_atenei: A(raw?.distribuzione_atenei),
+      distribuzione_fonte: A(raw?.distribuzione_fonte),
+      distribuzione_corsi_pagati: A(raw?.distribuzione_corsi_pagati),
+      distribuzione_liste_corsisti: A(raw?.distribuzione_liste_corsisti),
+      distribuzione_corsi: A(raw?.distribuzione_corsi),
+    },
+
+    dsProfilo: {
+      distribuzione_anno_profilazione: A(raw?.distribuzione_anno_profilazione),
+      distribuzione_anno_nascita: A(raw?.distribuzione_anno_nascita),
+    },
+
+    dsWebinar: {
+      iscritti_webinar: A(raw?.iscritti_webinar),
+      webinar_conversions: A(raw?.webinar_conversions),
+    },
+
+    dsUtentiCRM: {
+      utenti_crm_webinar: A(raw?.utenti_crm_webinar),
+      utenti_crm_non_corsisti: A(raw?.utenti_crm_non_corsisti),
+      utenti_crm_non_corsisti_in_target: A(raw?.utenti_crm_non_corsisti_in_target),
+      pct_non_corsisti_in_target: A(raw?.pct_non_corsisti_in_target),
+    },
+  };
+}
+
 export type Scope = "all" | "lista6" | "corsisti" | "paganti";
 export type ListMode = "id" | "label" | "group";
 
@@ -67,6 +153,7 @@ export type Datasets = {
 // Load datasets with robust fallback
 let cachedData: BrevoData | null = null;
 let cachedNormalized: NormalizedDatasets | null = null;
+let cachedComprehensive: ComprehensiveNormalizedDatasets | null = null;
 let lastFetchError: string | null = null;
 
 export async function fetchDatasets(params: {
@@ -88,8 +175,11 @@ export async function fetchDatasets(params: {
       console.log("[PIPELINE] raw loaded", raw ? "ok" : "missing");
       
       // Normalize data through adapter
-      cachedNormalized = adaptDatasets(raw);
-      console.log("[PIPELINE] normalized", cachedNormalized);
+             cachedNormalized = adaptDatasets(raw);
+             cachedComprehensive = normalizeComprehensiveDatasets(raw);
+             
+             console.log("[PIPELINE] normalized", cachedNormalized);
+             console.log("[PIPELINE] comprehensive normalized", cachedComprehensive);
       
       // Helpful for debugging in browser console
       (window as any).__loadedDatasets = raw;
@@ -118,6 +208,10 @@ export function getLastFetchError(): string | null {
 // Export normalized datasets for direct UI consumption
 export function getNormalizedDatasets(): NormalizedDatasets | null {
   return cachedNormalized;
+}
+
+export function getComprehensiveNormalizedDatasets(): ComprehensiveNormalizedDatasets | null {
+  return cachedComprehensive;
 }
 
 function processBrevoData(data: BrevoData, params: any): Datasets {

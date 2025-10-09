@@ -1,10 +1,11 @@
 // src/hooks/useDatasets.ts
 import { useState, useEffect } from 'react';
-import { fetchDatasets, getNormalizedDatasets, type Datasets } from '@/lib/dataService';
+import { fetchDatasets, getNormalizedDatasets, getComprehensiveNormalizedDatasets, type Datasets, type ComprehensiveNormalizedDatasets } from '@/lib/dataService';
 import { normalizeCounters, type Counters } from '@/lib/normalizeCounters';
 
 export type DatasetsState = {
   data: Datasets | null;
+  comprehensive: ComprehensiveNormalizedDatasets | null;
   counters: Counters;
   loading: boolean;
   error: string | null;
@@ -21,6 +22,7 @@ export function useDatasets(params?: {
   listMode?: "id" | "label" | "group";
 }): DatasetsState {
   const [data, setData] = useState<Datasets | null>(null);
+  const [comprehensive, setComprehensive] = useState<ComprehensiveNormalizedDatasets | null>(null);
   const [counters, setCounters] = useState<Counters>({
     leadsTot: 0,
     iscrittiTot: 0,
@@ -46,6 +48,7 @@ export function useDatasets(params?: {
 
         // Get normalized data (includes counters)
         const normalized = getNormalizedDatasets();
+        const comprehensive = getComprehensiveNormalizedDatasets();
 
         if (normalized?.counters) {
           console.log('[useDatasets] counters loaded:', normalized.counters);
@@ -57,7 +60,25 @@ export function useDatasets(params?: {
           setCounters(rawCounters);
         }
 
+        // Set comprehensive data for UI components
+        setComprehensive(comprehensive);
+
         setData(datasets);
+
+        // Debug logging (only in dev)
+        if (import.meta.env.DEV && comprehensive) {
+          console.debug("[FUNNEL] counters for calculations:", {
+            leadsTot: comprehensive.funnel.leadsTot,
+            iscrittiTot: comprehensive.funnel.iscrittiTot,
+            profiloTot: comprehensive.funnel.profiloTot,
+            corsistiTot: comprehensive.funnel.corsistiTot,
+            pagantiTot: comprehensive.funnel.pagantiTot,
+          });
+          console.debug("[DEBUG] dsCorsisti keys:", Object.keys(comprehensive.dsCorsisti));
+          console.debug("[DEBUG] dsProfilo keys:", Object.keys(comprehensive.dsProfilo));
+          console.debug("[DEBUG] dsWebinar keys:", Object.keys(comprehensive.dsWebinar));
+          console.debug("[DEBUG] dsUtentiCRM keys:", Object.keys(comprehensive.dsUtentiCRM));
+        }
       } catch (err: any) {
         console.error('[useDatasets] fetch failed:', err);
         if (mounted) {
@@ -75,5 +96,5 @@ export function useDatasets(params?: {
     };
   }, [params?.scope, params?.topN, params?.minCountAltro, params?.listMode]);
 
-  return { data, counters, loading, error };
+    return { data, comprehensive, counters, loading, error };
 }
