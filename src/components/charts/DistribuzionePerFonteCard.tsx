@@ -3,13 +3,19 @@
 
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from "recharts";
-import { useDashboardSeries } from "@/hooks/useDashboardSeries";
+import { useDatasets } from "@/hooks/useDatasets";
 import { EmptyState } from "@/components/EmptyState";
 
 const COLORS = ['#ec4899', '#8b5cf6', '#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#6366f1', '#14b8a6'];
 
 export function DistribuzionePerFonteCard() {
-  const { sourceDistribution, loading, error } = useDashboardSeries("corsisti");
+  const { comprehensive, loading, error } = useDatasets({ scope: "corsisti" });
+  
+  // Guardie robuste
+  const safe = (arr?: {label: string; value: number}[]) =>
+    Array.isArray(arr) ? arr.filter(d => d && d.value > 0) : [];
+
+  const sourceDistribution = safe(comprehensive?.dsCorsisti?.fonte);
 
   if (loading) {
     return (
@@ -37,7 +43,7 @@ export function DistribuzionePerFonteCard() {
     );
   }
 
-  if (!sourceDistribution.length) {
+  if (!loading && sourceDistribution.length === 0) {
     return (
       <Card>
         <CardHeader>

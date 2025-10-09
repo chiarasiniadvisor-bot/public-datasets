@@ -8,6 +8,9 @@ import { adaptDatasets, type NormalizedDatasets } from "./adapters/datasetsAdapt
    COMPREHENSIVE DATASET NORMALIZER
    ========================= */
 
+// Tipo standard per le serie
+export type Datum = { label: string; value: number };
+
 export type ComprehensiveNormalizedDatasets = {
   generatedAt?: string;
   totalContacts?: number;
@@ -19,75 +22,109 @@ export type ComprehensiveNormalizedDatasets = {
     pagantiTot: number;
   };
   counters: Record<string, number>;
-  // gruppi usati dalla UI
+  // gruppi usati dalla UI - nomi allineati al JSON reale
   dsCorsisti: {
-    distribuzione_atenei: any[];
-    distribuzione_fonte: any[];
-    distribuzione_corsi_pagati: any[];
-    distribuzione_liste_corsisti: any[];
-    distribuzione_corsi: any[];
+    atenei: Datum[];
+    fonte: Datum[];
+    corsi: Datum[];
+    corsiPagati: Datum[];
+    liste: Datum[];
+    annoNascita: Datum[];
   };
   dsProfilo: {
-    distribuzione_anno_profilazione: any[];
-    distribuzione_anno_nascita: any[];
+    annoNascita: Datum[];
+    annoProfilazione: Datum[];
   };
   dsWebinar: {
-    iscritti_webinar: any[];
-    webinar_conversions: any[];
+    iscrittiWebinar: Datum[];
+    webinarConversions: Datum[];
   };
   dsUtentiCRM: {
-    utenti_crm_webinar: any[];
-    utenti_crm_non_corsisti: any[];
-    utenti_crm_non_corsisti_in_target: any[];
-    pct_non_corsisti_in_target: any[];
+    utentiCrmWebinar: Datum[];
+    utentiCrmNonCorsisti: Datum[];
+    utentiCrmNonCorsistiInTarget: Datum[];
+    pctNonCorsistiInTarget: Datum[];
   };
 };
 
 export function normalizeComprehensiveDatasets(raw: any): ComprehensiveNormalizedDatasets {
-  // fallback safe getter
-  const A = (x: any) => (Array.isArray(x) ? x : []);
-  const N = (x: any) => (typeof x === "number" && isFinite(x) ? x : 0);
+  // toDatum "a prova di bomba" - gestisce array, oggetti e alias
+  const toDatum = (data: any[] | object | undefined): Datum[] => {
+    if (!data) return [];
+    
+    // Se è un oggetto (non array), converti con Object.entries
+    if (typeof data === 'object' && !Array.isArray(data)) {
+      return Object.entries(data).map(([label, value]) => ({
+        label: String(label),
+        value: Number(value) || 0,
+      })).filter(d => d.label.length > 0 && d.value > 0);
+    }
+    
+    // Se è un array
+    if (Array.isArray(data)) {
+      return data.map((d) => ({
+        // gestisci sia {label,value} sia {name,count} sia {key,total}
+        label: (d.label ?? d.name ?? d.key ?? '').toString(),
+        value: Number(d.value ?? d.count ?? d.total ?? 0) || 0,
+      })).filter(d => d.label.length > 0 && d.value > 0)
+        .sort((a, b) => b.value - a.value); // Sort desc per i grafici
+    }
+    
+    return [];
+  };
 
   // counters/funnel già calcolati server-side
   const funnel = {
-    leadsTot: N(raw?.funnel?.leadsTot ?? raw?.leadsTot ?? raw?.counters?.leadsTot),
-    iscrittiTot: N(raw?.funnel?.iscrittiTot ?? raw?.counters?.iscrittiTot),
-    profiloTot: N(raw?.funnel?.profiloTot ?? raw?.counters?.profiloTot),
-    corsistiTot: N(raw?.funnel?.corsistiTot ?? raw?.counters?.corsistiTot),
-    pagantiTot: N(raw?.funnel?.pagantiTot ?? raw?.counters?.pagantiTot),
+    leadsTot: Number(raw?.funnel?.leads ?? raw?.totalContacts ?? 0),
+    iscrittiTot: Number(raw?.funnel?.iscritti ?? 0),
+    profiloTot: Number(raw?.funnel?.profilo ?? 0),
+    corsistiTot: Number(raw?.funnel?.corsisti ?? 0),
+    pagantiTot: Number(raw?.funnel?.paganti ?? 0),
   };
 
-  return {
+  const normalized = {
     generatedAt: raw?.generatedAt,
-    totalContacts: N(raw?.totalContacts),
+    totalContacts: Number(raw?.totalContacts ?? 0),
     funnel,
     counters: raw?.counters ?? {},
 
     dsCorsisti: {
-      distribuzione_atenei: A(raw?.distribuzione_atenei),
-      distribuzione_fonte: A(raw?.distribuzione_fonte),
-      distribuzione_corsi_pagati: A(raw?.distribuzione_corsi_pagati),
-      distribuzione_liste_corsisti: A(raw?.distribuzione_liste_corsisti),
-      distribuzione_corsi: A(raw?.distribuzione_corsi),
+      atenei: toDatum(raw?.distribuzione_atenei),
+      fonte: toDatum(raw?.distribuzione_fonte),
+      corsi: toDatum(raw?.distribuzione_corsi),
+      corsiPagati: toDatum(raw?.distribuzione_corsi_pagati),
+      liste: toDatum(raw?.distribuzione_liste_corsisti || raw?.distribuzione_liste_iscritti),
     },
 
     dsProfilo: {
-      distribuzione_anno_profilazione: A(raw?.distribuzione_anno_profilazione),
-      distribuzione_anno_nascita: A(raw?.distribuzione_anno_nascita),
+      annoNascita: toDatum(raw?.distribuzione_anno_nascita),
+      annoProfilazione: toDatum(raw?.distribuzione_anno_profilazione),
     },
 
     dsWebinar: {
-      iscritti_webinar: A(raw?.iscritti_webinar),
-      webinar_conversions: A(raw?.webinar_conversions),
+      iscrittiWebinar: toDatum(raw?.iscritti_webinar),
+      webinarConversions: toDatum(raw?.webinar_conversions),
     },
 
     dsUtentiCRM: {
-      utenti_crm_webinar: A(raw?.utenti_crm_webinar),
-      utenti_crm_non_corsisti: A(raw?.utenti_crm_non_corsisti),
-      utenti_crm_non_corsisti_in_target: A(raw?.utenti_crm_non_corsisti_in_target),
-      pct_non_corsisti_in_target: A(raw?.pct_non_corsisti_in_target),
+      utentiCrmWebinar: toDatum(raw?.utenti_crm_webinar),
+      utentiCrmNonCorsisti: toDatum(raw?.utenti_crm_non_corsisti),
+      utentiCrmNonCorsistiInTarget: toDatum(raw?.utenti_crm_non_corsisti_in_target),
+      pctNonCorsistiInTarget: toDatum(raw?.pct_non_corsisti_in_target),
     },
   };
+
+  // Debug logging in dev mode
+  if (import.meta.env.DEV) {
+    console.debug("[DEBUG] dsCorsisti.distribuzione_fonte:", normalized.dsCorsisti.fonte.length);
+    console.debug("[DEBUG] dsCorsisti.distribuzione_atenei:", normalized.dsCorsisti.atenei.length);
+    console.debug("[DEBUG] dsProfilo.distribuzione_anno_nascita:", normalized.dsProfilo.annoNascita.length);
+    
+    // Esporta per ispezione in DEV
+    (window as any).__ds = normalized;
+  }
+
+  return normalized;
 }
 
 export type Scope = "all" | "lista6" | "corsisti" | "paganti";

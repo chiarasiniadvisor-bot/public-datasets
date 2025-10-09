@@ -2,26 +2,28 @@
 // Centralized hook to extract chart series from pre-calculated datasets
 
 import { useDatasets } from './useDatasets';
-import { toLabelValueSeries, toXYSeries, hasData } from '@/lib/dataAdapters';
+import { hasData } from '@/lib/dataAdapters';
+
+import { Datum } from '@/lib/dataService';
 
 export type DashboardSeries = {
   // Distributions
-  sourceDistribution: { label: string; value: number }[];
-  profileYearDistribution: { x: string | number; y: number }[];
-  birthYearDistribution: { x: string | number; y: number }[];
-  universitiesDistribution: { label: string; value: number }[];
-  coursesDistribution: { label: string; value: number }[];
-  paidCoursesDistribution: { label: string; value: number }[];
-  studentListsDistribution: { label: string; value: number }[];
+  sourceDistribution: Datum[];
+  profileYearDistribution: Datum[];
+  birthYearDistribution: Datum[];
+  universitiesDistribution: Datum[];
+  coursesDistribution: Datum[];
+  paidCoursesDistribution: Datum[];
+  studentListsDistribution: Datum[];
   
   // Webinar metrics
-  webinarConversions: { label: string; value: number }[];
-  registeredWebinar: { label: string; value: number }[];
-  crmWebinar: { label: string; value: number }[];
+  webinarConversions: Datum[];
+  registeredWebinar: Datum[];
+  crmWebinar: Datum[];
   
   // Simulation
-  registeredWithSimulation: { label: string; value: number }[];
-  crmWithSimulation: { label: string; value: number }[];
+  registeredWithSimulation: Datum[];
+  crmWithSimulation: Datum[];
   
   // Loading state
   loading: boolean;
@@ -33,47 +35,40 @@ export type DashboardSeries = {
  * Returns normalized series ready for charts.
  */
 export function useDashboardSeries(scope: "all" | "lista6" | "corsisti" | "paganti" = "all"): DashboardSeries {
-  const { data, loading, error } = useDatasets({ scope, topN: 999, listMode: "id" });
+  const { comprehensive, loading, error } = useDatasets({ scope });
 
-  // Extract pre-calculated data
-  const precalc = (data as any) ?? {};
-
-  // Log available keys in dev mode
-  if (import.meta.env.DEV && precalc && Object.keys(precalc).length > 0) {
-    console.debug('[precalc keys]', Object.keys(precalc));
-  }
-
-  // Convert to normalized series
-  const sourceDistribution = toLabelValueSeries(precalc.distribuzione_fonte ?? []);
-  const profileYearDistribution = toXYSeries(precalc.distribuzione_anno_profilazione ?? []);
-  const birthYearDistribution = toXYSeries(precalc.distribuzione_anno_nascita ?? []);
-  const universitiesDistribution = toLabelValueSeries(precalc.distribuzione_atenei ?? []);
-  const coursesDistribution = toLabelValueSeries(precalc.distribuzione_corsi ?? []);
-  const paidCoursesDistribution = toLabelValueSeries(precalc.distribuzione_corsi_pagati ?? []);
-  const studentListsDistribution = toLabelValueSeries(precalc.distribuzione_liste_corsisti ?? []);
+  // Sorgenti di acquisizione dai dati normalizzati (mantieni compatibilità con vecchio hook)
+  const sourceDistribution = comprehensive?.dsCorsisti?.fonte ?? [];
+  const universitiesDistribution = comprehensive?.dsCorsisti?.atenei ?? [];
+  const birthYearDistribution = comprehensive?.dsProfilo?.annoNascita ?? [];
+  const coursesDistribution = comprehensive?.dsCorsisti?.corsi ?? [];
+  const paidCoursesDistribution = comprehensive?.dsCorsisti?.corsiPagati ?? [];
+  const studentListsDistribution = comprehensive?.dsCorsisti?.liste ?? [];
   
-  const webinarConversions = toLabelValueSeries(precalc.webinar_conversions ?? []);
-  const registeredWebinar = toLabelValueSeries(precalc.iscritti_webinar ?? []);
-  const crmWebinar = toLabelValueSeries(precalc.utenti_crm_webinar ?? []);
+  // Profiling data
+  const profileYearDistribution = comprehensive?.dsProfilo?.annoProfilazione ?? [];
   
-  const registeredWithSimulation = toLabelValueSeries(precalc.iscritti_con_simulazione ?? []);
-  const crmWithSimulation = toLabelValueSeries(precalc.utenti_crm_con_simulazione ?? []);
+  // Webinar data
+  const webinarConversions = comprehensive?.dsWebinar?.webinarConversions ?? [];
+  const registeredWebinar = comprehensive?.dsWebinar?.iscrittiWebinar ?? [];
+  const crmWebinar = comprehensive?.dsUtentiCRM?.utentiCrmWebinar ?? [];
+  
+  // Simulation data
+  const registeredWithSimulation = comprehensive?.dsUtentiCRM?.utentiCrmNonCorsisti ?? [];
+  const crmWithSimulation = comprehensive?.dsUtentiCRM?.utentiCrmNonCorsistiInTarget ?? [];
 
-  // Log series lengths in dev mode
+  // Telemetry minima in DEV
   if (import.meta.env.DEV) {
-    console.debug('[series]', {
-      fonte: sourceDistribution.length,
-      profiloAnno: profileYearDistribution.length,
-      nascitaAnno: birthYearDistribution.length,
-      atenei: universitiesDistribution.length,
-      corsi: coursesDistribution.length,
-      corsiPagati: paidCoursesDistribution.length,
-      listeStudenti: studentListsDistribution.length,
-      webinarConv: webinarConversions.length,
-      webinarIscritti: registeredWebinar.length,
-      webinarCrm: crmWebinar.length,
-      simIscritti: registeredWithSimulation.length,
-      simCrm: crmWithSimulation.length,
+    console.log('[TEST] comprehensive normalized datasets result:', {
+      source: sourceDistribution.length,
+      universities: universitiesDistribution.length,
+      birthYear: birthYearDistribution.length,
+      courses: coursesDistribution.length,
+      paidCourses: paidCoursesDistribution.length,
+      profileYear: profileYearDistribution.length,
+      webinar: webinarConversions.length,
+      iscrittiWebinar: registeredWebinar.length,
+      crmWebinar: crmWebinar.length,
     });
   }
 

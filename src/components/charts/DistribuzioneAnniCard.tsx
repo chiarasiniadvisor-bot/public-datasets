@@ -3,11 +3,17 @@
 
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
-import { useDashboardSeries } from "@/hooks/useDashboardSeries";
+import { useDatasets } from "@/hooks/useDatasets";
 import { EmptyState } from "@/components/EmptyState";
 
 export function DistribuzioneAnniNascitaCard() {
-  const { birthYearDistribution, loading, error } = useDashboardSeries("corsisti");
+  const { comprehensive, loading, error } = useDatasets({ scope: "corsisti" });
+  
+  // Guardie robuste
+  const safe = (arr?: {label: string; value: number}[]) =>
+    Array.isArray(arr) ? arr.filter(d => d && d.value > 0) : [];
+
+  const birthYearDistribution = safe(comprehensive?.dsProfilo?.annoNascita);
 
   if (loading) {
     return (
@@ -35,7 +41,7 @@ export function DistribuzioneAnniNascitaCard() {
     );
   }
 
-  if (!birthYearDistribution.length) {
+  if (!loading && birthYearDistribution.length === 0) {
     return (
       <Card>
         <CardHeader>
@@ -50,8 +56,8 @@ export function DistribuzioneAnniNascitaCard() {
 
   // Convert to format expected by BarChart
   const chartData = birthYearDistribution.map(item => ({
-    year: item.x,
-    count: item.y
+    year: item.label,
+    count: item.value
   }));
 
   return (
@@ -80,7 +86,13 @@ export function DistribuzioneAnniNascitaCard() {
 }
 
 export function DistribuzioneAnniProfilazioneCard() {
-  const { profileYearDistribution, loading, error } = useDashboardSeries("corsisti");
+  const { comprehensive, loading, error } = useDatasets({ scope: "corsisti" });
+  
+  // Guardie robuste
+  const safe = (arr?: {label: string; value: number}[]) =>
+    Array.isArray(arr) ? arr.filter(d => d && d.value > 0) : [];
+
+  const profileYearDistribution = safe(comprehensive?.dsProfilo?.annoProfilazione);
 
   if (loading) {
     return (
@@ -108,7 +120,7 @@ export function DistribuzioneAnniProfilazioneCard() {
     );
   }
 
-  if (!profileYearDistribution.length) {
+  if (!loading && profileYearDistribution.length === 0) {
     return (
       <Card>
         <CardHeader>
@@ -123,8 +135,8 @@ export function DistribuzioneAnniProfilazioneCard() {
 
   // Convert to format expected by BarChart
   const chartData = profileYearDistribution.map(item => ({
-    year: item.x,
-    count: item.y
+    year: item.label,
+    count: item.value
   }));
 
   return (

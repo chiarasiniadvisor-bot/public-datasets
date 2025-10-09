@@ -3,11 +3,17 @@
 
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
-import { useDashboardSeries } from "@/hooks/useDashboardSeries";
+import { useDatasets } from "@/hooks/useDatasets";
 import { EmptyState } from "@/components/EmptyState";
 
 export function DistribuzioneAteneiCard() {
-  const { universitiesDistribution, loading, error } = useDashboardSeries("corsisti");
+  const { comprehensive, loading, error } = useDatasets({ scope: "corsisti" });
+  
+  // Guardie robuste
+  const safe = (arr?: {label: string; value: number}[]) =>
+    Array.isArray(arr) ? arr.filter(d => d && d.value > 0) : [];
+
+  const universitiesDistribution = safe(comprehensive?.dsCorsisti?.atenei);
 
   if (loading) {
     return (
@@ -35,7 +41,7 @@ export function DistribuzioneAteneiCard() {
     );
   }
 
-  if (!universitiesDistribution.length) {
+  if (!loading && universitiesDistribution.length === 0) {
     return (
       <Card>
         <CardHeader>

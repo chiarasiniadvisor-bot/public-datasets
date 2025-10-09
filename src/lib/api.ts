@@ -9,10 +9,12 @@ if (!API_BASE) {
 }
 
 async function fetchJson(url: string, init: RequestInit = {}) {
-  // Add no-store and a cache buster to avoid stale/cached GitHub raw
-  const sep = url.includes("?") ? "&" : "?";
-  const bust = `${sep}ts=${Date.now()}`;
-  const finalUrl = url + bust;
+  // Cache busting: aggiungi timestamp in dev mode o preview
+  let finalUrl = url;
+  if (import.meta.env.DEV || import.meta.env.VITE_ENV_LABEL !== 'production') {
+    const sep = url.includes("?") ? "&" : "?";
+    finalUrl = `${url}${sep}v=${Date.now()}`;
+  }
 
   const res = await fetch(finalUrl, {
     cache: "no-store",

@@ -3,7 +3,6 @@
 
 import React from 'react';
 import { useDatasets } from '@/hooks/useDatasets';
-import { toLabelValueSeries } from '@/lib/dataAdapters';
 
 export function DebugData() {
   const { comprehensive, loading, error } = useDatasets({ scope: "corsisti" });
@@ -13,14 +12,11 @@ export function DebugData() {
   if (!comprehensive) return <div className="p-4">No comprehensive data</div>;
 
   // Extract data from comprehensive normalized datasets
-  const atenei = comprehensive.dsCorsisti?.distribuzione_atenei ?? [];
-  const fonte = comprehensive.dsCorsisti?.distribuzione_fonte ?? [];
-  const annoNascita = comprehensive.dsProfilo?.distribuzione_anno_nascita ?? [];
+  const atenei = comprehensive.dsCorsisti?.atenei ?? [];
+  const fonte = comprehensive.dsCorsisti?.fonte ?? [];
+  const annoNascita = comprehensive.dsProfilo?.annoNascita ?? [];
 
-  // Test adapter
-  const ateneiAdapter = toLabelValueSeries(atenei);
-  const fonteAdapter = toLabelValueSeries(fonte);
-  const annoNascitaAdapter = toLabelValueSeries(annoNascita);
+  // Data is already normalized as Datum[]
 
   return (
     <div className="space-y-6 p-4 bg-gray-50 dark:bg-gray-900">
@@ -32,20 +28,11 @@ export function DebugData() {
         <div className="bg-white dark:bg-gray-800 p-4 rounded border">
           <h3 className="font-bold mb-2">🏛️ Distribuzione Atenei</h3>
           <div className="text-sm space-y-1">
-            <div>Raw count: {atenei.length}</div>
-            <div>Adapter count: {ateneiAdapter.length}</div>
+            <div>Count: {atenei.length}</div>
             {atenei.length > 0 && (
               <div className="mt-2">
                 <div className="font-mono text-xs bg-gray-100 dark:bg-gray-700 p-2 rounded">
                   First item: {JSON.stringify(atenei[0], null, 2)}
-                </div>
-              </div>
-            )}
-            {ateneiAdapter.length > 0 && (
-              <div className="mt-2">
-                <div className="text-xs">Adapter result:</div>
-                <div className="font-mono text-xs bg-green-100 dark:bg-green-900 p-2 rounded">
-                  {JSON.stringify(ateneiAdapter[0], null, 2)}
                 </div>
               </div>
             )}
@@ -56,20 +43,11 @@ export function DebugData() {
         <div className="bg-white dark:bg-gray-800 p-4 rounded border">
           <h3 className="font-bold mb-2">📊 Distribuzione Fonte</h3>
           <div className="text-sm space-y-1">
-            <div>Raw count: {fonte.length}</div>
-            <div>Adapter count: {fonteAdapter.length}</div>
+            <div>Count: {fonte.length}</div>
             {fonte.length > 0 && (
               <div className="mt-2">
                 <div className="font-mono text-xs bg-gray-100 dark:bg-gray-700 p-2 rounded">
                   First item: {JSON.stringify(fonte[0], null, 2)}
-                </div>
-              </div>
-            )}
-            {fonteAdapter.length > 0 && (
-              <div className="mt-2">
-                <div className="text-xs">Adapter result:</div>
-                <div className="font-mono text-xs bg-green-100 dark:bg-green-900 p-2 rounded">
-                  {JSON.stringify(fonteAdapter[0], null, 2)}
                 </div>
               </div>
             )}
@@ -80,20 +58,11 @@ export function DebugData() {
         <div className="bg-white dark:bg-gray-800 p-4 rounded border">
           <h3 className="font-bold mb-2">🎂 Distribuzione Anno Nascita</h3>
           <div className="text-sm space-y-1">
-            <div>Raw count: {annoNascita.length}</div>
-            <div>Adapter count: {annoNascitaAdapter.length}</div>
+            <div>Count: {annoNascita.length}</div>
             {annoNascita.length > 0 && (
               <div className="mt-2">
                 <div className="font-mono text-xs bg-gray-100 dark:bg-gray-700 p-2 rounded">
                   First item: {JSON.stringify(annoNascita[0], null, 2)}
-                </div>
-              </div>
-            )}
-            {annoNascitaAdapter.length > 0 && (
-              <div className="mt-2">
-                <div className="text-xs">Adapter result:</div>
-                <div className="font-mono text-xs bg-green-100 dark:bg-green-900 p-2 rounded">
-                  {JSON.stringify(annoNascitaAdapter[0], null, 2)}
                 </div>
               </div>
             )}

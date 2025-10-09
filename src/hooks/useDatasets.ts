@@ -67,17 +67,20 @@ export function useDatasets(params?: {
 
         // Debug logging (only in dev)
         if (import.meta.env.DEV && comprehensive) {
-          console.debug("[FUNNEL] counters for calculations:", {
-            leadsTot: comprehensive.funnel.leadsTot,
-            iscrittiTot: comprehensive.funnel.iscrittiTot,
-            profiloTot: comprehensive.funnel.profiloTot,
-            corsistiTot: comprehensive.funnel.corsistiTot,
-            pagantiTot: comprehensive.funnel.pagantiTot,
+          console.debug("[TEST] comprehensive normalized datasets result:", {
+            loading: false,
+            error: !!error,
+            sourceDistribution: (comprehensive?.dsCorsisti?.fonte?.length ?? 0),
+            universitiesDistribution: (comprehensive?.dsCorsisti?.atenei?.length ?? 0),
+            birthYearDistribution: (comprehensive?.dsProfilo?.annoNascita?.length ?? 0),
           });
-          console.debug("[DEBUG] dsCorsisti keys:", Object.keys(comprehensive.dsCorsisti));
-          console.debug("[DEBUG] dsProfilo keys:", Object.keys(comprehensive.dsProfilo));
-          console.debug("[DEBUG] dsWebinar keys:", Object.keys(comprehensive.dsWebinar));
-          console.debug("[DEBUG] dsUtentiCRM keys:", Object.keys(comprehensive.dsUtentiCRM));
+          console.debug("[Funnel] counters for calculations:", {
+            leadsTot: counters.leadsTot,
+            iscrittiTot: counters.iscrittiTot,
+            profiloTot: counters.profiloTot,
+            corsistiTot: counters.corsistiTot,
+            pagantiTot: counters.pagantiTot,
+          });
         }
       } catch (err: any) {
         console.error('[useDatasets] fetch failed:', err);
