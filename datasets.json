@@ -1,7 +1,663 @@
 {
-  "generatedAt": "2025-10-13T03:50:07.747Z",
-  "totalContacts": 4947,
+  "generatedAt": "2025-10-14T03:39:18.811Z",
+  "totalContacts": 4983,
   "contacts": [
+    {
+      "id": 5413,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-14T01:00:02.808+02:00",
+      "modifiedAt": "2025-10-14T01:00:11.863+02:00",
+      "listIds": [
+        6,
+        7,
+        2
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ID_STUDENTE": "3230",
+        "ANNO": "Altro",
+        "ANNO_OBIETTIVO_TEST": 2026,
+        "ATENEO": "Roma “La Sapienza”, sedi di Roma Policlinico Umberto I",
+        "DATA_DI_NASCITA": "1999-02-12",
+        "FONTE": "Iscritti"
+      }
+    },
+    {
+      "id": 5412,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-14T00:16:50.401+02:00",
+      "modifiedAt": "2025-10-14T00:17:02.355+02:00",
+      "listIds": [
+        61,
+        65,
+        33,
+        70,
+        2
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "FONTE": "FB Ads",
+        "CON_TRATTATIVA": "Sì"
+      }
+    },
+    {
+      "id": 5411,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T23:59:35.935+02:00",
+      "modifiedAt": "2025-10-13T23:59:41.676+02:00",
+      "listIds": [
+        68,
+        69
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Messina",
+        "ANNO": "laureato",
+        "DATA_WEBINAR": "2025-10-16",
+        "FONTE": "Webinar"
+      }
+    },
+    {
+      "id": 5410,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T23:22:31.557+02:00",
+      "modifiedAt": "2025-10-14T00:00:07.673+02:00",
+      "listIds": [
+        68,
+        69,
+        6,
+        2
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Catania",
+        "ANNO": "laureato",
+        "DATA_WEBINAR": "2025-10-16",
+        "FONTE": "Webinar",
+        "ID_STUDENTE": "3229"
+      }
+    },
+    {
+      "id": 5409,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T23:01:02.167+02:00",
+      "modifiedAt": "2025-10-14T00:00:08.691+02:00",
+      "listIds": [
+        66,
+        70,
+        6,
+        7,
+        2
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Siena",
+        "FONTE": "Sito",
+        "ID_STUDENTE": "3228",
+        "ANNO": "Sono al sesto anno",
+        "ANNO_OBIETTIVO_TEST": 2026,
+        "DATA_DI_NASCITA": "2001-06-14"
+      }
+    },
+    {
+      "id": 5408,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T20:00:03.743+02:00",
+      "modifiedAt": "2025-10-13T20:00:09.379+02:00",
+      "listIds": [
+        6,
+        7,
+        2
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ID_STUDENTE": "3226",
+        "ANNO": "Sono al sesto anno",
+        "ANNO_OBIETTIVO_TEST": 2026,
+        "ATENEO": "Palermo",
+        "DATA_DI_NASCITA": "1998-06-21",
+        "FONTE": "Iscritti"
+      }
+    },
+    {
+      "id": 5407,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T20:00:02.899+02:00",
+      "modifiedAt": "2025-10-13T20:00:09.423+02:00",
+      "listIds": [
+        6,
+        7,
+        2
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ID_STUDENTE": "3225",
+        "ANNO": "Sono al quarto anno",
+        "ANNO_OBIETTIVO_TEST": 2028,
+        "ATENEO": "Roma “Tor Vergata”",
+        "DATA_DI_NASCITA": "2004-08-18",
+        "FONTE": "Iscritti"
+      }
+    },
+    {
+      "id": 5406,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T19:00:04.286+02:00",
+      "modifiedAt": "2025-10-13T19:00:10.164+02:00",
+      "listIds": [
+        6,
+        7,
+        2
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ID_STUDENTE": "3224",
+        "ANNO": "Altro",
+        "ANNO_OBIETTIVO_TEST": 2026,
+        "ATENEO": "Università estere",
+        "DATA_DI_NASCITA": "2001-02-19",
+        "FONTE": "Iscritti"
+      }
+    },
+    {
+      "id": 5405,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T18:09:01.718+02:00",
+      "modifiedAt": "2025-10-13T18:10:03.806+02:00",
+      "listIds": [
+        11,
+        22,
+        2,
+        70
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "MESSAGGIO_FORM": "Hello,\r\nWe’re reaching out to discuss reselling your goods. We have clients ready to buy. Please get in touch via WhatsApp: +1 672 274 1781\r\nKind regards",
+        "CON_TRATTATIVA": "Sì",
+        "FONTE": "Sito"
+      }
+    },
+    {
+      "id": 5404,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T17:44:07.252+02:00",
+      "modifiedAt": "2025-10-13T17:44:13.250+02:00",
+      "listIds": [
+        68,
+        69
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Roma “La Sapienza”, sedi di Roma Policlinico Umberto I",
+        "ANNO": "6° anno",
+        "DATA_WEBINAR": "2025-10-16",
+        "FONTE": "Webinar"
+      }
+    },
+    {
+      "id": 5403,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T17:40:54.197+02:00",
+      "modifiedAt": "2025-10-13T17:41:12.406+02:00",
+      "listIds": [
+        68,
+        69
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Campania “L. Vanvitelli”, sedi di Caserta e Napoli",
+        "ANNO": "laureato",
+        "DATA_WEBINAR": "2025-10-16",
+        "FONTE": "Webinar"
+      }
+    },
+    {
+      "id": 5402,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T15:19:40.184+02:00",
+      "modifiedAt": "2025-10-13T15:20:35.031+02:00",
+      "listIds": [
+        68,
+        69
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Politecnica delle Marche, sede di Ancona",
+        "ANNO": "4° anno",
+        "DATA_WEBINAR": "2025-10-16",
+        "FONTE": "Webinar"
+      }
+    },
+    {
+      "id": 5401,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T15:07:18.598+02:00",
+      "modifiedAt": "2025-10-13T15:07:25.935+02:00",
+      "listIds": [
+        66,
+        70
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Foggia",
+        "FONTE": "Sito"
+      }
+    },
+    {
+      "id": 5400,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T14:28:21.731+02:00",
+      "modifiedAt": "2025-10-13T14:36:55.477+02:00",
+      "listIds": [
+        68,
+        69
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Bari “Aldo Moro”, sedi di Bari e Taranto",
+        "ANNO": "6° anno",
+        "DATA_WEBINAR": "2025-10-16",
+        "FONTE": "Webinar"
+      }
+    },
+    {
+      "id": 5399,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T14:01:11.060+02:00",
+      "modifiedAt": "2025-10-13T14:01:17.485+02:00",
+      "listIds": [
+        68,
+        69
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Non sono studente universitario",
+        "ANNO": "laureato",
+        "DATA_WEBINAR": "2025-10-16",
+        "FONTE": "Webinar"
+      }
+    },
+    {
+      "id": 5398,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T14:00:02.921+02:00",
+      "modifiedAt": "2025-10-13T14:00:09.896+02:00",
+      "listIds": [
+        6,
+        2
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ID_STUDENTE": "3222",
+        "FONTE": "Iscritti"
+      }
+    },
+    {
+      "id": 5397,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T12:59:16.245+02:00",
+      "modifiedAt": "2025-10-13T12:59:56.880+02:00",
+      "listIds": [
+        68,
+        69
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Bologna, sedi di Bologna, Forlì, Ravenna",
+        "ANNO": "6° anno",
+        "DATA_WEBINAR": "2025-10-16",
+        "FONTE": "Webinar"
+      }
+    },
+    {
+      "id": 5396,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T12:46:13.533+02:00",
+      "modifiedAt": "2025-10-13T12:46:19.018+02:00",
+      "listIds": [
+        68,
+        69
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Milano “Humanitas University”",
+        "ANNO": "4° anno",
+        "DATA_WEBINAR": "2025-10-16",
+        "FONTE": "Webinar"
+      }
+    },
+    {
+      "id": 5395,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T11:58:44.295+02:00",
+      "modifiedAt": "2025-10-13T11:58:50.418+02:00",
+      "listIds": [
+        68,
+        69
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Non sono studente universitario",
+        "ANNO": "laureato",
+        "DATA_WEBINAR": "2025-10-16",
+        "FONTE": "Webinar"
+      }
+    },
+    {
+      "id": 5394,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T11:23:10.599+02:00",
+      "modifiedAt": "2025-10-13T11:23:18.125+02:00",
+      "listIds": [
+        68,
+        69
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Politecnica delle Marche, sede di Ancona",
+        "ANNO": "4° anno",
+        "DATA_WEBINAR": "2025-10-16",
+        "FONTE": "Webinar"
+      }
+    },
+    {
+      "id": 5393,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T11:08:10.305+02:00",
+      "modifiedAt": "2025-10-13T11:08:18.436+02:00",
+      "listIds": [
+        68,
+        69
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Politecnica delle Marche, sede di Ancona",
+        "ANNO": "4° anno",
+        "DATA_WEBINAR": "2025-10-16",
+        "FONTE": "Webinar"
+      }
+    },
+    {
+      "id": 5392,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T11:00:05.805+02:00",
+      "modifiedAt": "2025-10-13T11:00:13.827+02:00",
+      "listIds": [
+        6,
+        2
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ID_STUDENTE": "3221",
+        "FONTE": "Iscritti"
+      }
+    },
+    {
+      "id": 5391,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T11:00:03.172+02:00",
+      "modifiedAt": "2025-10-13T11:00:11.478+02:00",
+      "listIds": [
+        6,
+        7,
+        2
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ID_STUDENTE": "3218",
+        "ANNO": "Sono al quarto anno",
+        "ANNO_OBIETTIVO_TEST": 2028,
+        "ATENEO": "Messina",
+        "DATA_DI_NASCITA": "2002-02-22",
+        "FONTE": "Iscritti"
+      }
+    },
+    {
+      "id": 5390,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T10:48:37.864+02:00",
+      "modifiedAt": "2025-10-13T10:48:45.048+02:00",
+      "listIds": [
+        68,
+        69
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Politecnica delle Marche, sede di Ancona",
+        "ANNO": "3° anno",
+        "DATA_WEBINAR": "2025-10-16",
+        "FONTE": "Webinar"
+      }
+    },
+    {
+      "id": 5389,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T10:44:23.702+02:00",
+      "modifiedAt": "2025-10-13T10:44:31.089+02:00",
+      "listIds": [
+        68,
+        69
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Politecnica delle Marche, sede di Ancona",
+        "ANNO": "4° anno",
+        "DATA_WEBINAR": "2025-10-16",
+        "FONTE": "Webinar"
+      }
+    },
+    {
+      "id": 5388,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T10:41:33.424+02:00",
+      "modifiedAt": "2025-10-13T11:00:11.022+02:00",
+      "listIds": [
+        68,
+        69,
+        6,
+        7,
+        2
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Roma “Campus Bio-Medico”",
+        "ANNO": "Sono al sesto anno",
+        "DATA_WEBINAR": "2025-10-16",
+        "FONTE": "Webinar",
+        "ID_STUDENTE": "3220",
+        "ANNO_OBIETTIVO_TEST": 2026,
+        "DATA_DI_NASCITA": "2002-05-06"
+      }
+    },
+    {
+      "id": 5387,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T09:34:52.175+02:00",
+      "modifiedAt": "2025-10-13T09:35:01.036+02:00",
+      "listIds": [
+        68,
+        69
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Non sono studente universitario",
+        "ANNO": "laureato",
+        "DATA_WEBINAR": "2025-10-16",
+        "FONTE": "Webinar"
+      }
+    },
+    {
+      "id": 5386,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T09:24:01.501+02:00",
+      "modifiedAt": "2025-10-13T09:24:08.020+02:00",
+      "listIds": [
+        68,
+        69
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Bologna, sedi di Bologna, Forlì, Ravenna",
+        "ANNO": "6° anno",
+        "DATA_WEBINAR": "2025-10-16",
+        "FONTE": "Webinar"
+      }
+    },
+    {
+      "id": 5385,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T08:57:23.640+02:00",
+      "modifiedAt": "2025-10-13T08:57:30.878+02:00",
+      "listIds": [
+        68,
+        69
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Ferrara",
+        "ANNO": "5° anno",
+        "DATA_WEBINAR": "2025-10-16",
+        "FONTE": "Webinar"
+      }
+    },
+    {
+      "id": 5384,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T08:46:45.173+02:00",
+      "modifiedAt": "2025-10-13T08:46:50.323+02:00",
+      "listIds": [
+        68,
+        69
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Foggia",
+        "ANNO": "5° anno",
+        "DATA_WEBINAR": "2025-10-16",
+        "FONTE": "Webinar"
+      }
+    },
+    {
+      "id": 5383,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T08:04:10.578+02:00",
+      "modifiedAt": "2025-10-13T08:04:26.121+02:00",
+      "listIds": [
+        61,
+        65,
+        70
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "FONTE": "FB Ads",
+        "CON_TRATTATIVA": "Sì"
+      }
+    },
+    {
+      "id": 5382,
+      "emailBlacklisted": true,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T08:04:04.477+02:00",
+      "modifiedAt": "2025-10-13T08:04:04.477+02:00",
+      "listIds": [],
+      "listUnsubscribed": null,
+      "attributes": {}
+    },
+    {
+      "id": 5381,
+      "emailBlacklisted": true,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T08:04:04.416+02:00",
+      "modifiedAt": "2025-10-13T08:04:04.416+02:00",
+      "listIds": [],
+      "listUnsubscribed": null,
+      "attributes": {}
+    },
+    {
+      "id": 5380,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T08:01:48.893+02:00",
+      "modifiedAt": "2025-10-13T08:01:58.504+02:00",
+      "listIds": [
+        68,
+        69
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Ferrara",
+        "ANNO": "6° anno",
+        "DATA_WEBINAR": "2025-10-16",
+        "FONTE": "Webinar"
+      }
+    },
+    {
+      "id": 5379,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T07:49:40.629+02:00",
+      "modifiedAt": "2025-10-13T07:49:48.606+02:00",
+      "listIds": [
+        68,
+        69
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Milano “San Raffaele”",
+        "ANNO": "4° anno",
+        "DATA_WEBINAR": "2025-10-16",
+        "FONTE": "Webinar"
+      }
+    },
+    {
+      "id": 5378,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-13T07:20:30.203+02:00",
+      "modifiedAt": "2025-10-13T07:20:40.652+02:00",
+      "listIds": [
+        68,
+        69
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Firenze",
+        "ANNO": "5° anno",
+        "DATA_WEBINAR": "2025-10-16",
+        "FONTE": "Webinar"
+      }
+    },
     {
       "id": 5377,
       "emailBlacklisted": false,
@@ -260,17 +916,20 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-10-12T12:30:36.681+02:00",
-      "modifiedAt": "2025-10-12T12:30:45.368+02:00",
+      "modifiedAt": "2025-10-13T22:00:05.681+02:00",
       "listIds": [
         68,
-        69
+        69,
+        6,
+        2
       ],
       "listUnsubscribed": null,
       "attributes": {
         "ATENEO": "Roma “UniCamillus”",
         "ANNO": "laureato",
         "DATA_WEBINAR": "2025-10-16",
-        "FONTE": "Webinar"
+        "FONTE": "Webinar",
+        "ID_STUDENTE": "3227"
       }
     },
     {
@@ -892,7 +1551,8 @@
         70,
         6,
         7,
-        2
+        2,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -1096,7 +1756,8 @@
       "listIds": [
         6,
         7,
-        2
+        2,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -2699,19 +3360,25 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-10-06T19:13:27.705+02:00",
-      "modifiedAt": "2025-10-11T16:58:59.244+02:00",
+      "modifiedAt": "2025-10-13T11:00:09.913+02:00",
       "listIds": [
         66,
         70,
         68,
-        69
+        69,
+        6,
+        7,
+        2
       ],
       "listUnsubscribed": null,
       "attributes": {
         "ATENEO": "Perugia, sedi di Perugia e Terni",
         "FONTE": "Sito",
-        "ANNO": "5° anno",
-        "DATA_WEBINAR": "2025-10-16"
+        "ANNO": "Sono al quinto anno",
+        "DATA_WEBINAR": "2025-10-16",
+        "ID_STUDENTE": "3219",
+        "ANNO_OBIETTIVO_TEST": 2027,
+        "DATA_DI_NASCITA": "2002-03-12"
       }
     },
     {
@@ -2801,7 +3468,8 @@
         2,
         70,
         6,
-        7
+        7,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -3461,8 +4129,10 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-10-04T03:10:04.717+02:00",
-      "modifiedAt": "2025-10-04T03:10:04.717+02:00",
-      "listIds": [],
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
+      "listIds": [
+        44
+      ],
       "listUnsubscribed": null,
       "attributes": {
         "NOME_CORSO_CARRELLO": "Corso Full SSM 2026 (in Promo col 20% di sconto)"
@@ -3597,14 +4267,15 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-10-03T17:28:26.009+02:00",
-      "modifiedAt": "2025-10-12T13:00:03.558+02:00",
+      "modifiedAt": "2025-10-13T15:21:14.067+02:00",
       "listIds": [
         66,
         70,
         6,
         7,
         2,
-        22
+        22,
+        8
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -3618,7 +4289,9 @@
         "CITY": "ragalna",
         "CIVICO": "27",
         "CODICE_FISCALE": "SNTMTN96H69C351H",
-        "INDIRIZZO": "vico dell'olmo"
+        "INDIRIZZO": "vico dell'olmo",
+        "CORSO_ACQUISTATO": "CORSO ONE MORE TIMESSM 2026",
+        "OBIETTIVO_TEST": "SSM 2026"
       }
     },
     {
@@ -3730,7 +4403,8 @@
       "listIds": [
         6,
         7,
-        2
+        2,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -3843,11 +4517,12 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-10-03T11:00:03.637+02:00",
-      "modifiedAt": "2025-10-10T17:28:49.219+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         7,
-        2
+        2,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -6271,13 +6946,14 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-09-25T10:46:55.938+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.162+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         66,
         70,
         6,
         7,
-        2
+        2,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -6702,7 +7378,8 @@
         2,
         6,
         7,
-        70
+        70,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -6782,7 +7459,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-09-22T18:12:36.210+02:00",
-      "modifiedAt": "2025-10-03T21:04:27.917+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         66,
         6,
@@ -6790,7 +7467,8 @@
         2,
         70,
         26,
-        22
+        22,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -6810,11 +7488,12 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-09-22T18:00:03.332+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.036+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         7,
-        2
+        2,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -7658,7 +8337,8 @@
         6,
         7,
         2,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -7753,7 +8433,8 @@
       "modifiedAt": "2025-09-23T19:03:09.612+02:00",
       "listIds": [
         66,
-        70
+        70,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -7951,7 +8632,8 @@
         6,
         2,
         7,
-        70
+        70,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -8368,7 +9050,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-09-16T11:41:33.911+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.236+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         62,
         6,
@@ -8378,7 +9060,8 @@
         22,
         78,
         80,
-        82
+        82,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -9731,7 +10414,8 @@
       "listIds": [
         58,
         2,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -10467,7 +11151,8 @@
         2,
         6,
         7,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -10516,7 +11201,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-09-10T16:00:02.899+02:00",
-      "modifiedAt": "2025-10-06T18:37:17.936+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         7,
@@ -10524,7 +11209,8 @@
         67,
         22,
         63,
-        69
+        69,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -11348,7 +12034,8 @@
         6,
         7,
         2,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -12148,7 +12835,8 @@
         2,
         22,
         67,
-        70
+        70,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -12234,7 +12922,8 @@
         2,
         69,
         78,
-        81
+        81,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -12318,7 +13007,8 @@
         69,
         78,
         80,
-        82
+        82,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -13075,14 +13765,15 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-09-04T18:17:44.920+02:00",
-      "modifiedAt": "2025-10-10T03:10:05.738+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         57,
         2,
         6,
         7,
         69,
-        63
+        63,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -13718,7 +14409,8 @@
         6,
         2,
         57,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -13945,20 +14637,23 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-09-03T12:00:04.273+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.098+02:00",
+      "modifiedAt": "2025-10-13T12:40:26.274+02:00",
       "listIds": [
         6,
         2,
         7,
-        67
+        67,
+        68,
+        69
       ],
       "listUnsubscribed": null,
       "attributes": {
         "ID_STUDENTE": "2775",
-        "ANNO": "Sono al sesto anno",
+        "ANNO": "6° anno",
         "ANNO_OBIETTIVO_TEST": 2026,
         "ATENEO": "Torino",
-        "DATA_DI_NASCITA": "2000-08-24"
+        "DATA_DI_NASCITA": "2000-08-24",
+        "DATA_WEBINAR": "2025-10-16"
       }
     },
     {
@@ -14213,7 +14908,8 @@
       "listIds": [
         58,
         2,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -14499,7 +15195,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-09-02T14:11:54.133+02:00",
-      "modifiedAt": "2025-10-11T07:48:39.561+02:00",
+      "modifiedAt": "2025-10-13T19:00:04.081+02:00",
       "listIds": [
         58,
         2,
@@ -14511,16 +15207,22 @@
         70,
         78,
         81,
-        68
+        68,
+        66,
+        6,
+        7
       ],
       "listUnsubscribed": null,
       "attributes": {
         "ATENEO": "Firenze",
-        "ANNO": "6° anno",
+        "ANNO": "Sono al sesto anno",
         "DATA_WEBINAR": "2025-10-16",
         "FONTE": "FB Ads",
         "DATA_WEBINAR_BIS": "2025-09-25",
-        "CON_TRATTATIVA": "Sì"
+        "CON_TRATTATIVA": "Sì",
+        "ID_STUDENTE": "3223",
+        "ANNO_OBIETTIVO_TEST": 2026,
+        "DATA_DI_NASCITA": "2000-02-21"
       }
     },
     {
@@ -15331,7 +16033,8 @@
       "listIds": [
         58,
         2,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -15807,7 +16510,8 @@
         22,
         2,
         6,
-        7
+        7,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -15968,7 +16672,8 @@
         58,
         2,
         22,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -15987,7 +16692,8 @@
         58,
         2,
         62,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -16370,7 +17076,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-08-30T12:14:13.203+02:00",
-      "modifiedAt": "2025-10-06T13:00:02.667+02:00",
+      "modifiedAt": "2025-10-13T08:29:04.110+02:00",
       "listIds": [
         58,
         6,
@@ -16382,13 +17088,14 @@
         78,
         80,
         82,
-        22
+        22,
+        68
       ],
       "listUnsubscribed": null,
       "attributes": {
         "ATENEO": "Messina",
         "ANNO": "6° anno",
-        "DATA_WEBINAR": "2025-09-11",
+        "DATA_WEBINAR": "2025-10-16",
         "ID_STUDENTE": "2778",
         "ANNO_OBIETTIVO_TEST": 2026,
         "DATA_DI_NASCITA": "2001-02-16",
@@ -16538,7 +17245,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-08-30T08:39:35.869+02:00",
-      "modifiedAt": "2025-10-07T01:00:02.658+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         58,
         2,
@@ -16553,7 +17260,8 @@
         80,
         82,
         63,
-        68
+        68,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -17467,7 +18175,8 @@
       "listIds": [
         58,
         2,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -17485,7 +18194,8 @@
       "listIds": [
         58,
         2,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -17610,7 +18320,8 @@
       "listIds": [
         58,
         2,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -19304,7 +20015,8 @@
         6,
         2,
         7,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -19974,7 +20686,8 @@
         22,
         6,
         7,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -20111,6 +20824,116 @@
         "ANNO_OBIETTIVO_TEST": 2026,
         "ATENEO": "Università estere",
         "DATA_DI_NASCITA": "1993-05-26"
+      }
+    },
+    {
+      "id": 4432,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-08-27T12:40:28.910+02:00",
+      "modifiedAt": "2025-10-02T14:30:47.162+02:00",
+      "listIds": [
+        8,
+        22,
+        2,
+        6,
+        7,
+        71
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ANNO_OBIETTIVO_TEST": 2026,
+        "CORSO_ACQUISTATO": "CORSO FULL SSM 2026  (SE ENTRI È GRATIS)",
+        "OBIETTIVO_TEST": "SSM 2026",
+        "ID_STUDENTE": "2744",
+        "ANNO": "Sono al sesto anno",
+        "ATENEO": "Brescia",
+        "DATA_DI_NASCITA": "2000-11-15",
+        "CAP": "25036",
+        "CITY": "PALAZZOLO SULL'OGLIO",
+        "CIVICO": "33",
+        "CODICE_FISCALE": "MDOLRD00S15B157A",
+        "INDIRIZZO": "VIA LEVADELLO",
+        "AMBASSADOR": "#145 - ALBERTO ORONTI - albi.oronti@tiscali.it",
+        "FONTE": "AMBASSADOR",
+        "RAPPORTO_COL_CLIENTE": [
+          "Buono"
+        ]
+      }
+    },
+    {
+      "id": 5193,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-03T17:02:50.700+02:00",
+      "modifiedAt": "2025-10-06T15:06:33.958+02:00",
+      "listIds": [
+        6,
+        2,
+        22,
+        7,
+        8
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Campania “L. Vanvitelli”, sedi di Caserta e Napoli",
+        "REGIONE": "Campania",
+        "PREZZO_CARRELLO": 380,
+        "OBIETTIVO_TEST": "SSM 2026",
+        "ID_STUDENTE": "3085",
+        "FONTE": "Iscritti",
+        "CAP": "81055",
+        "CITY": "Santa maria capua vetere",
+        "CIVICO": "17",
+        "CODICE_FISCALE": "SCHVRF99C07A512G",
+        "INDIRIZZO": "Via giacomo leopardi",
+        "ANNO": "Altro",
+        "ANNO_OBIETTIVO_TEST": 2026,
+        "DATA_DI_NASCITA": "1999-03-07",
+        "CORSO_ACQUISTATO": "CORSO ONE MORE TIMESSM 2026",
+        "RAPPORTO_COL_CLIENTE": [
+          "Buono"
+        ]
+      }
+    },
+    {
+      "id": 4430,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-08-27T11:40:30.493+02:00",
+      "modifiedAt": "2025-10-02T14:30:47.098+02:00",
+      "listIds": [
+        55,
+        6,
+        7,
+        2,
+        58,
+        57,
+        22,
+        8,
+        69
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Palermo",
+        "ANNO": "6° anno",
+        "DATA_WEBINAR_BIS": "2025-08-27",
+        "ID_STUDENTE": "2688",
+        "ANNO_OBIETTIVO_TEST": 2026,
+        "DATA_DI_NASCITA": "1996-07-10",
+        "DATA_WEBINAR": "2025-09-11",
+        "DATA_WEBINAR_TRIS": "2025-09-13",
+        "CORSO_ACQUISTATO": "CORSO BIENNALE SSM 2027",
+        "OBIETTIVO_TEST": "SSM 2027",
+        "CAP": "90133",
+        "CITY": "PALERMO",
+        "CIVICO": "35",
+        "CODICE_FISCALE": "CRRGLI96L50L719F",
+        "INDIRIZZO": "VIA MAGIONE",
+        "FONTE": "WEBINAR",
+        "RAPPORTO_COL_CLIENTE": [
+          "Buono"
+        ]
       }
     },
     {
@@ -20638,7 +21461,8 @@
         58,
         22,
         8,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -20875,116 +21699,6 @@
         "DATA_WEBINAR_BIS": "2025-08-27",
         "ANNO_OBIETTIVO_TEST": 2026,
         "DATA_DI_NASCITA": "2000-09-11"
-      }
-    },
-    {
-      "id": 5193,
-      "emailBlacklisted": false,
-      "smsBlacklisted": false,
-      "createdAt": "2025-10-03T17:02:50.700+02:00",
-      "modifiedAt": "2025-10-06T15:06:33.958+02:00",
-      "listIds": [
-        6,
-        2,
-        22,
-        7,
-        8
-      ],
-      "listUnsubscribed": null,
-      "attributes": {
-        "ATENEO": "Campania “L. Vanvitelli”, sedi di Caserta e Napoli",
-        "REGIONE": "Campania",
-        "PREZZO_CARRELLO": 380,
-        "OBIETTIVO_TEST": "SSM 2026",
-        "ID_STUDENTE": "3085",
-        "FONTE": "Iscritti",
-        "CAP": "81055",
-        "CITY": "Santa maria capua vetere",
-        "CIVICO": "17",
-        "CODICE_FISCALE": "SCHVRF99C07A512G",
-        "INDIRIZZO": "Via giacomo leopardi",
-        "ANNO": "Altro",
-        "ANNO_OBIETTIVO_TEST": 2026,
-        "DATA_DI_NASCITA": "1999-03-07",
-        "CORSO_ACQUISTATO": "CORSO ONE MORE TIMESSM 2026",
-        "RAPPORTO_COL_CLIENTE": [
-          "Buono"
-        ]
-      }
-    },
-    {
-      "id": 4432,
-      "emailBlacklisted": false,
-      "smsBlacklisted": false,
-      "createdAt": "2025-08-27T12:40:28.910+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.162+02:00",
-      "listIds": [
-        8,
-        22,
-        2,
-        6,
-        7,
-        71
-      ],
-      "listUnsubscribed": null,
-      "attributes": {
-        "ANNO_OBIETTIVO_TEST": 2026,
-        "CORSO_ACQUISTATO": "CORSO FULL SSM 2026  (SE ENTRI È GRATIS)",
-        "OBIETTIVO_TEST": "SSM 2026",
-        "ID_STUDENTE": "2744",
-        "ANNO": "Sono al sesto anno",
-        "ATENEO": "Brescia",
-        "DATA_DI_NASCITA": "2000-11-15",
-        "CAP": "25036",
-        "CITY": "PALAZZOLO SULL'OGLIO",
-        "CIVICO": "33",
-        "CODICE_FISCALE": "MDOLRD00S15B157A",
-        "INDIRIZZO": "VIA LEVADELLO",
-        "AMBASSADOR": "#145 - ALBERTO ORONTI - albi.oronti@tiscali.it",
-        "FONTE": "AMBASSADOR",
-        "RAPPORTO_COL_CLIENTE": [
-          "Buono"
-        ]
-      }
-    },
-    {
-      "id": 4430,
-      "emailBlacklisted": false,
-      "smsBlacklisted": false,
-      "createdAt": "2025-08-27T11:40:30.493+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.098+02:00",
-      "listIds": [
-        55,
-        6,
-        7,
-        2,
-        58,
-        57,
-        22,
-        8,
-        69
-      ],
-      "listUnsubscribed": null,
-      "attributes": {
-        "ATENEO": "Palermo",
-        "ANNO": "6° anno",
-        "DATA_WEBINAR_BIS": "2025-08-27",
-        "ID_STUDENTE": "2688",
-        "ANNO_OBIETTIVO_TEST": 2026,
-        "DATA_DI_NASCITA": "1996-07-10",
-        "DATA_WEBINAR": "2025-09-11",
-        "DATA_WEBINAR_TRIS": "2025-09-13",
-        "CORSO_ACQUISTATO": "CORSO BIENNALE SSM 2027",
-        "OBIETTIVO_TEST": "SSM 2027",
-        "CAP": "90133",
-        "CITY": "PALERMO",
-        "CIVICO": "35",
-        "CODICE_FISCALE": "CRRGLI96L50L719F",
-        "INDIRIZZO": "VIA MAGIONE",
-        "FONTE": "WEBINAR",
-        "RAPPORTO_COL_CLIENTE": [
-          "Buono"
-        ]
       }
     },
     {
@@ -22264,12 +22978,13 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-08-17T15:00:03.136+02:00",
-      "modifiedAt": "2025-10-06T18:37:17.936+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         7,
         2,
-        22
+        22,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -23676,12 +24391,13 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-08-11T20:00:03.010+02:00",
-      "modifiedAt": "2025-10-11T17:00:02.797+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         7,
         2,
-        67
+        67,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -24031,7 +24747,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-08-10T21:05:46.536+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.162+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         55,
         22,
@@ -24042,7 +24758,8 @@
         69,
         78,
         80,
-        82
+        82,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -24155,7 +24872,8 @@
         2,
         22,
         7,
-        8
+        8,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -24445,7 +25163,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-08-09T15:00:03.751+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.098+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         7,
@@ -24453,7 +25171,8 @@
         22,
         58,
         8,
-        69
+        69,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -24739,7 +25458,8 @@
         2,
         22,
         7,
-        8
+        8,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -24960,7 +25680,8 @@
         62,
         68,
         69,
-        70
+        70,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -25256,7 +25977,8 @@
       "listIds": [
         6,
         7,
-        2
+        2,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -25398,7 +26120,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-08-05T16:42:13.635+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.098+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         54,
         6,
@@ -25408,7 +26130,8 @@
         58,
         22,
         57,
-        69
+        69,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -26523,7 +27246,8 @@
       "listIds": [
         6,
         7,
-        2
+        2,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -26583,7 +27307,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-08-01T18:00:04.032+02:00",
-      "modifiedAt": "2025-10-04T11:10:10.366+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         7,
@@ -26593,7 +27317,8 @@
         78,
         80,
         82,
-        22
+        22,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -27507,12 +28232,14 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-07-30T18:00:04.363+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.098+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         7,
         2,
-        67
+        67,
+        86,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -29051,12 +29778,13 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-07-26T20:00:02.789+02:00",
-      "modifiedAt": "2025-10-02T14:30:46.853+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         7,
         2,
-        67
+        67,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -29259,12 +29987,14 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-07-25T15:00:02.793+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.236+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         7,
         2,
-        67
+        67,
+        86,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -30104,11 +30834,12 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-07-23T15:00:03.962+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.236+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         2,
-        22
+        22,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -30585,14 +31316,15 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-07-22T18:45:23.174+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.098+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         46,
         2,
         6,
         7,
         67,
-        69
+        69,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -30657,7 +31389,8 @@
         67,
         69,
         63,
-        68
+        68,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -30988,13 +31721,14 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-07-22T10:00:04.824+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.098+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         7,
         2,
         22,
-        67
+        67,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -31055,7 +31789,8 @@
         6,
         2,
         22,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -31106,7 +31841,8 @@
       "listIds": [
         6,
         7,
-        2
+        2,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -31279,7 +32015,8 @@
         6,
         7,
         2,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -31301,7 +32038,8 @@
       "listIds": [
         6,
         7,
-        2
+        2,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -31890,12 +32628,13 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-07-21T16:00:10.467+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.036+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         2,
         7,
-        67
+        67,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -31978,7 +32717,8 @@
         2,
         6,
         7,
-        64
+        64,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -32114,7 +32854,8 @@
       "listIds": [
         6,
         7,
-        2
+        2,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -32290,7 +33031,8 @@
         2,
         22,
         8,
-        64
+        64,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -32565,7 +33307,8 @@
       "listIds": [
         6,
         7,
-        2
+        2,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -32608,7 +33351,8 @@
         6,
         7,
         2,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -32624,7 +33368,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-07-21T13:00:11.958+02:00",
-      "modifiedAt": "2025-10-03T21:04:27.917+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         7,
@@ -32637,7 +33381,8 @@
         69,
         70,
         78,
-        80
+        80,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -32894,7 +33639,8 @@
         6,
         7,
         2,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -32911,12 +33657,13 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-07-21T11:00:08.799+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.098+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         7,
         2,
-        67
+        67,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -32940,7 +33687,8 @@
         2,
         22,
         8,
-        64
+        64,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -33133,7 +33881,8 @@
       "listIds": [
         6,
         7,
-        2
+        2,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -33236,7 +33985,8 @@
         6,
         7,
         2,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -33302,10 +34052,11 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-07-20T17:00:13.751+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.098+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
-        2
+        2,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -33443,7 +34194,8 @@
         6,
         7,
         67,
-        70
+        70,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -33489,7 +34241,8 @@
         6,
         7,
         2,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -33872,7 +34625,8 @@
         22,
         7,
         8,
-        64
+        64,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -34694,7 +35448,8 @@
       "listIds": [
         6,
         7,
-        2
+        2,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -34788,7 +35543,8 @@
         8,
         55,
         64,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -35243,7 +35999,8 @@
       "listIds": [
         6,
         7,
-        2
+        2,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -35342,13 +36099,14 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-07-18T18:00:12.635+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.236+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         2,
         22,
         8,
-        64
+        64,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -35522,12 +36280,13 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-07-18T17:00:09.557+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.036+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         2,
         7,
-        22
+        22,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -35544,12 +36303,14 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-07-18T17:00:06.602+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.098+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         7,
         2,
-        22
+        22,
+        86,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -35936,7 +36697,8 @@
       "listIds": [
         6,
         2,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -36222,7 +36984,8 @@
         7,
         2,
         22,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -36617,7 +37380,8 @@
         2,
         7,
         67,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -37058,7 +37822,8 @@
         6,
         7,
         2,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -37141,7 +37906,8 @@
       "listIds": [
         6,
         7,
-        2
+        2,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -37333,7 +38099,8 @@
         6,
         7,
         67,
-        70
+        70,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -39225,7 +39992,8 @@
       "listIds": [
         6,
         7,
-        2
+        2,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -39437,7 +40205,8 @@
         6,
         7,
         2,
-        22
+        22,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -40163,7 +40932,8 @@
         7,
         2,
         67,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -40641,7 +41411,8 @@
         50,
         6,
         2,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -41071,10 +41842,11 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-07-14T13:00:04.706+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.098+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
-        2
+        2,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -41281,7 +42053,8 @@
       "listIds": [
         6,
         7,
-        2
+        2,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -41566,7 +42339,8 @@
       "listIds": [
         6,
         7,
-        2
+        2,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -41718,7 +42492,8 @@
         6,
         7,
         2,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -41987,7 +42762,8 @@
         6,
         7,
         2,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -42275,7 +43051,8 @@
         2,
         55,
         67,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -42297,7 +43074,8 @@
       "listIds": [
         6,
         7,
-        2
+        2,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -42721,12 +43499,13 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-07-10T16:00:05.809+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.036+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         7,
         2,
-        67
+        67,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -42874,10 +43653,11 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-07-10T13:00:06.435+02:00",
-      "modifiedAt": "2025-10-02T14:30:46.853+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
-        2
+        2,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -43121,12 +43901,13 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-07-10T09:00:02.464+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.098+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         7,
         2,
-        67
+        67,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -43196,7 +43977,8 @@
         6,
         7,
         2,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -43431,7 +44213,8 @@
         51,
         65,
         67,
-        70
+        70,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -43491,7 +44274,8 @@
         7,
         51,
         67,
-        70
+        70,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -44105,7 +44889,8 @@
         7,
         2,
         22,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -44498,12 +45283,13 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-07-07T00:00:02.529+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.236+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         2,
         7,
-        67
+        67,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -45103,7 +45889,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-07-05T19:34:16.775+02:00",
-      "modifiedAt": "2025-10-03T21:04:27.917+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         33,
         2,
@@ -45112,7 +45898,8 @@
         51,
         65,
         67,
-        70
+        70,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -45801,7 +46588,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-07-04T20:00:02.786+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.236+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         7,
@@ -45812,7 +46599,8 @@
         55,
         64,
         69,
-        71
+        71,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -46137,7 +46925,8 @@
         64,
         58,
         69,
-        71
+        71,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -47730,7 +48519,8 @@
         7,
         68,
         62,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -48999,7 +49789,8 @@
         64,
         22,
         67,
-        8
+        8,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -49475,7 +50266,8 @@
         47,
         2,
         67,
-        8
+        8,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -51691,12 +52483,13 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-07-03T12:00:05.533+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.098+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         7,
         2,
-        49
+        49,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -52055,7 +52848,8 @@
         7,
         2,
         49,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -52277,7 +53071,8 @@
         7,
         51,
         52,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -52611,7 +53406,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-07-02T18:12:14.002+02:00",
-      "modifiedAt": "2025-10-03T21:04:27.829+02:00",
+      "modifiedAt": "2025-10-13T11:49:17.452+02:00",
       "listIds": [
         33,
         2,
@@ -52619,12 +53414,16 @@
         51,
         65,
         67,
-        70
+        70,
+        66,
+        22,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
         "FONTE": "FB Ads",
-        "CON_TRATTATIVA": "Sì"
+        "CON_TRATTATIVA": "Sì",
+        "ATENEO": "Bari “Aldo Moro”, sedi di Bari e Taranto"
       }
     },
     {
@@ -53797,7 +54596,8 @@
         7,
         2,
         49,
-        51
+        51,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -54119,7 +54919,8 @@
         8,
         48,
         47,
-        64
+        64,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -55101,7 +55902,8 @@
         8,
         64,
         55,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -55199,7 +56001,8 @@
         7,
         64,
         65,
-        70
+        70,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -55474,7 +56277,8 @@
         48,
         7,
         64,
-        71
+        71,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -55785,7 +56589,8 @@
         22,
         48,
         8,
-        64
+        64,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -56138,7 +56943,8 @@
         51,
         52,
         8,
-        64
+        64,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -56399,7 +57205,8 @@
         51,
         65,
         67,
-        70
+        70,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -56981,7 +57788,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-06-30T13:02:41.482+02:00",
-      "modifiedAt": "2025-10-03T21:04:27.829+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         2,
         33,
@@ -56990,7 +57797,8 @@
         6,
         65,
         67,
-        70
+        70,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -57054,7 +57862,8 @@
         22,
         65,
         67,
-        70
+        70,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -57271,7 +58080,8 @@
         51,
         65,
         67,
-        70
+        70,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -57373,7 +58183,8 @@
         51,
         65,
         67,
-        70
+        70,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -57394,7 +58205,8 @@
         51,
         65,
         67,
-        70
+        70,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -58440,7 +59252,8 @@
         65,
         69,
         70,
-        71
+        71,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -60823,7 +61636,8 @@
         62,
         69,
         68,
-        9
+        9,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -61047,7 +61861,8 @@
         8,
         48,
         64,
-        71
+        71,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -61739,7 +62554,8 @@
         8,
         48,
         64,
-        71
+        71,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -62157,14 +62973,15 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-06-25T13:00:05.646+02:00",
-      "modifiedAt": "2025-10-13T03:10:06.788+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         7,
         2,
         49,
         51,
-        67
+        67,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -62477,7 +63294,8 @@
         7,
         65,
         67,
-        70
+        70,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -62683,7 +63501,8 @@
         6,
         2,
         7,
-        49
+        49,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -62762,7 +63581,8 @@
         6,
         7,
         2,
-        49
+        49,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -63250,7 +64070,8 @@
         52,
         65,
         67,
-        70
+        70,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -63526,7 +64347,8 @@
         2,
         48,
         8,
-        64
+        64,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -63562,7 +64384,8 @@
         51,
         65,
         67,
-        70
+        70,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -63657,13 +64480,14 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-06-23T12:00:06.449+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.098+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         2,
         49,
         7,
-        67
+        67,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -63756,7 +64580,8 @@
         6,
         7,
         2,
-        49
+        49,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -64148,14 +64973,15 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-06-22T17:00:08.898+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.162+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         7,
         2,
         22,
         49,
-        51
+        51,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -64213,7 +65039,8 @@
         8,
         48,
         47,
-        64
+        64,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -64990,7 +65817,8 @@
         6,
         7,
         2,
-        49
+        49,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -66160,7 +66988,8 @@
         8,
         48,
         64,
-        71
+        71,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -67139,7 +67968,8 @@
       "listIds": [
         6,
         2,
-        49
+        49,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -67931,7 +68761,8 @@
         67,
         69,
         78,
-        80
+        80,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -68948,7 +69779,8 @@
         7,
         2,
         45,
-        49
+        49,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -69039,7 +69871,8 @@
         7,
         2,
         45,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -69248,7 +70081,8 @@
         2,
         45,
         49,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -69401,7 +70235,8 @@
         51,
         65,
         67,
-        70
+        70,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -69957,7 +70792,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-06-14T09:00:02.917+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.098+02:00",
+      "modifiedAt": "2025-10-13T13:00:02.662+02:00",
       "listIds": [
         6,
         7,
@@ -69973,8 +70808,8 @@
         "ATENEO": "Sassari",
         "CITY": "Sassari",
         "DATA_DI_NASCITA": "2000-12-30",
-        "PUNTEGGIO_SIMULAZIONE": 30.5,
-        "ULTIMA_SIMULAZIONE": "2025-08-18"
+        "PUNTEGGIO_SIMULAZIONE": 44.75,
+        "ULTIMA_SIMULAZIONE": "2025-10-13"
       }
     },
     {
@@ -70124,7 +70959,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-06-13T14:00:02.985+02:00",
-      "modifiedAt": "2025-10-02T14:30:47.098+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         7,
@@ -70132,7 +70967,8 @@
         45,
         49,
         65,
-        67
+        67,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -70515,7 +71351,8 @@
         2,
         45,
         49,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -71125,7 +71962,8 @@
         7,
         2,
         45,
-        49
+        49,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -71417,7 +72255,8 @@
         2,
         45,
         51,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -71508,7 +72347,8 @@
         69,
         68,
         6,
-        7
+        7,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -72631,14 +73471,15 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-06-06T16:43:05.587+02:00",
-      "modifiedAt": "2025-10-03T21:04:27.829+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         2,
         22,
         45,
         51,
         6,
-        7
+        7,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -73003,11 +73844,12 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-06-06T16:04:27.833+02:00",
-      "modifiedAt": "2025-10-03T21:04:27.829+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         2,
         7,
-        45
+        45,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -73578,7 +74420,8 @@
         7,
         6,
         45,
-        49
+        49,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -74305,7 +75148,8 @@
         7,
         2,
         45,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -75157,7 +76001,8 @@
         2,
         45,
         67,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -75318,7 +76163,8 @@
         45,
         51,
         67,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -75575,7 +76421,8 @@
         67,
         69,
         78,
-        81
+        81,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -76267,7 +77114,8 @@
         39,
         45,
         49,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -76460,7 +77308,8 @@
         6,
         7,
         2,
-        45
+        45,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -76521,7 +77370,7 @@
     },
     {
       "id": 1868,
-      "emailBlacklisted": false,
+      "emailBlacklisted": true,
       "smsBlacklisted": false,
       "createdAt": "2025-06-03T10:32:08.181+02:00",
       "modifiedAt": "2025-10-02T14:30:47.036+02:00",
@@ -77376,7 +78225,8 @@
         67,
         69,
         78,
-        81
+        81,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -77420,7 +78270,8 @@
         2,
         39,
         45,
-        51
+        51,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -77563,7 +78414,8 @@
         45,
         69,
         78,
-        80
+        80,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -77733,7 +78585,8 @@
         45,
         50,
         67,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -78215,7 +79068,8 @@
         67,
         69,
         78,
-        80
+        80,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -78240,7 +79094,8 @@
         7,
         2,
         45,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -78435,7 +79290,8 @@
         67,
         69,
         78,
-        81
+        81,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -78594,7 +79450,8 @@
         55,
         22,
         58,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -78720,7 +79577,7 @@
     },
     {
       "id": 1779,
-      "emailBlacklisted": false,
+      "emailBlacklisted": true,
       "smsBlacklisted": false,
       "createdAt": "2025-05-31T17:19:45.480+02:00",
       "modifiedAt": "2025-10-02T14:30:47.236+02:00",
@@ -78798,7 +79655,8 @@
         48,
         51,
         67,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -79201,7 +80059,8 @@
         51,
         69,
         78,
-        81
+        81,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -79273,7 +80132,8 @@
         47,
         51,
         64,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -80119,7 +80979,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-05-28T15:33:09.168+02:00",
-      "modifiedAt": "2025-10-03T21:04:27.829+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         34,
         6,
@@ -80135,7 +80995,8 @@
         57,
         62,
         68,
-        69
+        69,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -80355,7 +81216,8 @@
         67,
         69,
         78,
-        81
+        81,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -81484,7 +82346,8 @@
         67,
         69,
         78,
-        81
+        81,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -81692,7 +82555,8 @@
         67,
         69,
         78,
-        81
+        81,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -81922,7 +82786,8 @@
         45,
         49,
         67,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -82279,7 +83144,8 @@
         45,
         49,
         67,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -83212,7 +84078,8 @@
         45,
         49,
         67,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -85457,7 +86324,8 @@
         67,
         69,
         78,
-        80
+        80,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -86322,7 +87190,8 @@
         39,
         45,
         49,
-        51
+        51,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -86494,12 +87363,13 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-05-22T11:00:03.046+02:00",
-      "modifiedAt": "2025-10-03T03:10:05.063+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         2,
         45,
         49,
-        22
+        22,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -88334,7 +89204,8 @@
         45,
         49,
         67,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -88978,7 +89849,8 @@
         45,
         49,
         67,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -89252,7 +90124,8 @@
         45,
         51,
         67,
-        70
+        70,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -89681,7 +90554,8 @@
         51,
         7,
         67,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -89898,7 +90772,8 @@
         61,
         65,
         33,
-        70
+        70,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -90053,7 +90928,8 @@
         45,
         49,
         67,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -90267,24 +91143,27 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-05-19T00:00:03.084+02:00",
-      "modifiedAt": "2025-10-03T21:04:27.829+02:00",
+      "modifiedAt": "2025-10-13T13:33:55.741+02:00",
       "listIds": [
         6,
         7,
         2,
         45,
         49,
-        22
+        22,
+        68,
+        69
       ],
       "listUnsubscribed": null,
       "attributes": {
         "ID_STUDENTE": "801",
-        "ANNO": "Altro",
-        "ATENEO": "Firenze",
+        "ANNO": "laureato",
+        "ATENEO": "Non sono studente universitario",
         "CITY": "Firenze",
         "DATA_DI_NASCITA": "1996-11-07",
         "REGIONE": "Toscana",
-        "CON_TRATTATIVA": "Sì"
+        "CON_TRATTATIVA": "Sì",
+        "DATA_WEBINAR": "2025-10-16"
       }
     },
     {
@@ -90931,7 +91810,8 @@
         45,
         49,
         67,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -90971,7 +91851,8 @@
         6,
         2,
         45,
-        49
+        49,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -91405,7 +92286,8 @@
         2,
         45,
         67,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -92085,7 +92967,8 @@
         2,
         45,
         67,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -92718,7 +93601,8 @@
         45,
         51,
         67,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -92980,7 +93864,8 @@
         45,
         49,
         67,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -93533,7 +94418,8 @@
         45,
         49,
         67,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -94362,7 +95248,8 @@
         38,
         51,
         67,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -94623,7 +95510,8 @@
         62,
         6,
         7,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -95315,7 +96203,8 @@
         2,
         39,
         45,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -95919,7 +96808,8 @@
         7,
         51,
         67,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -96148,7 +97038,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-05-13T23:06:52.132+02:00",
-      "modifiedAt": "2025-10-04T19:07:47.182+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         34,
         6,
@@ -96161,7 +97051,8 @@
         69,
         78,
         80,
-        22
+        22,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -96335,7 +97226,8 @@
         7,
         2,
         45,
-        49
+        49,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -96673,7 +97565,8 @@
         50,
         46,
         67,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -96734,7 +97627,8 @@
         67,
         69,
         78,
-        80
+        80,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -96795,7 +97689,8 @@
         7,
         2,
         45,
-        49
+        49,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -97214,7 +98109,8 @@
         6,
         2,
         45,
-        49
+        49,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -97666,7 +98562,8 @@
         2,
         45,
         49,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -98351,7 +99248,8 @@
         80,
         63,
         7,
-        22
+        22,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -98383,7 +99281,8 @@
         50,
         51,
         67,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -98712,7 +99611,8 @@
         2,
         45,
         49,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -98735,7 +99635,8 @@
         6,
         2,
         45,
-        49
+        49,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -99848,7 +100749,8 @@
         6,
         7,
         2,
-        45
+        45,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -100290,7 +101192,8 @@
         69,
         62,
         63,
-        68
+        68,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -100422,7 +101325,8 @@
         39,
         45,
         49,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -100465,7 +101369,8 @@
         2,
         7,
         45,
-        51
+        51,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -100523,7 +101428,8 @@
         67,
         69,
         78,
-        80
+        80,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -101065,7 +101971,8 @@
         2,
         39,
         7,
-        45
+        45,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -101726,7 +102633,8 @@
         45,
         50,
         67,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -102213,7 +103121,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-04-11T18:00:02.609+02:00",
-      "modifiedAt": "2025-10-03T21:04:27.829+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         7,
@@ -102223,7 +103131,8 @@
         45,
         51,
         67,
-        69
+        69,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -103074,7 +103983,8 @@
         6,
         2,
         45,
-        49
+        49,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -103603,7 +104513,8 @@
         39,
         7,
         45,
-        49
+        49,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -103775,7 +104686,8 @@
         2,
         45,
         49,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -105185,14 +106097,15 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-04-02T18:00:04.496+02:00",
-      "modifiedAt": "2025-10-03T21:04:27.829+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         6,
         7,
         2,
         45,
         49,
-        67
+        67,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -105697,7 +106610,8 @@
         45,
         51,
         67,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -106128,7 +107042,8 @@
         2,
         45,
         49,
-        67
+        67,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -107639,7 +108554,8 @@
         45,
         51,
         67,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -107935,7 +108851,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-03-18T16:30:38.193+01:00",
-      "modifiedAt": "2025-10-03T21:04:27.829+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         25,
         2,
@@ -107946,7 +108862,8 @@
         45,
         51,
         67,
-        69
+        69,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -108994,7 +109911,8 @@
         67,
         69,
         78,
-        81
+        81,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -109042,7 +109960,8 @@
         67,
         69,
         78,
-        80
+        80,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -109754,7 +110673,8 @@
         46,
         69,
         68,
-        62
+        62,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -109874,7 +110794,8 @@
         7,
         45,
         49,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -110956,7 +111877,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-03-15T15:23:14.677+01:00",
-      "modifiedAt": "2025-10-03T21:04:27.829+02:00",
+      "modifiedAt": "2025-10-13T20:04:43.094+02:00",
       "listIds": [
         25,
         6,
@@ -110968,7 +111889,8 @@
         67,
         69,
         78,
-        80
+        80,
+        22
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -111062,7 +111984,8 @@
         67,
         69,
         78,
-        81
+        81,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -111951,7 +112874,8 @@
         45,
         49,
         67,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -112049,7 +112973,8 @@
         6,
         2,
         7,
-        45
+        45,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -113688,7 +114613,8 @@
         78,
         80,
         22,
-        68
+        68,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -113740,7 +114666,8 @@
         67,
         69,
         78,
-        81
+        81,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -114384,7 +115311,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-03-11T13:15:33.395+01:00",
-      "modifiedAt": "2025-10-11T03:10:05.248+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         25,
         2,
@@ -114397,7 +115324,8 @@
         69,
         78,
         80,
-        22
+        22,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -115845,7 +116773,8 @@
         45,
         58,
         57,
-        69
+        69,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -115987,7 +116916,8 @@
         39,
         7,
         45,
-        51
+        51,
+        86
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -116930,7 +117860,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-03-08T18:32:26.553+01:00",
-      "modifiedAt": "2025-10-04T10:55:58.875+02:00",
+      "modifiedAt": "2025-10-13T19:37:16.576+02:00",
       "listIds": [
         25,
         2,
@@ -116942,7 +117872,8 @@
         69,
         78,
         80,
-        22
+        22,
+        44
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -118190,52 +119121,96 @@
     }
   ],
   "funnel": {
-    "leadsACRM": 4947,
-    "iscrittiPiattaforma": 3036,
-    "profiloCompleto": 2627,
-    "corsisti": 766,
-    "paganti": 87
+    "leadsACRM": 4983,
+    "iscrittiPiattaforma": 3049,
+    "profiloCompleto": 2636,
+    "corsisti": 767,
+    "paganti": 88
   },
   "distribuzione_atenei": [
     {
-      "name": "Università estere",
-      "value": 137
+      "name": "Roma “La Sapienza”, sedi di Roma Policlinico Umberto I",
+      "value": 248
     },
     {
-      "name": "Ferrara",
-      "value": 128
+      "name": "Non specificato",
+      "value": 993
     },
     {
       "name": "Messina",
-      "value": 75
+      "value": 77
+    },
+    {
+      "name": "Catania",
+      "value": 107
+    },
+    {
+      "name": "Siena",
+      "value": 77
     },
     {
       "name": "Palermo",
-      "value": 189
+      "value": 190
+    },
+    {
+      "name": "Roma “Tor Vergata”",
+      "value": 65
+    },
+    {
+      "name": "Università estere",
+      "value": 138
+    },
+    {
+      "name": "Campania “L. Vanvitelli”, sedi di Caserta e Napoli",
+      "value": 95
+    },
+    {
+      "name": "Politecnica delle Marche, sede di Ancona",
+      "value": 39
+    },
+    {
+      "name": "Foggia",
+      "value": 43
+    },
+    {
+      "name": "Bari “Aldo Moro”, sedi di Bari e Taranto",
+      "value": 240
+    },
+    {
+      "name": "Non sono studente universitario",
+      "value": 13
+    },
+    {
+      "name": "Bologna, sedi di Bologna, Forlì, Ravenna",
+      "value": 174
+    },
+    {
+      "name": "Milano “Humanitas University”",
+      "value": 39
+    },
+    {
+      "name": "Roma “Campus Bio-Medico”",
+      "value": 72
+    },
+    {
+      "name": "Ferrara",
+      "value": 130
+    },
+    {
+      "name": "Milano “San Raffaele”",
+      "value": 60
+    },
+    {
+      "name": "Firenze",
+      "value": 101
     },
     {
       "name": "Pavia",
       "value": 41
     },
     {
-      "name": "Non sono studente universitario",
-      "value": 9
-    },
-    {
       "name": "Pisa",
       "value": 44
-    },
-    {
-      "name": "Non specificato",
-      "value": 987
-    },
-    {
-      "name": "Campania “L. Vanvitelli”, sedi di Caserta e Napoli",
-      "value": 94
-    },
-    {
-      "name": "Catania",
-      "value": 106
     },
     {
       "name": "Roma “UniCamillus”",
@@ -118254,10 +119229,6 @@
       "value": 93
     },
     {
-      "name": "Roma “La Sapienza”, sedi di Roma Policlinico Umberto I",
-      "value": 246
-    },
-    {
       "name": "Cagliari",
       "value": 79
     },
@@ -118274,20 +119245,8 @@
       "value": 42
     },
     {
-      "name": "Firenze",
-      "value": 101
-    },
-    {
       "name": "Parma",
       "value": 61
-    },
-    {
-      "name": "Roma “Campus Bio-Medico”",
-      "value": 71
-    },
-    {
-      "name": "Bari “Aldo Moro”, sedi di Bari e Taranto",
-      "value": 238
     },
     {
       "name": "Salerno",
@@ -118296,14 +119255,6 @@
     {
       "name": "Brescia",
       "value": 69
-    },
-    {
-      "name": "Foggia",
-      "value": 41
-    },
-    {
-      "name": "Bologna, sedi di Bologna, Forlì, Ravenna",
-      "value": 172
     },
     {
       "name": "Roma “Cattolica del Sacro Cuore”",
@@ -118320,22 +119271,6 @@
     {
       "name": "Torino",
       "value": 101
-    },
-    {
-      "name": "Milano “San Raffaele”",
-      "value": 59
-    },
-    {
-      "name": "Milano “Humanitas University”",
-      "value": 38
-    },
-    {
-      "name": "Roma “Tor Vergata”",
-      "value": 64
-    },
-    {
-      "name": "Siena",
-      "value": 76
     },
     {
       "name": "Insubria, sede di Varese",
@@ -118376,10 +119311,6 @@
     {
       "name": "L’Aquila",
       "value": 43
-    },
-    {
-      "name": "Politecnica delle Marche, sede di Ancona",
-      "value": 34
     },
     {
       "name": "Piemonte Orientale, sede di Novara e Alessandria",
@@ -118441,31 +119372,31 @@
     },
     {
       "name": "3",
-      "value": 64
+      "value": 65
     },
     {
       "name": "4",
-      "value": 319
+      "value": 327
     },
     {
       "name": "5",
-      "value": 746
+      "value": 749
     },
     {
       "name": "6",
-      "value": 1091
-    },
-    {
-      "name": "Laureato",
-      "value": 566
-    },
-    {
-      "name": "ND",
-      "value": 993
+      "value": 1099
     },
     {
       "name": "Altro",
-      "value": 960
+      "value": 961
+    },
+    {
+      "name": "ND",
+      "value": 1001
+    },
+    {
+      "name": "Laureato",
+      "value": 573
     },
     {
       "name": "Fuori corso",
@@ -118475,27 +119406,27 @@
   "distribuzione_fonte": [
     {
       "name": "Iscritti",
-      "value": 182
-    },
-    {
-      "name": "Webinar",
-      "value": 182
+      "value": 189
     },
     {
       "name": "FB Ads",
-      "value": 421
+      "value": 423
+    },
+    {
+      "name": "Webinar",
+      "value": 204
     },
     {
       "name": "Sito",
-      "value": 86
+      "value": 89
+    },
+    {
+      "name": "Sconosciuta/Non dichiarata",
+      "value": 3709
     },
     {
       "name": "Conversation",
       "value": 19
-    },
-    {
-      "name": "Sconosciuta/Non dichiarata",
-      "value": 3707
     },
     {
       "name": "Ambassador",
@@ -118681,23 +119612,23 @@
     },
     {
       "name": "1998",
-      "value": 233
+      "value": 234
     },
     {
       "name": "1999",
-      "value": 387
+      "value": 388
     },
     {
       "name": "2000",
-      "value": 546
+      "value": 547
     },
     {
       "name": "2001",
-      "value": 539
+      "value": 541
     },
     {
       "name": "2002",
-      "value": 193
+      "value": 196
     },
     {
       "name": "2003",
@@ -118705,7 +119636,7 @@
     },
     {
       "name": "2004",
-      "value": 15
+      "value": 16
     },
     {
       "name": "2005",
@@ -118741,7 +119672,7 @@
     },
     {
       "name": "Senza anno",
-      "value": 2321
+      "value": 2348
     }
   ],
   "distribuzione_corsi": [
@@ -118750,16 +119681,16 @@
       "value": 11
     },
     {
+      "name": "One More Time SSM 2026",
+      "value": 10
+    },
+    {
       "name": "Full 2026 – Borsa di Studio",
       "value": 679
     },
     {
       "name": "Full 2026 – Promo 30%",
       "value": 11
-    },
-    {
-      "name": "One More Time SSM 2026",
-      "value": 9
     },
     {
       "name": "Biennale SSM 2027",
@@ -118800,12 +119731,12 @@
       "value": 11
     },
     {
-      "name": "Full 2026 – Promo 30%",
-      "value": 11
+      "name": "One More Time SSM 2026",
+      "value": 10
     },
     {
-      "name": "One More Time SSM 2026",
-      "value": 9
+      "name": "Full 2026 – Promo 30%",
+      "value": 11
     },
     {
       "name": "Biennale SSM 2027",
@@ -118843,15 +119774,15 @@
   "distribuzione_liste_corsisti": [
     {
       "name": "ISCRITTI",
-      "value": 3036
+      "value": 3049
     },
     {
       "name": "Altro",
-      "value": 24696
+      "value": 25008
     },
     {
       "name": "WEBINAR",
-      "value": 2210
+      "value": 2234
     }
   ],
   "webinar_conversions": [
@@ -118863,16 +119794,16 @@
   "iscritti_webinar": [
     {
       "name": "Iscritti con Webinar",
-      "value": 932
+      "value": 939
     }
   ],
   "utenti_crm_webinar": [
     {
       "name": "Utenti CRM Webinar",
-      "value": 2210
+      "value": 2234
     }
   ],
-  "utenti_crm_non_corsisti": 4059,
-  "utenti_crm_non_corsisti_in_target": 802,
-  "pct_non_corsisti_in_target": 0.19758561221975857
+  "utenti_crm_non_corsisti": 4093,
+  "utenti_crm_non_corsisti_in_target": 812,
+  "pct_non_corsisti_in_target": 0.19838749083801613
 }
