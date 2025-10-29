@@ -71,6 +71,18 @@
         "paganti": 90
       },
       "totalContacts": 5186
+    },
+    {
+      "week": "27/10/2025",
+      "date": "2025-10-29",
+      "funnel": {
+        "leadsACRM": 5306,
+        "iscrittiPiattaforma": 3217,
+        "profiloCompleto": 2764,
+        "corsisti": 779,
+        "paganti": 100
+      },
+      "totalContacts": 5306
     }
   ],
   "daily": [
@@ -326,6 +338,17 @@
         "paganti": 99
       },
       "totalContacts": 5279
+    },
+    {
+      "date": "2025-10-29",
+      "funnel": {
+        "leadsACRM": 5306,
+        "iscrittiPiattaforma": 3217,
+        "profiloCompleto": 2764,
+        "corsisti": 779,
+        "paganti": 100
+      },
+      "totalContacts": 5306
     }
   ]
 }
