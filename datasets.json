@@ -1,14 +1,274 @@
 {
-  "generatedAt": "2025-11-01T03:15:41.864Z",
-  "totalContacts": 5288,
+  "generatedAt": "2025-11-02T03:19:40.810Z",
+  "totalContacts": 5300,
   "contacts": [
+    {
+      "id": 5825,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-11-02T01:00:02.797+01:00",
+      "modifiedAt": "2025-11-02T01:00:09.814+01:00",
+      "listIds": [
+        6,
+        7,
+        2
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ID_STUDENTE": "3434",
+        "ANNO": "5° anno",
+        "ANNO_OBIETTIVO_TEST": 2027,
+        "ATENEO": "Enna “Università Kore”",
+        "DATA_DI_NASCITA": "2002-04-04",
+        "FONTE": "Iscritti"
+      }
+    },
+    {
+      "id": 5824,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-11-02T00:21:49.946+01:00",
+      "modifiedAt": "2025-11-02T00:21:59.687+01:00",
+      "listIds": [
+        66,
+        2,
+        70
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Roma “Tor Vergata”",
+        "FONTE": "Sito"
+      }
+    },
+    {
+      "id": 5823,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-11-01T23:00:03.414+01:00",
+      "modifiedAt": "2025-11-01T23:00:10.245+01:00",
+      "listIds": [
+        6,
+        7,
+        2
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ID_STUDENTE": "3432",
+        "ANNO": "6° anno",
+        "ANNO_OBIETTIVO_TEST": 2026,
+        "ATENEO": "Roma “La Sapienza”, sedi di Roma Policlinico Umberto I",
+        "DATA_DI_NASCITA": "2001-05-30",
+        "FONTE": "Iscritti"
+      }
+    },
+    {
+      "id": 5822,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-11-01T22:34:58.418+01:00",
+      "modifiedAt": "2025-11-01T22:35:52.023+01:00",
+      "listIds": [
+        83,
+        2,
+        69,
+        22,
+        84
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Roma “La Sapienza”, sedi di Roma Policlinico Umberto I",
+        "ANNO": "6° anno",
+        "DATA_WEBINAR_QUATTRO": "2025-11-05",
+        "WEBINAR_PRE_ACQUISTO": "Sì",
+        "FONTE": "Webinar",
+        "DATA_WEBINAR_CINQUE": "2025-11-19"
+      }
+    },
+    {
+      "id": 5821,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-11-01T17:00:03.608+01:00",
+      "modifiedAt": "2025-11-01T17:00:10.750+01:00",
+      "listIds": [
+        6,
+        7,
+        2
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ID_STUDENTE": "3431",
+        "ANNO": "6° anno",
+        "ANNO_OBIETTIVO_TEST": 2026,
+        "ATENEO": "Ferrara",
+        "DATA_DI_NASCITA": "1996-02-16",
+        "FONTE": "Iscritti"
+      }
+    },
+    {
+      "id": 5820,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-11-01T15:58:57.037+01:00",
+      "modifiedAt": "2025-11-01T17:00:03.221+01:00",
+      "listIds": [
+        66,
+        2,
+        70,
+        6,
+        7
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Molise, sede di Campobasso",
+        "FONTE": "Sito",
+        "ID_STUDENTE": "3430",
+        "ANNO": "6° anno",
+        "ANNO_OBIETTIVO_TEST": 2026,
+        "DATA_DI_NASCITA": "2001-11-09"
+      }
+    },
+    {
+      "id": 5819,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-11-01T12:10:33.146+01:00",
+      "modifiedAt": "2025-11-01T13:00:04.204+01:00",
+      "listIds": [
+        8,
+        2,
+        22,
+        71,
+        6,
+        7
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ANNO_OBIETTIVO_TEST": 2026,
+        "OBIETTIVO_TEST": "SSM 2026",
+        "AMBASSADOR": "#2027 - ALBERTO CANDOTTI - alby.cando@gmail.com",
+        "ACQUISTO_ALTRO": "Corso Full SSM 2026 (in Promo col 20% di sconto)",
+        "FONTE": "AMBASSADOR",
+        "ID_STUDENTE": "3429",
+        "CAP": "16124",
+        "CITY": "Genova",
+        "CIVICO": "10",
+        "CODICE_FISCALE": "sbbrhl01h55d969q",
+        "INDIRIZZO": "Via Caffaro",
+        "INDIRIZZO_SPEDIZIONE": "Via Caffaro, 10 - 16124 - Genova, genova",
+        "ANNO": "6° anno",
+        "ATENEO": "Genova",
+        "DATA_DI_NASCITA": "2001-06-15"
+      }
+    },
+    {
+      "id": 5818,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-11-01T09:52:58.776+01:00",
+      "modifiedAt": "2025-11-01T09:53:06.525+01:00",
+      "listIds": [
+        66,
+        2,
+        70
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Trieste",
+        "FONTE": "Sito"
+      }
+    },
+    {
+      "id": 5817,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-11-01T08:51:26.377+01:00",
+      "modifiedAt": "2025-11-01T08:51:31.488+01:00",
+      "listIds": [
+        66,
+        2,
+        70
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Pisa",
+        "FONTE": "Sito"
+      }
+    },
+    {
+      "id": 5816,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-11-01T08:06:02.900+01:00",
+      "modifiedAt": "2025-11-01T08:06:13.449+01:00",
+      "listIds": [
+        83,
+        22,
+        69,
+        2
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Ferrara",
+        "ANNO": "laureato",
+        "DATA_WEBINAR_QUATTRO": "2025-11-05",
+        "WEBINAR_PRE_ACQUISTO": "Sì",
+        "FONTE": "Conversation"
+      }
+    },
+    {
+      "id": 5815,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-11-01T07:55:03.352+01:00",
+      "modifiedAt": "2025-11-01T08:00:03.545+01:00",
+      "listIds": [
+        66,
+        2,
+        70,
+        22,
+        6,
+        7
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Parma",
+        "FONTE": "Sito",
+        "ID_STUDENTE": "3428",
+        "ANNO": "laureato",
+        "ANNO_OBIETTIVO_TEST": 2026,
+        "DATA_DI_NASCITA": "1999-11-23"
+      }
+    },
+    {
+      "id": 5814,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-11-01T04:20:21.855+01:00",
+      "modifiedAt": "2025-11-01T04:20:32.159+01:00",
+      "listIds": [
+        11,
+        2,
+        22,
+        70
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "MESSAGGIO_FORM": "Dear Team,\r\nWe’re interested in reselling your products and have several clients ready to place orders. Kindly get in touch through WhatsApp: +1 519 905 1806\r\nWarm regards",
+        "FONTE": "Sito",
+        "CON_TRATTATIVA": "Sì"
+      }
+    },
     {
       "id": 5813,
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-11-01T03:10:05.592+01:00",
-      "modifiedAt": "2025-11-01T03:10:05.592+01:00",
-      "listIds": [],
+      "modifiedAt": "2025-11-01T15:30:28.841+01:00",
+      "listIds": [
+        44,
+        2
+      ],
       "listUnsubscribed": null,
       "attributes": {
         "NOME_CORSO_CARRELLO": "Corso ONE MORE TIMESSM 2026"
@@ -105,7 +365,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-10-31T14:00:05.693+01:00",
-      "modifiedAt": "2025-10-31T14:00:18.367+01:00",
+      "modifiedAt": "2025-11-02T03:10:05.458+01:00",
       "listIds": [
         6,
         2
@@ -113,7 +373,8 @@
       "listUnsubscribed": null,
       "attributes": {
         "ID_STUDENTE": "3422",
-        "FONTE": "Iscritti"
+        "FONTE": "Iscritti",
+        "NOME_CORSO_CARRELLO": "Manuali cartacei + simulatore"
       }
     },
     {
@@ -234,14 +495,16 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-10-31T01:00:02.529+01:00",
-      "modifiedAt": "2025-10-31T11:00:04.046+01:00",
+      "modifiedAt": "2025-11-01T16:15:28.442+01:00",
       "listIds": [
         6,
         7,
         2,
         22,
         8,
-        71
+        71,
+        83,
+        69
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -258,7 +521,9 @@
         "CITY": "Grammichele",
         "CIVICO": "31",
         "CODICE_FISCALE": "PTRLBT97B54H163S",
-        "INDIRIZZO": "Via Silvio pellico"
+        "INDIRIZZO": "Via Silvio pellico",
+        "DATA_WEBINAR_QUATTRO": "2025-11-05",
+        "WEBINAR_PRE_ACQUISTO": "Sì"
       }
     },
     {
@@ -1299,15 +1564,20 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-10-28T12:00:02.828+01:00",
-      "modifiedAt": "2025-10-30T13:01:01.738+01:00",
+      "modifiedAt": "2025-11-01T18:00:03.253+01:00",
       "listIds": [
         6,
-        2
+        2,
+        7
       ],
       "listUnsubscribed": null,
       "attributes": {
         "ID_STUDENTE": "3388",
-        "FONTE": "Iscritti"
+        "FONTE": "Iscritti",
+        "ANNO": "6° anno",
+        "ANNO_OBIETTIVO_TEST": 2026,
+        "ATENEO": "Roma “La Sapienza”, sedi di Roma Policlinico Umberto I",
+        "DATA_DI_NASCITA": "2001-06-23"
       }
     },
     {
@@ -2105,7 +2375,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-10-25T19:00:02.463+02:00",
-      "modifiedAt": "2025-10-30T13:01:01.830+01:00",
+      "modifiedAt": "2025-11-01T13:00:04.420+01:00",
       "listIds": [
         6,
         2
@@ -2114,8 +2384,8 @@
       "attributes": {
         "ID_STUDENTE": "3362",
         "FONTE": "Iscritti",
-        "PUNTEGGIO_SIMULAZIONE": 75.75,
-        "ULTIMA_SIMULAZIONE": "2025-10-27"
+        "PUNTEGGIO_SIMULAZIONE": 57,
+        "ULTIMA_SIMULAZIONE": "2025-11-01"
       }
     },
     {
@@ -4086,7 +4356,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-10-19T14:00:03.643+02:00",
-      "modifiedAt": "2025-10-31T20:00:03.810+01:00",
+      "modifiedAt": "2025-11-01T23:00:03.041+01:00",
       "listIds": [
         6,
         7,
@@ -4099,8 +4369,8 @@
         "ANNO_OBIETTIVO_TEST": 2026,
         "ATENEO": "Messina",
         "DATA_DI_NASCITA": "1997-03-03",
-        "PUNTEGGIO_SIMULAZIONE": 45,
-        "ULTIMA_SIMULAZIONE": "2025-10-31",
+        "PUNTEGGIO_SIMULAZIONE": 42,
+        "ULTIMA_SIMULAZIONE": "2025-11-01",
         "FONTE": "Iscritti"
       }
     },
@@ -18514,17 +18784,20 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-09-10T18:18:36.165+02:00",
-      "modifiedAt": "2025-10-30T13:01:01.722+01:00",
+      "modifiedAt": "2025-11-01T17:06:35.996+01:00",
       "listIds": [
         58,
         2,
-        69
+        69,
+        83
       ],
       "listUnsubscribed": null,
       "attributes": {
         "ATENEO": "Udine",
         "ANNO": "laureato",
-        "DATA_WEBINAR": "2025-09-11"
+        "DATA_WEBINAR": "2025-09-11",
+        "DATA_WEBINAR_QUATTRO": "2025-11-05",
+        "WEBINAR_PRE_ACQUISTO": "Sì"
       }
     },
     {
@@ -20348,6 +20621,42 @@
       }
     },
     {
+      "id": 5193,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-10-03T17:02:50.700+02:00",
+      "modifiedAt": "2025-10-29T13:01:22.810+01:00",
+      "listIds": [
+        6,
+        2,
+        22,
+        7,
+        8,
+        87
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Campania “L. Vanvitelli”, sedi di Caserta e Napoli",
+        "REGIONE": "Campania",
+        "PREZZO_CARRELLO": 380,
+        "OBIETTIVO_TEST": "SSM 2026",
+        "ID_STUDENTE": "3085",
+        "FONTE": "Iscritti",
+        "CAP": "81055",
+        "CITY": "Santa maria capua vetere",
+        "CIVICO": "17",
+        "CODICE_FISCALE": "SCHVRF99C07A512G",
+        "INDIRIZZO": "Via giacomo leopardi",
+        "ANNO": "Altro",
+        "ANNO_OBIETTIVO_TEST": 2026,
+        "DATA_DI_NASCITA": "1999-03-07",
+        "CORSO_ACQUISTATO": "CORSO ONE MORE TIMESSM 2026",
+        "RAPPORTO_COL_CLIENTE": [
+          "Buono"
+        ]
+      }
+    },
+    {
       "id": 4755,
       "emailBlacklisted": false,
       "smsBlacklisted": false,
@@ -20600,42 +20909,6 @@
         "ANNO_OBIETTIVO_TEST": 2026,
         "ATENEO": "Verona",
         "DATA_DI_NASCITA": "2004-07-10"
-      }
-    },
-    {
-      "id": 5193,
-      "emailBlacklisted": false,
-      "smsBlacklisted": false,
-      "createdAt": "2025-10-03T17:02:50.700+02:00",
-      "modifiedAt": "2025-10-29T13:01:22.810+01:00",
-      "listIds": [
-        6,
-        2,
-        22,
-        7,
-        8,
-        87
-      ],
-      "listUnsubscribed": null,
-      "attributes": {
-        "ATENEO": "Campania “L. Vanvitelli”, sedi di Caserta e Napoli",
-        "REGIONE": "Campania",
-        "PREZZO_CARRELLO": 380,
-        "OBIETTIVO_TEST": "SSM 2026",
-        "ID_STUDENTE": "3085",
-        "FONTE": "Iscritti",
-        "CAP": "81055",
-        "CITY": "Santa maria capua vetere",
-        "CIVICO": "17",
-        "CODICE_FISCALE": "SCHVRF99C07A512G",
-        "INDIRIZZO": "Via giacomo leopardi",
-        "ANNO": "Altro",
-        "ANNO_OBIETTIVO_TEST": 2026,
-        "DATA_DI_NASCITA": "1999-03-07",
-        "CORSO_ACQUISTATO": "CORSO ONE MORE TIMESSM 2026",
-        "RAPPORTO_COL_CLIENTE": [
-          "Buono"
-        ]
       }
     },
     {
@@ -25317,19 +25590,24 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-08-29T16:04:01.305+02:00",
-      "modifiedAt": "2025-10-30T13:01:01.764+01:00",
+      "modifiedAt": "2025-11-01T23:00:07.946+01:00",
       "listIds": [
         58,
         2,
         69,
         78,
-        81
+        81,
+        6,
+        7
       ],
       "listUnsubscribed": null,
       "attributes": {
         "ATENEO": "Catanzaro “Magna Grecia”, sedi di Catanzaro e Rende",
         "ANNO": "6° anno",
-        "DATA_WEBINAR": "2025-09-11"
+        "DATA_WEBINAR": "2025-09-11",
+        "ID_STUDENTE": "3433",
+        "ANNO_OBIETTIVO_TEST": 2026,
+        "DATA_DI_NASCITA": "2000-04-22"
       }
     },
     {
@@ -41585,6 +41863,120 @@
       }
     },
     {
+      "id": 4432,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-08-27T12:40:28.910+02:00",
+      "modifiedAt": "2025-10-29T13:01:18.752+01:00",
+      "listIds": [
+        8,
+        22,
+        2,
+        6,
+        7,
+        71,
+        87
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ANNO_OBIETTIVO_TEST": 2026,
+        "CORSO_ACQUISTATO": "CORSO FULL SSM 2026  (SE ENTRI È GRATIS)",
+        "OBIETTIVO_TEST": "SSM 2026",
+        "ID_STUDENTE": "2744",
+        "ANNO": "6° anno",
+        "ATENEO": "Brescia",
+        "DATA_DI_NASCITA": "2000-11-15",
+        "CAP": "25036",
+        "CITY": "PALAZZOLO SULL'OGLIO",
+        "CIVICO": "33",
+        "CODICE_FISCALE": "MDOLRD00S15B157A",
+        "INDIRIZZO": "VIA LEVADELLO",
+        "AMBASSADOR": "#145 - ALBERTO ORONTI - albi.oronti@tiscali.it",
+        "FONTE": "AMBASSADOR",
+        "RAPPORTO_COL_CLIENTE": [
+          "Buono"
+        ]
+      }
+    },
+    {
+      "id": 4289,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-08-19T09:00:03.224+02:00",
+      "modifiedAt": "2025-10-29T13:01:30.731+01:00",
+      "listIds": [
+        6,
+        7,
+        2,
+        67,
+        8,
+        22,
+        87
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ID_STUDENTE": "2623",
+        "ANNO": "Altro",
+        "ANNO_OBIETTIVO_TEST": 2026,
+        "ATENEO": "Milano Statale",
+        "DATA_DI_NASCITA": "1977-02-12",
+        "CORSO_ACQUISTATO": "Corso ONE MORE TIMESSM 2026",
+        "OBIETTIVO_TEST": "SSM 2026",
+        "CAP": "09041",
+        "CITY": "Dolianova",
+        "CIVICO": "7",
+        "CODICE_FISCALE": "BSTRRT77B12L750K",
+        "INDIRIZZO": "Via Grazia Deledda",
+        "PUNTEGGIO_SIMULAZIONE": 39.5,
+        "ULTIMA_SIMULAZIONE": "2025-10-28",
+        "RAPPORTO_COL_CLIENTE": [
+          "Buono"
+        ]
+      }
+    },
+    {
+      "id": 4430,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-08-27T11:40:30.493+02:00",
+      "modifiedAt": "2025-10-29T13:49:14.442+01:00",
+      "listIds": [
+        55,
+        6,
+        7,
+        2,
+        58,
+        57,
+        22,
+        8,
+        69,
+        87
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ATENEO": "Palermo",
+        "ANNO": "6° anno",
+        "DATA_WEBINAR_BIS": "2025-08-27",
+        "ID_STUDENTE": "2688",
+        "ANNO_OBIETTIVO_TEST": 2026,
+        "DATA_DI_NASCITA": "1996-07-10",
+        "DATA_WEBINAR": "2025-09-11",
+        "DATA_WEBINAR_TRIS": "2025-09-13",
+        "CORSO_ACQUISTATO": "CORSO BIENNALE SSM 2027",
+        "OBIETTIVO_TEST": "SSM 2027",
+        "CAP": "90133",
+        "CITY": "PALERMO",
+        "CIVICO": "35",
+        "CODICE_FISCALE": "CRRGLI96L50L719F",
+        "INDIRIZZO": "VIA MAGIONE",
+        "FONTE": "WEBINAR",
+        "WEBINAR_PRE_ACQUISTO": "Sì",
+        "RAPPORTO_COL_CLIENTE": [
+          "Buono"
+        ]
+      }
+    },
+    {
       "id": 3720,
       "emailBlacklisted": false,
       "smsBlacklisted": false,
@@ -41851,120 +42243,6 @@
         "INDIRIZZO": "Michele Ruta 13",
         "PUNTEGGIO_SIMULAZIONE": 2.75,
         "ULTIMA_SIMULAZIONE": "2025-07-31"
-      }
-    },
-    {
-      "id": 4432,
-      "emailBlacklisted": false,
-      "smsBlacklisted": false,
-      "createdAt": "2025-08-27T12:40:28.910+02:00",
-      "modifiedAt": "2025-10-29T13:01:18.752+01:00",
-      "listIds": [
-        8,
-        22,
-        2,
-        6,
-        7,
-        71,
-        87
-      ],
-      "listUnsubscribed": null,
-      "attributes": {
-        "ANNO_OBIETTIVO_TEST": 2026,
-        "CORSO_ACQUISTATO": "CORSO FULL SSM 2026  (SE ENTRI È GRATIS)",
-        "OBIETTIVO_TEST": "SSM 2026",
-        "ID_STUDENTE": "2744",
-        "ANNO": "6° anno",
-        "ATENEO": "Brescia",
-        "DATA_DI_NASCITA": "2000-11-15",
-        "CAP": "25036",
-        "CITY": "PALAZZOLO SULL'OGLIO",
-        "CIVICO": "33",
-        "CODICE_FISCALE": "MDOLRD00S15B157A",
-        "INDIRIZZO": "VIA LEVADELLO",
-        "AMBASSADOR": "#145 - ALBERTO ORONTI - albi.oronti@tiscali.it",
-        "FONTE": "AMBASSADOR",
-        "RAPPORTO_COL_CLIENTE": [
-          "Buono"
-        ]
-      }
-    },
-    {
-      "id": 4430,
-      "emailBlacklisted": false,
-      "smsBlacklisted": false,
-      "createdAt": "2025-08-27T11:40:30.493+02:00",
-      "modifiedAt": "2025-10-29T13:49:14.442+01:00",
-      "listIds": [
-        55,
-        6,
-        7,
-        2,
-        58,
-        57,
-        22,
-        8,
-        69,
-        87
-      ],
-      "listUnsubscribed": null,
-      "attributes": {
-        "ATENEO": "Palermo",
-        "ANNO": "6° anno",
-        "DATA_WEBINAR_BIS": "2025-08-27",
-        "ID_STUDENTE": "2688",
-        "ANNO_OBIETTIVO_TEST": 2026,
-        "DATA_DI_NASCITA": "1996-07-10",
-        "DATA_WEBINAR": "2025-09-11",
-        "DATA_WEBINAR_TRIS": "2025-09-13",
-        "CORSO_ACQUISTATO": "CORSO BIENNALE SSM 2027",
-        "OBIETTIVO_TEST": "SSM 2027",
-        "CAP": "90133",
-        "CITY": "PALERMO",
-        "CIVICO": "35",
-        "CODICE_FISCALE": "CRRGLI96L50L719F",
-        "INDIRIZZO": "VIA MAGIONE",
-        "FONTE": "WEBINAR",
-        "WEBINAR_PRE_ACQUISTO": "Sì",
-        "RAPPORTO_COL_CLIENTE": [
-          "Buono"
-        ]
-      }
-    },
-    {
-      "id": 4289,
-      "emailBlacklisted": false,
-      "smsBlacklisted": false,
-      "createdAt": "2025-08-19T09:00:03.224+02:00",
-      "modifiedAt": "2025-10-29T13:01:30.731+01:00",
-      "listIds": [
-        6,
-        7,
-        2,
-        67,
-        8,
-        22,
-        87
-      ],
-      "listUnsubscribed": null,
-      "attributes": {
-        "ID_STUDENTE": "2623",
-        "ANNO": "Altro",
-        "ANNO_OBIETTIVO_TEST": 2026,
-        "ATENEO": "Milano Statale",
-        "DATA_DI_NASCITA": "1977-02-12",
-        "CORSO_ACQUISTATO": "Corso ONE MORE TIMESSM 2026",
-        "OBIETTIVO_TEST": "SSM 2026",
-        "CAP": "09041",
-        "CITY": "Dolianova",
-        "CIVICO": "7",
-        "CODICE_FISCALE": "BSTRRT77B12L750K",
-        "INDIRIZZO": "Via Grazia Deledda",
-        "PUNTEGGIO_SIMULAZIONE": 39.5,
-        "ULTIMA_SIMULAZIONE": "2025-10-28",
-        "RAPPORTO_COL_CLIENTE": [
-          "Buono"
-        ]
       }
     },
     {
@@ -47585,7 +47863,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-07-15T16:00:03.329+02:00",
-      "modifiedAt": "2025-10-29T13:06:45.895+01:00",
+      "modifiedAt": "2025-11-02T03:10:05.217+01:00",
       "listIds": [
         6,
         7,
@@ -47616,7 +47894,8 @@
         "JOB_TITLE": "Iscritto a Webinar pre eventuale acquisto",
         "PUNTEGGIO_SIMULAZIONE": 54.75,
         "ULTIMA_SIMULAZIONE": "2025-10-02",
-        "WEBINAR_PRE_ACQUISTO": "Sì"
+        "WEBINAR_PRE_ACQUISTO": "Sì",
+        "NOME_CORSO_CARRELLO": "Tutti i manuali cartacei"
       }
     },
     {
@@ -54903,13 +55182,14 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-07-04T14:00:04.671+02:00",
-      "modifiedAt": "2025-10-29T13:06:45.895+01:00",
+      "modifiedAt": "2025-11-01T19:00:02.827+01:00",
       "listIds": [
         6,
         2,
         8,
         22,
-        64
+        64,
+        7
       ],
       "listUnsubscribed": null,
       "attributes": {
@@ -54919,9 +55199,12 @@
         "CIVICO": "21",
         "CODICE_FISCALE": "FDLLSS00P59I921S",
         "INDIRIZZO": "Via canino",
-        "ANNO_OBIETTIVO_TEST": 2025,
+        "ANNO_OBIETTIVO_TEST": 2026,
         "CORSO_ACQUISTATO": "CORSO FULL SSM 2026  (BORSA DI STUDIO SECRET SSM)",
-        "OBIETTIVO_TEST": "SSM 2026"
+        "OBIETTIVO_TEST": "SSM 2026",
+        "ANNO": "6° anno",
+        "ATENEO": "Roma “La Sapienza”, sedi di Roma Policlinico Umberto I",
+        "DATA_DI_NASCITA": "2000-09-19"
       }
     },
     {
@@ -56885,7 +57168,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-07-03T17:19:35.342+02:00",
-      "modifiedAt": "2025-10-29T13:06:45.895+01:00",
+      "modifiedAt": "2025-11-01T21:00:02.819+01:00",
       "listIds": [
         47,
         2,
@@ -56897,7 +57180,9 @@
       "attributes": {
         "OBIETTIVO_TEST": "2026",
         "ATENEO": "Ferrara",
-        "CORSO_ACQUISTATO": "CORSO FULL SSM 2026  (BORSA DI STUDIO SECRET SSM)"
+        "CORSO_ACQUISTATO": "CORSO FULL SSM 2026  (BORSA DI STUDIO SECRET SSM)",
+        "PUNTEGGIO_SIMULAZIONE": 47.5,
+        "ULTIMA_SIMULAZIONE": "2025-11-01"
       }
     },
     {
@@ -57262,7 +57547,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-07-03T17:19:35.321+02:00",
-      "modifiedAt": "2025-10-29T13:06:45.895+01:00",
+      "modifiedAt": "2025-11-01T14:00:04.822+01:00",
       "listIds": [
         47,
         2,
@@ -57280,8 +57565,8 @@
         "ATENEO": "Padova, sedi di Padova e Treviso",
         "ANNO": "6° anno",
         "DATA_WEBINAR_BIS": "2025-08-27",
-        "PUNTEGGIO_SIMULAZIONE": 77,
-        "ULTIMA_SIMULAZIONE": "2025-09-14",
+        "PUNTEGGIO_SIMULAZIONE": 103,
+        "ULTIMA_SIMULAZIONE": "2025-11-01",
         "CORSO_ACQUISTATO": "CORSO FULL SSM 2026  (BORSA DI STUDIO SECRET SSM)",
         "DATA_WEBINAR_QUATTRO": "2025-11-05"
       }
@@ -68294,6 +68579,49 @@
       }
     },
     {
+      "id": 2843,
+      "emailBlacklisted": false,
+      "smsBlacklisted": false,
+      "createdAt": "2025-07-02T11:00:08.086+02:00",
+      "modifiedAt": "2025-10-29T13:06:45.895+01:00",
+      "listIds": [
+        6,
+        7,
+        2,
+        22,
+        8,
+        48,
+        64,
+        71,
+        26,
+        70
+      ],
+      "listUnsubscribed": null,
+      "attributes": {
+        "ID_STUDENTE": "1651",
+        "ANNO": "5° anno",
+        "ANNO_OBIETTIVO_TEST": 2026,
+        "ATENEO": "Modena e Reggio Emilia, sede di Modena",
+        "DATA_DI_NASCITA": "2001-12-04",
+        "CAP": "66036",
+        "CITY": "orsogna",
+        "CIVICO": "21",
+        "CODICE_FISCALE": "srclgu00c60e243j",
+        "INDIRIZZO": "Via Vincenzo simeoni",
+        "CORSO_ACQUISTATO": "CORSO FULL SSM 2026  (BORSA DI STUDIO SECRET SSM)",
+        "OBIETTIVO_TEST": "SSM 2026",
+        "AMBASSADOR": "#186 - ALESSANDRO PECCHI - a.pecchi2001@gmail.com",
+        "FONTE": "AMBASSADOR",
+        "MESSAGGIO_FORM": "Buonasera, sono una studentessa del sesto anno di medicina e intendo partecipare all'SSM2026. tra esami, tesi, lezioni e tirocini, ho veramente poco tempo da dedicare alla preparazione del test, vorrei un consiglio su come ottimizzare i tempi, e su cosa dare priorità. Mi piacerebbe seguire tutte le lezioni proposte, di ogni materia, sarebbe molto formativo e d'aiuto, ma temo di non fare in tempo. Qualche consiglio? Grazie mille!",
+        "CON_TRATTATIVA": "Sì",
+        "PUNTEGGIO_SIMULAZIONE": 109,
+        "ULTIMA_SIMULAZIONE": "2025-10-27",
+        "RAPPORTO_COL_CLIENTE": [
+          "Buono"
+        ]
+      }
+    },
+    {
       "id": 2599,
       "emailBlacklisted": false,
       "smsBlacklisted": false,
@@ -68683,49 +69011,6 @@
         "FONTE": "AMBASSADOR",
         "PUNTEGGIO_SIMULAZIONE": 24,
         "ULTIMA_SIMULAZIONE": "2025-10-09"
-      }
-    },
-    {
-      "id": 2843,
-      "emailBlacklisted": false,
-      "smsBlacklisted": false,
-      "createdAt": "2025-07-02T11:00:08.086+02:00",
-      "modifiedAt": "2025-10-29T13:06:45.895+01:00",
-      "listIds": [
-        6,
-        7,
-        2,
-        22,
-        8,
-        48,
-        64,
-        71,
-        26,
-        70
-      ],
-      "listUnsubscribed": null,
-      "attributes": {
-        "ID_STUDENTE": "1651",
-        "ANNO": "5° anno",
-        "ANNO_OBIETTIVO_TEST": 2026,
-        "ATENEO": "Modena e Reggio Emilia, sede di Modena",
-        "DATA_DI_NASCITA": "2001-12-04",
-        "CAP": "66036",
-        "CITY": "orsogna",
-        "CIVICO": "21",
-        "CODICE_FISCALE": "srclgu00c60e243j",
-        "INDIRIZZO": "Via Vincenzo simeoni",
-        "CORSO_ACQUISTATO": "CORSO FULL SSM 2026  (BORSA DI STUDIO SECRET SSM)",
-        "OBIETTIVO_TEST": "SSM 2026",
-        "AMBASSADOR": "#186 - ALESSANDRO PECCHI - a.pecchi2001@gmail.com",
-        "FONTE": "AMBASSADOR",
-        "MESSAGGIO_FORM": "Buonasera, sono una studentessa del sesto anno di medicina e intendo partecipare all'SSM2026. tra esami, tesi, lezioni e tirocini, ho veramente poco tempo da dedicare alla preparazione del test, vorrei un consiglio su come ottimizzare i tempi, e su cosa dare priorità. Mi piacerebbe seguire tutte le lezioni proposte, di ogni materia, sarebbe molto formativo e d'aiuto, ma temo di non fare in tempo. Qualche consiglio? Grazie mille!",
-        "CON_TRATTATIVA": "Sì",
-        "PUNTEGGIO_SIMULAZIONE": 109,
-        "ULTIMA_SIMULAZIONE": "2025-10-27",
-        "RAPPORTO_COL_CLIENTE": [
-          "Buono"
-        ]
       }
     },
     {
@@ -106676,7 +106961,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-04-30T17:00:03.756+02:00",
-      "modifiedAt": "2025-10-29T13:06:45.895+01:00",
+      "modifiedAt": "2025-11-01T22:00:02.951+01:00",
       "listIds": [
         6,
         7,
@@ -106701,8 +106986,8 @@
         "CODICE_FISCALE": "SCLGPP01R17e791w",
         "INDIRIZZO": "Via Isaac Rabin",
         "CORSO_ACQUISTATO": "CORSO FULL SSM 2026  (BORSA DI STUDIO SECRET SSM)",
-        "PUNTEGGIO_SIMULAZIONE": 67.25,
-        "ULTIMA_SIMULAZIONE": "2025-10-11",
+        "PUNTEGGIO_SIMULAZIONE": 70,
+        "ULTIMA_SIMULAZIONE": "2025-11-01",
         "AMBASSADOR": "#1056 - ANGELA PENNA - angipenna@gmail.com",
         "FONTE": "AMBASSADOR",
         "CON_TRATTATIVA": "Sì"
@@ -111990,7 +112275,7 @@
       "emailBlacklisted": false,
       "smsBlacklisted": false,
       "createdAt": "2025-04-02T19:00:23.345+02:00",
-      "modifiedAt": "2025-10-29T13:06:45.895+01:00",
+      "modifiedAt": "2025-11-01T12:00:03.421+01:00",
       "listIds": [
         6,
         2,
@@ -112027,8 +112312,8 @@
         "AMBASSADOR": "#186 - ALESSANDRO PECCHI - a.pecchi2001@gmail.com",
         "FONTE": "AMBASSADOR",
         "CON_TRATTATIVA": "Sì",
-        "PUNTEGGIO_SIMULAZIONE": 66.5,
-        "ULTIMA_SIMULAZIONE": "2025-10-08"
+        "PUNTEGGIO_SIMULAZIONE": 54.75,
+        "ULTIMA_SIMULAZIONE": "2025-11-01"
       }
     },
     {
@@ -125948,20 +126233,52 @@
     }
   ],
   "funnel": {
-    "leadsACRM": 5288,
-    "iscrittiPiattaforma": 3232,
-    "profiloCompleto": 2782,
+    "leadsACRM": 5300,
+    "iscrittiPiattaforma": 3239,
+    "profiloCompleto": 2791,
     "corsisti": 777,
     "paganti": 98
   },
   "distribuzione_atenei": [
     {
-      "name": "Non specificato",
-      "value": 1016
+      "name": "Enna “Università Kore”",
+      "value": 20
     },
     {
-      "name": "Enna “Università Kore”",
-      "value": 19
+      "name": "Roma “Tor Vergata”",
+      "value": 72
+    },
+    {
+      "name": "Roma “La Sapienza”, sedi di Roma Policlinico Umberto I",
+      "value": 270
+    },
+    {
+      "name": "Ferrara",
+      "value": 139
+    },
+    {
+      "name": "Molise, sede di Campobasso",
+      "value": 77
+    },
+    {
+      "name": "Genova",
+      "value": 96
+    },
+    {
+      "name": "Trieste",
+      "value": 41
+    },
+    {
+      "name": "Pisa",
+      "value": 50
+    },
+    {
+      "name": "Parma",
+      "value": 66
+    },
+    {
+      "name": "Non specificato",
+      "value": 1015
     },
     {
       "name": "Verona",
@@ -125972,16 +126289,8 @@
       "value": 200
     },
     {
-      "name": "Roma “La Sapienza”, sedi di Roma Policlinico Umberto I",
-      "value": 266
-    },
-    {
       "name": "Bari “Aldo Moro”, sedi di Bari e Taranto",
       "value": 244
-    },
-    {
-      "name": "Roma “Tor Vergata”",
-      "value": 71
     },
     {
       "name": "Siena",
@@ -125998,10 +126307,6 @@
     {
       "name": "Catania",
       "value": 118
-    },
-    {
-      "name": "Genova",
-      "value": 95
     },
     {
       "name": "Bologna, sedi di Bologna, Forlì, Ravenna",
@@ -126028,10 +126333,6 @@
       "value": 141
     },
     {
-      "name": "Ferrara",
-      "value": 137
-    },
-    {
       "name": "L’Aquila",
       "value": 47
     },
@@ -126052,10 +126353,6 @@
       "value": 21
     },
     {
-      "name": "Molise, sede di Campobasso",
-      "value": 76
-    },
-    {
       "name": "Università estere",
       "value": 147
     },
@@ -126070,10 +126367,6 @@
     {
       "name": "Non sono studente universitario",
       "value": 23
-    },
-    {
-      "name": "Parma",
-      "value": 65
     },
     {
       "name": "Catanzaro “Magna Grecia”, sedi di Catanzaro e Rende",
@@ -126110,10 +126403,6 @@
     {
       "name": "Piemonte Orientale, sede di Novara e Alessandria",
       "value": 84
-    },
-    {
-      "name": "Pisa",
-      "value": 49
     },
     {
       "name": "Modena e Reggio Emilia, sede di Modena",
@@ -126160,10 +126449,6 @@
       "value": 81
     },
     {
-      "name": "Trieste",
-      "value": 40
-    },
-    {
       "name": "Europea di Roma",
       "value": 4
     },
@@ -126207,19 +126492,19 @@
     },
     {
       "name": "5",
-      "value": 786
+      "value": 787
     },
     {
       "name": "6",
-      "value": 1184
+      "value": 1191
     },
     {
       "name": "ND",
-      "value": 1059
+      "value": 1061
     },
     {
       "name": "Laureato",
-      "value": 630
+      "value": 632
     },
     {
       "name": "Fuori corso",
@@ -126232,28 +126517,28 @@
   ],
   "distribuzione_fonte": [
     {
-      "name": "Sconosciuta/Non dichiarata",
-      "value": 3689
+      "name": "Iscritti",
+      "value": 330
     },
     {
       "name": "Sito",
-      "value": 149
-    },
-    {
-      "name": "Iscritti",
-      "value": 327
-    },
-    {
-      "name": "Ambassador",
-      "value": 354
+      "value": 155
     },
     {
       "name": "Webinar",
-      "value": 329
+      "value": 330
+    },
+    {
+      "name": "Ambassador",
+      "value": 355
     },
     {
       "name": "Conversation",
-      "value": 21
+      "value": 22
+    },
+    {
+      "name": "Sconosciuta/Non dichiarata",
+      "value": 3689
     },
     {
       "name": "FB Ads",
@@ -126435,7 +126720,7 @@
     },
     {
       "name": "1996",
-      "value": 100
+      "value": 101
     },
     {
       "name": "1997",
@@ -126447,19 +126732,19 @@
     },
     {
       "name": "1999",
-      "value": 407
+      "value": 408
     },
     {
       "name": "2000",
-      "value": 579
+      "value": 581
     },
     {
       "name": "2001",
-      "value": 566
+      "value": 570
     },
     {
       "name": "2002",
-      "value": 211
+      "value": 212
     },
     {
       "name": "2003",
@@ -126507,7 +126792,7 @@
     },
     {
       "name": "Senza anno",
-      "value": 2507
+      "value": 2510
     }
   ],
   "distribuzione_corsi": [
@@ -126616,16 +126901,16 @@
   ],
   "distribuzione_liste_corsisti": [
     {
-      "name": "Altro",
-      "value": 26080
+      "name": "ISCRITTI",
+      "value": 3239
     },
     {
-      "name": "ISCRITTI",
-      "value": 3232
+      "name": "Altro",
+      "value": 26127
     },
     {
       "name": "WEBINAR",
-      "value": 2386
+      "value": 2389
     }
   ],
   "webinar_conversions": [
@@ -126637,16 +126922,16 @@
   "iscritti_webinar": [
     {
       "name": "Iscritti con Webinar",
-      "value": 993
+      "value": 995
     }
   ],
   "utenti_crm_webinar": [
     {
       "name": "Utenti CRM Webinar",
-      "value": 2386
+      "value": 2389
     }
   ],
-  "utenti_crm_non_corsisti": 4358,
-  "utenti_crm_non_corsisti_in_target": 879,
-  "pct_non_corsisti_in_target": 0.20169802661771455
+  "utenti_crm_non_corsisti": 4371,
+  "utenti_crm_non_corsisti_in_target": 880,
+  "pct_non_corsisti_in_target": 0.20132692747654998
 }

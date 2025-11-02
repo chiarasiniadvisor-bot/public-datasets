@@ -382,6 +382,17 @@
         "paganti": 98
       },
       "totalContacts": 5288
+    },
+    {
+      "date": "2025-11-02",
+      "funnel": {
+        "leadsACRM": 5300,
+        "iscrittiPiattaforma": 3239,
+        "profiloCompleto": 2791,
+        "corsisti": 777,
+        "paganti": 98
+      },
+      "totalContacts": 5300
     }
   ]
 }
